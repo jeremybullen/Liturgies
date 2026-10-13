@@ -4,6 +4,8 @@ import { toTitleCase } from '../utils/titleCase';
 interface LiturgicalReaderProps {
   content: string;
   fontSize: number; // in pixels, e.g. 19, 21, 24
+  category?: string;
+  isService?: boolean;
 }
 
 interface DropCapAnalysis {
@@ -233,8 +235,22 @@ function analyzeLiturgicalBlock(text: string, fontSize: number): DropCapAnalysis
   return extractDropCapSingleWord(trimmed, 'drop-cap-3', lineCount, speakerRubric, quotePrefix, fullBodyText);
 }
 
-export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({ content, fontSize }) => {
+export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
+  content,
+  fontSize,
+  category,
+  isService
+}) => {
   const elements = useMemo(() => {
+    // Drop caps are strictly reserved for liturgical worship services (never in prefaces, tables, or non-service prose)
+    const isNonServiceText =
+      isService === false ||
+      category === 'Prefaces & Tables' ||
+      (category && /preface|table|calendar|intro/i.test(category)) ||
+      /^\s*#+\s*(?:THE\s+)?PREFACE\b/i.test(content);
+
+    const allowDropCaps = !isNonServiceText;
+
     // Normalize content: ensure all Markdown headers (#, ##, ###) are followed by double newlines
     // so headers never swallow subsequent prayers
     const normalized = content.replace(/^(#{1,6}\s+[^\n]+)\n+(?!\n)/gm, '$1\n\n');
@@ -458,7 +474,7 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({ content, fon
           ? analyzeLiturgicalBlock(trimmed, fontSize)
           : ({ type: 'none', lineCount: lines.length, remainder: trimmed, fullBodyText: trimmed } as DropCapAnalysis);
 
-        const canApplyDropCap = !skipDropCapForScripture;
+        const canApplyDropCap = allowDropCaps && !skipDropCapForScripture;
 
         if (canApplyDropCap && (blockAnalysis.type === 'drop-cap-3' || blockAnalysis.type === 'drop-cap-2')) {
           const isTwoLine = blockAnalysis.type === 'drop-cap-2';
@@ -517,7 +533,7 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({ content, fon
 
       // Single continuous paragraph: analyze based on intelligent line count!
       const analysis = analyzeLiturgicalBlock(trimmed, fontSize);
-      const canApplyDropCap = !skipDropCapForScripture;
+      const canApplyDropCap = allowDropCaps && !skipDropCapForScripture;
 
       // Multi-line drop cap (2 lines scaled, or 3+ lines classical)
       // Small caps is strictly restricted to accompany the drop cap initial
@@ -577,7 +593,7 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({ content, fon
         </div>
       );
     });
-  }, [content, fontSize]);
+  }, [content, fontSize, category, isService]);
 
   return (
     <article

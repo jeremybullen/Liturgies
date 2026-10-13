@@ -365,6 +365,8 @@ export function App() {
           <LiturgicalReader
             content={currentService.content}
             fontSize={fontSize}
+            category={currentService.category}
+            isService={currentService.category !== 'Prefaces & Tables' && currentService.slug !== 'preface' && !currentService.slug.includes('preface')}
           />
         </div>
       </main>

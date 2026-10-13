@@ -1,4 +1,5 @@
 import { ServiceItem } from './types';
+import { preface1662 } from './preface1662';
 import { morningPrayer } from './morningPrayer';
 import { eveningPrayer } from './eveningPrayer';
 import { athanasianCreed } from './athanasianCreed';
@@ -13,10 +14,12 @@ import { services1947, get1947ServiceBySlug } from './er1947';
 import { services1928, get1928ServiceBySlug } from './bcp1928';
 
 export * from './types';
+export { preface1662 } from './preface1662';
 export { services1947, get1947ServiceBySlug } from './er1947';
 export { services1928, get1928ServiceBySlug } from './bcp1928';
 
 export const services1662: ServiceItem[] = [
+  preface1662,
   morningPrayer,
   eveningPrayer,
   litany,
