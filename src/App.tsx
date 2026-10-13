@@ -51,7 +51,7 @@ function parseRoute(): RouteState {
 
 export function App() {
   const [route, setRoute] = useState<RouteState>(parseRoute);
-  const [fontSize, setFontSize] = useState<number>(20);
+  const fontSize = 18;
   const [isBookMenuOpen, setIsBookMenuOpen] = useState(false);
   const [isServiceMenuOpen, setIsServiceMenuOpen] = useState(false);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
@@ -60,15 +60,6 @@ export function App() {
   const lastScrollYRef = useRef(0);
   const bookMenuRef = useRef<HTMLDivElement>(null);
   const serviceMenuRef = useRef<HTMLDivElement>(null);
-
-  const FONT_SIZES = [18, 20, 22, 25] as const;
-  const cycleFontSize = () => {
-    setFontSize(prev => {
-      const idx = FONT_SIZES.indexOf(prev as any);
-      if (idx === -1 || idx >= FONT_SIZES.length - 1) return FONT_SIZES[0];
-      return FONT_SIZES[idx + 1];
-    });
-  };
 
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
@@ -328,14 +319,7 @@ export function App() {
 
           {/* Right-Hand Controls (Font size, Dark mode, Info) */}
           <div className="flex items-center gap-1 shrink-0 text-stone-600 dark:text-stone-400">
-            <button
-              onClick={cycleFontSize}
-              className="p-1.5 rounded hover:bg-[#EFE9DC] dark:hover:bg-[#282622] hover:text-stone-900 dark:hover:text-stone-100 transition-colors cursor-pointer text-xs font-serif font-semibold"
-              title={`Font size: ${fontSize}px`}
-              aria-label={`Cycle font size, current is ${fontSize}px`}
-            >
-              aA <span className="font-sans text-[10px] opacity-70 ml-0.5">{fontSize}</span>
-            </button>
+
 
             <button
               onClick={() => setIsDarkMode(prev => !prev)}
