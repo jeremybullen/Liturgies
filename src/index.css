@@ -1,0 +1,91 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+  :root.dark {
+    color-scheme: dark;
+  }
+
+  body {
+    background-color: #FAF8F5;
+    color: #1A1816;
+    font-family: 'EB Garamond', Garamond, 'Georgia', serif;
+    font-size: 19px;
+    line-height: 1.65;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    transition: background-color 0.15s ease, color 0.15s ease;
+  }
+
+  body.dark,
+  .dark body,
+  html.dark body {
+    background-color: #161513;
+    color: #EDE7DD;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: 'EB Garamond', Garamond, 'Georgia', serif;
+    color: inherit;
+    font-weight: 700;
+  }
+}
+
+/* Liturgical Vermilion Rubrics */
+.rubric, em, i {
+  color: #991B1B;
+  font-style: italic;
+}
+
+.dark .rubric,
+.dark em,
+.dark i,
+html.dark .rubric,
+html.dark em,
+html.dark i {
+  color: #E86558 !important;
+  font-style: italic;
+}
+
+/* Ensure strong or speaker inside rubrics remains proper */
+.rubric strong, em strong, i strong {
+  font-style: italic;
+  font-weight: 600;
+}
+
+/* Drop Cap Typography */
+.liturgical-text {
+  font-feature-settings: "liga" 1, "dlig" 1, "calt" 1;
+}
+
+.small-caps {
+  font-variant: small-caps;
+  letter-spacing: 0.045em;
+}
+
+@media print {
+  header, nav, .no-print, button, aside {
+    display: none !important;
+  }
+  body, html.dark body {
+    background: white !important;
+    color: black !important;
+    font-size: 12pt !important;
+    line-height: 1.45 !important;
+  }
+  .rubric, em, i, html.dark .rubric, html.dark em, html.dark i {
+    color: #991B1B !important;
+  }
+  h1, h2, h3 {
+    page-break-after: avoid;
+    break-after: avoid;
+  }
+  p {
+    orphans: 2;
+    widows: 2;
+  }
+}

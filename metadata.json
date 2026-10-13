@@ -1,0 +1,6 @@
+{
+  "name": "Denominational Liturgical Books",
+  "description": "A clean, dignified reader for historic liturgical texts: The 1662 Book of Common Prayer, 1928 Book of Common Prayer, and the 1947 Evangelical and Reformed Book of Worship.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
