@@ -227,7 +227,9 @@ export const eveningPrayer: LiturgicalService = {
         { speaker: 'Minister', text: 'The Lord be with you.' },
         { speaker: 'Answer', text: 'And with thy spirit.' },
         { speaker: 'Minister', text: 'Let us pray.' },
-        { speaker: 'Min/People', text: 'Lord, have mercy upon us.\nChrist, have mercy upon us.\nLord, have mercy upon us.' }
+        { speaker: 'Minister', text: 'Lord, have mercy upon us.' },
+        { speaker: 'Answer', text: 'Christ, have mercy upon us.' },
+        { speaker: 'Minister', text: 'Lord, have mercy upon us.' }
       ]
     },
     {

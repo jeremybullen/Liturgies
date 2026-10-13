@@ -195,8 +195,8 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({
   switch (block.type) {
     case 'heading':
       return (
-        <div className="pt-6 pb-2 border-b border-stone-200 dark:border-stone-800 text-center">
-          <h2 className="font-heading text-2xl font-bold tracking-tight text-stone-900 dark:text-stone-100">
+        <div className="pt-8 pb-3 border-b border-stone-200 dark:border-stone-800 text-center">
+          <h2 className="font-heading text-2xl font-bold tracking-wider text-stone-900 dark:text-stone-100">
             {block.title}
           </h2>
         </div>
@@ -204,8 +204,8 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({
 
     case 'subheading':
       return (
-        <div className="pt-4 pb-1">
-          <h3 className="font-heading text-xl font-semibold italic text-stone-800 dark:text-stone-200">
+        <div className="pt-6 pb-2 text-center">
+          <h3 className="font-heading text-xl font-semibold text-stone-800 dark:text-stone-200">
             {block.title}
           </h3>
         </div>
@@ -252,7 +252,7 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({
           </button>
 
           {block.title && (
-            <h4 className="font-heading text-lg font-bold text-stone-900 dark:text-stone-100 mb-2 tracking-wide">
+            <h4 className="font-heading text-lg font-medium italic text-center text-stone-900 dark:text-stone-100 mb-2">
               {block.title}
             </h4>
           )}
@@ -293,7 +293,7 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({
         <div className="my-6">
           {block.title && (
             <div className="text-center mb-4">
-              <h3 className="font-heading text-xl font-bold tracking-wider text-stone-900 dark:text-stone-100">
+              <h3 className="font-heading text-xl font-semibold tracking-wide text-stone-900 dark:text-stone-100">
                 {block.title}
               </h3>
               {block.citation && (
@@ -332,7 +332,7 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({
       return (
         <div className="my-6 p-5 rounded-lg bg-stone-100/60 dark:bg-stone-800/30 border border-stone-200 dark:border-stone-700">
           {block.title && (
-            <h3 className="font-heading text-xl font-bold text-stone-900 dark:text-stone-100 mb-3 text-center">
+            <h3 className="font-heading text-xl font-semibold text-stone-900 dark:text-stone-100 mb-3 text-center">
               {block.title}
             </h3>
           )}
@@ -346,7 +346,7 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({
       return (
         <div className="my-5 p-4 rounded-lg bg-stone-50 dark:bg-stone-800/20 border-l-4 border-amber-800/40 dark:border-amber-500/40">
           {block.title && (
-            <h4 className="font-heading text-lg font-bold text-stone-900 dark:text-stone-100 mb-2">
+            <h4 className="font-heading text-lg font-medium italic text-center text-stone-900 dark:text-stone-100 mb-2">
               {block.title}
             </h4>
           )}

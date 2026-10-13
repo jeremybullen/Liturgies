@@ -128,7 +128,7 @@ OUR Father, which art in heaven, Hallowed be thy Name. Thy kingdom come. Thy wil
 *Priest.* O Lord, deal not with us after our sins.  
 *Answer.* Neither reward us after our iniquities.
 
-*Let us pray.*
+Let us pray.
 
 O GOD, merciful Father, that despisest not the sighing of a contrite heart, nor the desire of such as be sorrowful; Mercifully assist our prayers that we make before thee in all our troubles and adversities, whensoever they oppress us; and graciously hear us, that those evils, which the craft and subtilty of the devil or man worketh against us, be brought to nought; and by the providence of thy goodness they may be dispersed; that we thy servants, being hurt by no persecutions, may evermore give thanks unto thee in thy holy Church; through Jesus Christ our Lord.
 
@@ -156,7 +156,7 @@ Graciously hear us, O Christ; graciously hear us, O Lord Christ.
 *Priest.* O Lord, let thy mercy be shewed upon us;  
 *Answer.* As we do put our trust in thee.
 
-*Let us pray.*
+Let us pray.
 
 WE humbly beseech thee, O Father, mercifully to look upon our infirmities; and for the glory of thy Name turn from us all those evils that we most righteously have deserved; and grant, that in all our troubles we may put our whole trust and confidence in thy mercy, and evermore serve thee in holiness and pureness of living, to thy honour and glory; through our only Mediator and Advocate, Jesus Christ our Lord. Amen.
 

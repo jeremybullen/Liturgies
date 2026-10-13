@@ -134,7 +134,7 @@ OUR Father, who art in heaven, Hallowed be thy Name. Thy kingdom come. Thy will 
 *Minister.* O Lord, deal not with us according to our sins.  
 *Answer.* Neither reward us according to our iniquities.
 
-*Let us pray.*
+Let us pray.
 
 O GOD, merciful Father, who despisest not the sighing of a contrite heart, nor the desire of such as are sorrowful; Mercifully assist our prayers which we make before thee in all our troubles and adversities, whensoever they oppress us; and graciously hear us, that those evils which the craft and subtilty of the devil or man worketh against us, may, by thy good providence, be brought to nought, and by the providence of thy goodness they may be dispersed; that we thy servants, being hurt by no persecutions, may evermore give thanks unto thee in thy holy Church; through Jesus Christ our Lord.
 
@@ -162,11 +162,11 @@ Both now and ever vouchsafe to hear us, O Christ.
 *Minister.* O Lord, let thy mercy be showed upon us;  
 *Answer.* As we do put our trust in thee.
 
-*Let us pray.*
+Let us pray.
 
 WE humbly beseech thee, O Father, mercifully to look upon our infirmities; and, for the glory of thy Name, turn from us all those evils that we most justly have deserved; and grant, that in all our troubles we may put our whole trust and confidence in thy mercy, and evermore serve thee in holiness and pureness of living, to thy honour and glory; through our only Mediator and Advocate, Jesus Christ our Lord. *Amen.*
 
-*A Prayer of St. Chrysostom.*
+### A Prayer of St. Chrysostom
 
 ALMIGHTY God, who hast given us grace at this time with one accord to make our common supplications unto thee; and dost promise that when two or three are gathered together in thy Name thou wilt grant their requests; Fulfil now, O Lord, the desires and petitions of thy servants, as may be most expedient for them; granting us in this world knowledge of thy truth, and in the world to come life everlasting. *Amen.*
 

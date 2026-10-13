@@ -203,9 +203,9 @@ I believe in the Holy Ghost; The holy Catholick Church; The Communion of Saints;
 *Minister.* The Lord be with you.  
 *Answer.* And with thy spirit.  
 *Minister.* Let us pray.  
-*Minister & People.* Lord, have mercy upon us.  
-*Minister & People.* Christ, have mercy upon us.  
-*Minister & People.* Lord, have mercy upon us.  
+Lord, have mercy upon us.  
+*Christ, have mercy upon us.*  
+Lord, have mercy upon us.  
 
 *Then the Minister, Clerks, and people, shall say the Lord's Prayer with a loud voice.*
 

@@ -22,7 +22,7 @@ DEARLY beloved, forasmuch as all men are conceived and born in sin; and that our
 
 *Then shall the Priest say,*
 
-*Let us pray.*
+Let us pray.
 
 ALMIGHTY and everlasting God, who of thy great mercy didst save Noah and his family in the ark from perishing by water; and also didst safely lead the children of Israel thy people through the Red Sea, figuring thereby thy holy Baptism; and by the Baptism of thy well-beloved Son Jesus Christ, in the river Jordan, didst sanctify Water to the mystical washing away of sin; We beseech thee, for thine infinite mercies, that thou wilt mercifully look upon this Child; wash him and sanctify him with the Holy Ghost; that he, being delivered from thy wrath, may be received into the ark of Christ's Church; and being stedfast in faith, joyful through hope, and rooted in charity, may so pass the waves of this troublesome world, that finally he may come to the land of everlasting life, there to reign with thee world without end; through Jesus Christ our Lord. Amen.
 

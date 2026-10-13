@@ -19,7 +19,7 @@ REMEMBER not, Lord, our iniquities, nor the iniquities of our forefathers: Spare
 
 *Then the Minister shall say,*
 
-*Let us pray.*
+Let us pray.
 
 Lord, have mercy upon us.  
 *Christ, have mercy upon us.*  
@@ -67,7 +67,7 @@ OUR Lord Jesus Christ, who hath left power to his Church to absolve all sinners 
 
 *And then the Priest shall say the Collect following.*
 
-*Let us pray.*
+Let us pray.
 
 O MOST merciful God, who, according to the multitude of thy mercies, dost so put away the sins of those who truly repent, that thou rememberest them no more; Open thine eye of mercy upon this thy servant, who most earnestly desireth pardon and forgiveness. Renew in him, most loving Father, whatsoever hath been decayed by the fraud and malice of the devil, or by his own carnal will and frailness; preserve and continue this sick member in the unity of the Church; consider his contrition, accept his tears, asswage his pain, as shall seem to thee most expedient for him. And forasmuch as he putteth his full trust only in thy mercy, impute not unto him his former sins, but strengthen him with thy blessed Spirit; and, when thou art pleased to take him hence, take him unto thy favour, through the merits of thy most dearly beloved Son Jesus Christ our Lord. Amen.
 
@@ -297,7 +297,7 @@ As it was in the beginning, is now, and ever shall be : world without end. Amen.
 
 *Then the Priest shall say,*
 
-*Let us pray.*
+Let us pray.
 
 Lord, have mercy upon us.  
 *Christ, have mercy upon us.*  
@@ -312,7 +312,7 @@ OUR Father, which art in heaven, Hallowed be thy Name. Thy kingdom come. Thy wil
 *Minister.* Lord, hear our prayer.  
 *Answer.* And let our cry come unto thee.  
 
-*Minister. Let us pray.*
+*Minister.* Let us pray.
 
 O ALMIGHTY God, we give thee humble thanks for that thou hast vouchsafed to deliver this woman thy servant from the great pain and peril of Child-birth; Grant, we beseech thee, most merciful Father, that she, through thy help, may both faithfully live, and walk according to thy will, in this life present; and also may be partaker of everlasting glory in the life to come; through Jesus Christ our Lord. Amen.
 
@@ -384,7 +384,7 @@ The sacrifice of God is a troubled spirit : a broken and contrite heart, O God, 
 O be favourable and gracious unto Sion : build thou the walls of Jerusalem.  
 Then shalt thou be pleased with the sacrifice of righteousness, with the burnt-offerings and oblations : then shall they offer young bullocks upon thine altar.  
 Glory be to the Father, and to the Son : and to the Holy Ghost;  
-*Answer. As it was in the beginning, is now, and ever shall be : world without end. Amen.*
+*Answer.* As it was in the beginning, is now, and ever shall be : world without end. Amen.
 
 Lord, have mercy upon us.  
 *Christ, have mercy upon us.*  
@@ -401,7 +401,7 @@ OUR Father, which art in heaven, Hallowed be thy Name. Thy kingdom come. Thy wil
 *Minister.* O Lord, hear our prayer.  
 *Answer.* And let our cry come unto thee.  
 
-*Minister. Let us pray.*
+*Minister.* Let us pray.
 
 O LORD, we beseech thee, mercifully hear our prayers, and spare all those who confess their sins unto thee; that they, whose consciences by sin are accused, by thy merciful pardon may be absolved; through Christ our Lord. Amen.
 

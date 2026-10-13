@@ -18,7 +18,7 @@ DEARLY beloved, forasmuch as all men are conceived and born in sin, (and that wh
 
 *Then shall the Priest say,*
 
-*Let us pray.*
+Let us pray.
 
 *(And here all the Congregation shall kneel.)*
 
@@ -215,7 +215,7 @@ I do.
 *Bishop.* Lord, hear our prayers.  
 *Answer.* And let our cry come unto thee.  
 
-*The Bishop. Let us pray.*
+*The Bishop.* Let us pray.
 
 ALMIGHTY and everliving God, who hast vouchsafed to regenerate these thy servants by Water and the Holy Ghost, and hast given unto them forgiveness of all their sins; Strengthen them, we beseech thee, O Lord, with the Holy Ghost the Comforter, and daily increase in them thy manifold gifts of grace; the spirit of wisdom and understanding; the spirit of counsel and ghostly strength; the spirit of knowledge and true godliness; and fill them, O Lord, with the spirit of thy holy fear, now and for ever. Amen.
 
@@ -230,7 +230,7 @@ The Lord be with you.
 
 *And (all kneeling down) the Bishop shall add,*
 
-*Let us pray.*
+Let us pray.
 
 OUR Father, which art in heaven, Hallowed be thy Name. Thy kingdom come. Thy will be done in earth, As it is in heaven. Give us this day our daily bread. And forgive us our trespasses, As we forgive them that trespass against us. And lead us not into temptation; But deliver us from evil. Amen.
 
@@ -309,7 +309,7 @@ WITH this Ring I thee wed, with my body I thee worship, and with all my worldly 
 
 *Then the Man leaving the Ring upon the fourth finger of the Woman's left hand, they shall both kneel down; and the Minister shall say,*
 
-*Let us pray.*
+Let us pray.
 
 O ETERNAL God, Creator and Preserver of all mankind, Giver of all spiritual grace, the Author of everlasting life; Send thy blessing upon these thy servants, this man and this woman, whom we bless in thy Name; that, as Isaac and Rebecca lived faithfully together, so these persons may surely perform and keep the vow and covenant betwixt them made, (whereof this Ring given and received is a token and pledge,) and may ever remain in perfect love and peace together, and live according to thy laws; through Jesus Christ our Lord. Amen.
 
