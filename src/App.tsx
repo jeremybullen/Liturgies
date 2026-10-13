@@ -350,7 +350,7 @@ export function App() {
             content={currentService.content}
             fontSize={fontSize}
             category={currentService.category}
-            isService={currentService.category !== 'Prefaces & Tables' && currentService.slug !== 'preface' && !currentService.slug.includes('preface')}
+            isService={currentService.isService !== undefined ? currentService.isService : (currentService.category !== 'Prefaces & Tables' && currentService.slug !== 'preface' && !currentService.slug.includes('preface'))}
           />
         </div>
       </main>

@@ -5,4 +5,5 @@ export interface ServiceItem {
   shortTitle: string;
   category: string;
   content: string;
+  isService?: boolean;
 }
