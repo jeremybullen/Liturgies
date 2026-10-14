@@ -2,8 +2,10 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { books, BookInfo, ServiceItem } from './services';
 import { LiturgicalReader } from './components/LiturgicalReader';
 import { toTitleCase } from './utils/titleCase';
-import { ChevronDown, Check, Sun, Moon, Info } from 'lucide-react';
+import { ChevronDown, Check, Sun, Moon, Info, Search } from 'lucide-react';
 import { AboutModal } from './components/AboutModal';
+import { PsalmJumpSelector } from './components/PsalmJumpSelector';
+import { PropersJumpSelector } from './components/PropersJumpSelector';
 
 type BookId = '1662' | '1928' | '1947';
 
@@ -54,12 +56,18 @@ export function App() {
   const fontSize = 18;
   const [isBookMenuOpen, setIsBookMenuOpen] = useState(false);
   const [isServiceMenuOpen, setIsServiceMenuOpen] = useState(false);
+  const [isPsalmJumpOpen, setIsPsalmJumpOpen] = useState(false);
+  const [activeJumpLabel, setActiveJumpLabel] = useState<string | null>(null);
+  const [isPropersJumpOpen, setIsPropersJumpOpen] = useState(false);
+  const [activeProperLabel, setActiveProperLabel] = useState<string | null>(null);
   const [isAboutOpen, setIsAboutOpen] = useState(false);
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
 
   const lastScrollYRef = useRef(0);
   const bookMenuRef = useRef<HTMLDivElement>(null);
   const serviceMenuRef = useRef<HTMLDivElement>(null);
+  const psalmJumpRef = useRef<HTMLDivElement>(null);
+  const propersJumpRef = useRef<HTMLDivElement>(null);
 
   const [isDarkMode, setIsDarkMode] = useState<boolean>(() => {
     if (typeof window === 'undefined') return false;
@@ -84,7 +92,7 @@ export function App() {
           // Always show when near the very top of the page
           if (currentScrollY <= 30) {
             setIsHeaderVisible(true);
-          } else if (isBookMenuOpen || isServiceMenuOpen || isAboutOpen) {
+          } else if (isBookMenuOpen || isServiceMenuOpen || isPsalmJumpOpen || isAboutOpen) {
             setIsHeaderVisible(true);
           } else if (delta > 8 && currentScrollY > 60) {
             setIsHeaderVisible(false);
@@ -101,7 +109,7 @@ export function App() {
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
-  }, [isBookMenuOpen, isServiceMenuOpen, isAboutOpen]);
+  }, [isBookMenuOpen, isServiceMenuOpen, isPsalmJumpOpen, isAboutOpen]);
 
   // Sync dark mode class
   useEffect(() => {
@@ -135,6 +143,8 @@ export function App() {
     setRoute({ bookId, serviceSlug: slug });
     setIsBookMenuOpen(false);
     setIsServiceMenuOpen(false);
+    setIsPsalmJumpOpen(false);
+    setActiveJumpLabel(null);
     const newPath = `/${bookId}/${slug}`;
     if (window.location.pathname !== newPath) {
       window.history.pushState({}, '', newPath);
@@ -164,10 +174,32 @@ export function App() {
       if (serviceMenuRef.current && !serviceMenuRef.current.contains(e.target as Node)) {
         setIsServiceMenuOpen(false);
       }
+      if (psalmJumpRef.current && !psalmJumpRef.current.contains(e.target as Node)) {
+        setIsPsalmJumpOpen(false);
+      }
+      if (propersJumpRef.current && !propersJumpRef.current.contains(e.target as Node)) {
+        setIsPropersJumpOpen(false);
+      }
     };
     document.addEventListener('mousedown', handleClickOutside);
     return () => document.removeEventListener('mousedown', handleClickOutside);
   }, []);
+
+  // Handle URL hash jumping for Psalter or Propers on load or route change
+  useEffect(() => {
+    if ((currentService.slug === 'the-psalter' || currentService.slug === 'collects-epistles-gospels') && window.location.hash) {
+      const targetId = window.location.hash.replace('#', '');
+      const timer = setTimeout(() => {
+        const el = document.getElementById(targetId);
+        if (el) {
+          el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          el.classList.add('psalm-highlight');
+          setTimeout(() => el.classList.remove('psalm-highlight'), 2200);
+        }
+      }, 250);
+      return () => clearTimeout(timer);
+    }
+  }, [currentService.slug]);
 
   // Keyboard navigation
   useEffect(() => {
@@ -179,6 +211,8 @@ export function App() {
       if (e.key === 'Escape') {
         setIsBookMenuOpen(false);
         setIsServiceMenuOpen(false);
+        setIsPsalmJumpOpen(false);
+        setIsPropersJumpOpen(false);
         setIsAboutOpen(false);
         return;
       }
@@ -314,6 +348,92 @@ export function App() {
                 </div>
               )}
             </div>
+
+            {/* Psalter Jump Selector (Active when viewing The Psalter) */}
+            {currentService.slug === 'the-psalter' && (
+              <>
+                <span className="text-stone-400 dark:text-stone-600 select-none">/</span>
+                <div className="relative shrink-0" ref={psalmJumpRef}>
+                  <button
+                    onClick={() => {
+                      setIsPsalmJumpOpen(prev => !prev);
+                      setIsServiceMenuOpen(false);
+                      setIsBookMenuOpen(false);
+                      setIsPropersJumpOpen(false);
+                    }}
+                    className="inline-flex items-center gap-1 py-1 px-1.5 rounded hover:bg-[#EFE9DC] dark:hover:bg-[#282622] text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 font-medium transition-colors cursor-pointer text-sm select-none"
+                    aria-expanded={isPsalmJumpOpen}
+                    title="Jump to Psalm"
+                  >
+                    <span className="truncate max-w-[95px] xs:max-w-[130px] sm:max-w-[160px]">
+                      {activeJumpLabel || 'Jump to Psalm'}
+                    </span>
+                    <ChevronDown className={`w-3.5 h-3.5 opacity-60 shrink-0 transition-transform duration-150 ${isPsalmJumpOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  <PsalmJumpSelector
+                    isOpen={isPsalmJumpOpen}
+                    onClose={() => setIsPsalmJumpOpen(false)}
+                    onSelectTarget={(targetId, label) => {
+                      setActiveJumpLabel(label);
+                      setIsPsalmJumpOpen(false);
+                      const el = document.getElementById(targetId);
+                      if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        el.classList.add('psalm-highlight');
+                        setTimeout(() => el.classList.remove('psalm-highlight'), 2000);
+                        if (window.history.pushState) {
+                          window.history.pushState(null, '', `#${targetId}`);
+                        }
+                      }
+                    }}
+                  />
+                </div>
+              </>
+            )}
+
+            {/* Propers Jump Selector (Active when viewing Collects, Epistles, and Gospels) */}
+            {currentService.slug === 'collects-epistles-gospels' && (
+              <>
+                <span className="text-stone-400 dark:text-stone-600 select-none">/</span>
+                <div className="relative shrink-0" ref={propersJumpRef}>
+                  <button
+                    onClick={() => {
+                      setIsPropersJumpOpen(prev => !prev);
+                      setIsServiceMenuOpen(false);
+                      setIsBookMenuOpen(false);
+                      setIsPsalmJumpOpen(false);
+                    }}
+                    className="inline-flex items-center gap-1 py-1 px-1.5 rounded hover:bg-[#EFE9DC] dark:hover:bg-[#282622] text-stone-700 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 font-medium transition-colors cursor-pointer text-sm select-none"
+                    aria-expanded={isPropersJumpOpen}
+                    title="Jump to Feast, Sunday, or Season"
+                  >
+                    <span className="truncate max-w-[100px] xs:max-w-[140px] sm:max-w-[175px]">
+                      {activeProperLabel || 'Jump to Day'}
+                    </span>
+                    <ChevronDown className={`w-3.5 h-3.5 opacity-60 shrink-0 transition-transform duration-150 ${isPropersJumpOpen ? 'rotate-180' : ''}`} />
+                  </button>
+
+                  <PropersJumpSelector
+                    isOpen={isPropersJumpOpen}
+                    onClose={() => setIsPropersJumpOpen(false)}
+                    onSelectTarget={(targetId, label) => {
+                      setActiveProperLabel(label);
+                      setIsPropersJumpOpen(false);
+                      const el = document.getElementById(targetId);
+                      if (el) {
+                        el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                        el.classList.add('psalm-highlight');
+                        setTimeout(() => el.classList.remove('psalm-highlight'), 2200);
+                        if (window.history.pushState) {
+                          window.history.pushState(null, '', `#${targetId}`);
+                        }
+                      }
+                    }}
+                  />
+                </div>
+              </>
+            )}
 
           </div>
 

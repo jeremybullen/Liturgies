@@ -89,3 +89,20 @@ html.dark i {
     widows: 2;
   }
 }
+
+/* Psalm jump target pulse animation */
+@keyframes psalmTargetPulse {
+  0% {
+    background-color: rgba(217, 119, 6, 0.28);
+    box-shadow: 0 0 0 4px rgba(217, 119, 6, 0.28);
+  }
+  100% {
+    background-color: transparent;
+    box-shadow: 0 0 0 0 transparent;
+  }
+}
+
+.psalm-highlight {
+  animation: psalmTargetPulse 2.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  border-radius: 4px;
+}

@@ -8,6 +8,31 @@ interface LiturgicalReaderProps {
   isService?: boolean;
 }
 
+const DAY_WORD_MAP: Record<string, number> = {
+  'FIRST': 1, 'SECOND': 2, 'THIRD': 3, 'FOURTH': 4, 'FIFTH': 5,
+  'SIXTH': 6, 'SEVENTH': 7, 'EIGHTH': 8, 'NINTH': 9, 'TENTH': 10,
+  'ELEVENTH': 11, 'TWELFTH': 12, 'THIRTEENTH': 13, 'FOURTEENTH': 14, 'FIFTEENTH': 15,
+  'SIXTEENTH': 16, 'SEVENTEENTH': 17, 'EIGHTEENTH': 18, 'NINETEENTH': 19, 'TWENTIETH': 20,
+  'TWENTY-FIRST': 21, 'TWENTY-SECOND': 22, 'TWENTY-THIRD': 23, 'TWENTY-FOURTH': 24, 'TWENTY-FIFTH': 25,
+  'TWENTY-SIXTH': 26, 'TWENTY-SEVENTH': 27, 'TWENTY-EIGHTH': 28, 'TWENTY-NINTH': 29, 'THIRTIETH': 30
+};
+
+const ROMAN_MAP: Record<string, number> = {
+  I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000
+};
+
+function parseRomanNumeral(roman: string): number {
+  let val = 0;
+  const upper = roman.toUpperCase();
+  for (let i = 0; i < upper.length; i++) {
+    const curr = ROMAN_MAP[upper[i]] || 0;
+    const next = ROMAN_MAP[upper[i + 1]] || 0;
+    if (curr < next) val -= curr;
+    else val += curr;
+  }
+  return val;
+}
+
 interface DropCapAnalysis {
   type: 'none' | 'drop-cap-2' | 'drop-cap-3';
   lineCount: number;
@@ -282,6 +307,7 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
 
     let inOptionalScriptureSection = false;
     let seenFirstVerseInSeries = false;
+    let currentDayNumber: number | null = null;
 
     return rawParagraphs.map((para, pIdx) => {
       const trimmed = para.trim();
@@ -315,11 +341,32 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
 
       // H1 Header (# ) -> Service / Book Title: Grandest scale, dignified centered
       if (trimmed.startsWith('# ')) {
-        const text = trimmed.replace(/^#\s+/, '');
+        let text = trimmed.replace(/^#\s+/, '');
+        let headerId: string | undefined;
+        const idMatch = text.match(/\{#([a-zA-Z0-9_-]+)\}\s*$/);
+        if (idMatch) {
+          headerId = idMatch[1];
+          text = text.replace(/\{#[a-zA-Z0-9_-]+\}\s*$/, '').trim();
+        }
+
+        const isPsalterTitle = /^(?:THE\s+)?PSALMS\s+OF\s+DAVID\b/i.test(text);
+        const dayMatch = text.match(/THE\s+([A-Z\-]+)\s+DAY/i);
+
+        if (dayMatch) {
+          const num = DAY_WORD_MAP[dayMatch[1].toUpperCase()];
+          if (num) {
+            currentDayNumber = num;
+            headerId = `day-${num}`;
+          }
+        } else if (isPsalterTitle) {
+          headerId = 'the-psalter-top';
+        }
+
         return (
           <h1
             key={pIdx}
-            className="text-center font-bold text-stone-900 dark:text-[#FAF7F0] my-8 sm:my-10"
+            id={headerId}
+            className="text-center font-bold text-stone-900 dark:text-[#FAF7F0] my-8 sm:my-10 scroll-mt-16 sm:scroll-mt-20"
             style={{
               fontSize: `${Math.round(fontSize * 1.6)}px`,
               lineHeight: 1.22,
@@ -333,11 +380,26 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
 
       // H2 Header (## ) -> Major Liturgical Office / Section: Centered, wider tracking, distinct section break
       if (trimmed.startsWith('## ')) {
-        const text = trimmed.replace(/^##\s+/, '');
+        let text = trimmed.replace(/^##\s+/, '');
+        let headerId: string | undefined;
+        const idMatch = text.match(/\{#([a-zA-Z0-9_-]+)\}\s*$/);
+        if (idMatch) {
+          headerId = idMatch[1];
+          text = text.replace(/\{#[a-zA-Z0-9_-]+\}\s*$/, '').trim();
+        }
+
+        if (currentDayNumber) {
+          if (/Morning\s+Prayer/i.test(text)) {
+            headerId = `day-${currentDayNumber}-morning`;
+          } else if (/Evening\s+Prayer/i.test(text)) {
+            headerId = `day-${currentDayNumber}-evening`;
+          }
+        }
         return (
           <h2
             key={pIdx}
-            className="text-center font-bold text-stone-900 dark:text-[#FAF7F0] mt-10 mb-5 sm:mt-12 sm:mb-6"
+            id={headerId}
+            className="text-center font-bold text-stone-900 dark:text-[#FAF7F0] mt-10 mb-5 sm:mt-12 sm:mb-6 scroll-mt-16 sm:scroll-mt-20"
             style={{
               fontSize: `${Math.round(fontSize * 1.28)}px`,
               lineHeight: 1.3,
@@ -351,11 +413,28 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
 
       // H3 Header (### ) -> Subsections, Canticles, Collects, Seasons: Centered, semibold, cohesive spacing
       if (trimmed.startsWith('### ')) {
-        const text = trimmed.replace(/^###\s+/, '');
+        let text = trimmed.replace(/^###\s+/, '');
+        let headerId: string | undefined;
+        const idMatch = text.match(/\{#([a-zA-Z0-9_-]+)\}\s*$/);
+        if (idMatch) {
+          headerId = idMatch[1];
+          text = text.replace(/\{#[a-zA-Z0-9_-]+\}\s*$/, '').trim();
+        }
+
+        const psalmMatch = text.match(/^PSALM\s+([IVXLCDM0-9]+)\b/i);
+        if (!headerId && psalmMatch) {
+          const val = psalmMatch[1];
+          const pNum = /^\d+$/.test(val) ? parseInt(val, 10) : parseRomanNumeral(val);
+          if (pNum > 0) {
+            headerId = `psalm-${pNum}`;
+          }
+        }
         return (
           <h3
             key={pIdx}
-            className="text-center font-semibold text-stone-800 dark:text-[#EDE7DD] mt-7 mb-3 sm:mt-8 sm:mb-3"
+            id={headerId}
+            data-psalm={headerId ? headerId.replace('psalm-', '') : undefined}
+            className="text-center font-semibold text-stone-800 dark:text-[#EDE7DD] mt-7 mb-3 sm:mt-8 sm:mb-3 scroll-mt-16 sm:scroll-mt-20"
             style={{
               fontSize: `${Math.round(fontSize * 1.12)}px`,
               lineHeight: 1.35,
@@ -369,11 +448,19 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
 
       // H4 Header (#### ) -> Minor divisions, numbered petitions, lectionary readings: Centered, italic medium
       if (trimmed.startsWith('#### ')) {
-        const text = trimmed.replace(/^####\s+/, '');
+        let text = trimmed.replace(/^####\s+/, '');
+        let headerId: string | undefined;
+        const idMatch = text.match(/\{#([a-zA-Z0-9_-]+)\}\s*$/);
+        if (idMatch) {
+          headerId = idMatch[1];
+          text = text.replace(/\{#[a-zA-Z0-9_-]+\}\s*$/, '').trim();
+        }
+
         return (
           <h4
             key={pIdx}
-            className="text-center font-medium italic text-stone-700 dark:text-[#DDD6C8] mt-5 mb-2 sm:mt-6 sm:mb-2"
+            id={headerId}
+            className="text-center font-medium italic text-stone-700 dark:text-[#DDD6C8] mt-5 mb-2 sm:mt-6 sm:mb-2 scroll-mt-16 sm:scroll-mt-20"
             style={{
               fontSize: `${Math.round(fontSize * 1.02)}px`,
               lineHeight: 1.4,
@@ -680,10 +767,27 @@ function renderLine(line: string): React.ReactNode {
 }
 
 /**
- * Renders line content with caesura (choral colon ` : `) formatted with breathing space
+ * Renders line content with caesura (choral colon ` : ` or asterisk ` * `) formatted with breathing space
  */
 function renderLineContent(text: string, isResponse: boolean = false): React.ReactNode {
-  // If line contains a psalm/canticle choral caesura (" : ")
+  // If line contains a 1928 choral asterisk caesura (" * ")
+  if (text.includes(' * ')) {
+    const parts = text.split(' * ');
+    return (
+      <span>
+        {parts.map((part, idx) => (
+          <React.Fragment key={idx}>
+            {idx > 0 && (
+              <span className="inline-block px-1.5 text-[#991B1B] dark:text-[#E86558] font-serif select-none text-[0.95em]" title="Choral Pause">*</span>
+            )}
+            {renderInlineMarkdown(part, isResponse)}
+          </React.Fragment>
+        ))}
+      </span>
+    );
+  }
+
+  // If line contains a 1662 psalm/canticle choral caesura (" : ")
   if (text.includes(' : ')) {
     const parts = text.split(' : ');
     return (

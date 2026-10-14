@@ -20,7 +20,7 @@ import {
   orderingOfPriests1662,
   consecrationOfBishops1662
 } from './ordinal1662';
-import { psalter1662Days } from './psalter1662';
+import { psalter1662 } from './psalter1662';
 
 import { services1947, get1947ServiceBySlug } from './er1947';
 import { services1928, get1928ServiceBySlug } from './bcp1928';
@@ -38,7 +38,7 @@ export {
   orderingOfPriests1662,
   consecrationOfBishops1662
 } from './ordinal1662';
-export { psalter1662Days } from './psalter1662';
+export { psalter1662 } from './psalter1662';
 export { services1947, get1947ServiceBySlug } from './er1947';
 export { services1928, get1928ServiceBySlug } from './bcp1928';
 
@@ -70,7 +70,7 @@ export const services1662: ServiceItem[] = [
   makingOfDeacons1662,
   orderingOfPriests1662,
   consecrationOfBishops1662,
-  ...psalter1662Days
+  psalter1662
 ];
 
 export function get1662ServiceBySlug(slug?: string): ServiceItem {
