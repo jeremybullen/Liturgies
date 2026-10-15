@@ -1,4 +1,9 @@
 import { ServiceItem } from '../types';
+import { ratification1928 } from './ratification1928';
+import { preface1928 } from './preface1928';
+import { serviceOfTheChurch1928 } from './serviceOfTheChurch1928';
+import { calendarAndTables1928 } from './calendarAndTables1928';
+import { tableOfLessons1928 } from './tableOfLessons1928';
 import { morningPrayer1928 } from './morningPrayer';
 import { eveningPrayer1928 } from './eveningPrayer';
 import { prayersAndThanksgivings1928 } from './prayersAndThanksgivings';
@@ -17,6 +22,7 @@ import { burialOfTheDead1928 } from './burialOfTheDead';
 import { burialOfChild1928 } from './burialOfChild';
 import { visitationOfPrisoners1928 } from './visitationOfPrisoners';
 import { thanksgivingDay1928 } from './thanksgivingDay';
+import { catechism1928 } from './catechism1928';
 import { familyPrayer1928 } from './familyPrayer';
 import {
   ordinalPreface1928,
@@ -31,6 +37,11 @@ import { articlesOfReligion1928 } from './articlesOfReligion';
 import { psalter1928 } from './psalter1928';
 
 export {
+  ratification1928,
+  preface1928,
+  serviceOfTheChurch1928,
+  calendarAndTables1928,
+  tableOfLessons1928,
   morningPrayer1928,
   eveningPrayer1928,
   prayersAndThanksgivings1928,
@@ -49,6 +60,7 @@ export {
   burialOfChild1928,
   visitationOfPrisoners1928,
   thanksgivingDay1928,
+  catechism1928,
   familyPrayer1928,
   ordinalPreface1928,
   makingOfDeacons1928,
@@ -62,6 +74,11 @@ export {
 };
 
 export const services1928: ServiceItem[] = [
+  ratification1928,
+  preface1928,
+  serviceOfTheChurch1928,
+  calendarAndTables1928,
+  tableOfLessons1928,
   morningPrayer1928,
   eveningPrayer1928,
   prayersAndThanksgivings1928,
@@ -88,6 +105,7 @@ export const services1928: ServiceItem[] = [
   institutionOfMinisters1928,
   visitationOfPrisoners1928,
   thanksgivingDay1928,
+  catechism1928,
   familyPrayer1928,
   articlesOfReligion1928
 ];
@@ -99,6 +117,12 @@ export function get1928ServiceBySlug(slug?: string): ServiceItem {
     const sSlug = s.slug.toLowerCase();
     const sId = s.id.toLowerCase();
     return sSlug === clean || sId === clean ||
+      (clean === 'ratification' && sSlug === 'ratification') ||
+      (clean === 'preface' && sSlug === 'preface') ||
+      (clean === 'service-of-the-church' && sSlug === 'concerning-the-service-of-the-church') ||
+      ((clean === 'calendar' || clean === 'the-calendar' || clean === 'tables' || clean === 'feasts-and-fasts') && sSlug === 'calendar-and-tables') ||
+      ((clean === 'lessons' || clean === 'lectionary' || clean === 'table-of-lessons' || clean === 'psalms-and-lessons') && sSlug === 'table-of-lessons') ||
+      ((clean === 'catechism' || clean === 'a-catechism') && sSlug === 'catechism') ||
       (clean === 'making-of-deacons' && sSlug === 'making-deacons') ||
       (clean === 'ordering-of-priests' && sSlug === 'ordering-priests') ||
       (clean === 'consecration-of-bishops' && sSlug === 'consecrating-bishops') ||

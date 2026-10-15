@@ -260,6 +260,98 @@ function analyzeLiturgicalBlock(text: string, fontSize: number): DropCapAnalysis
   return extractDropCapSingleWord(trimmed, 'drop-cap-3', lineCount, speakerRubric, quotePrefix, fullBodyText);
 }
 
+function isMarkdownTable(lines: string[]): boolean {
+  if (lines.length < 2) return false;
+  const headerLine = lines[0].trim();
+  const sepLine = lines[1].trim();
+  if (!headerLine.includes('|') || !sepLine.includes('|')) return false;
+  return /^\|?(\s*:?-{2,}:?\s*\|)+\s*:?-{2,}:?\s*\|?\s*$/.test(sepLine);
+}
+
+function parseMarkdownTable(lines: string[]): {
+  headers: string[];
+  alignments: ('left' | 'center' | 'right')[];
+  rows: string[][];
+} {
+  const parseRow = (line: string): string[] => {
+    let trimmed = line.trim();
+    if (trimmed.startsWith('|')) trimmed = trimmed.slice(1);
+    if (trimmed.endsWith('|')) trimmed = trimmed.slice(0, -1);
+    return trimmed.split('|').map(c => c.trim());
+  };
+
+  const headers = parseRow(lines[0]);
+  const sepCells = parseRow(lines[1]);
+  const alignments: ('left' | 'center' | 'right')[] = sepCells.map(cell => {
+    const c = cell.trim();
+    const startColon = c.startsWith(':');
+    const endColon = c.endsWith(':');
+    if (startColon && endColon) return 'center';
+    if (endColon) return 'right';
+    return 'left';
+  });
+
+  const rows: string[][] = [];
+  for (let i = 2; i < lines.length; i++) {
+    const rowLine = lines[i].trim();
+    if (!rowLine || !rowLine.includes('|')) continue;
+    rows.push(parseRow(rowLine));
+  }
+
+  return { headers, alignments, rows };
+}
+
+function renderTable(lines: string[], pIdx: number, fontSize: number): React.ReactNode {
+  const { headers, alignments, rows } = parseMarkdownTable(lines);
+
+  return (
+    <div key={pIdx} className="my-6 overflow-x-auto rounded border border-[#D5CCBA] dark:border-[#38352F] bg-[#FAF8F5] dark:bg-[#1C1B18] shadow-xs clear-both">
+      <table className="w-full border-collapse font-serif text-stone-900 dark:text-[#EDE7DD]" style={{ fontSize: `${Math.max(14, Math.round(fontSize * 0.88))}px` }}>
+        {headers.length > 0 && (
+          <thead className="bg-[#EFE8DA] dark:bg-[#262420] border-b-2 border-[#8A211D]/30 dark:border-[#E86558]/40">
+            <tr>
+              {headers.map((h, hIdx) => {
+                const align = alignments[hIdx] || 'left';
+                const alignClass = align === 'center' ? 'text-center' : align === 'right' ? 'text-right' : 'text-left';
+                return (
+                  <th
+                    key={hIdx}
+                    className={`px-3.5 py-2.5 font-semibold text-[#8A211D] dark:text-[#E86558] ${alignClass} border-r last:border-r-0 border-[#D5CCBA]/60 dark:border-[#38352F]/60 whitespace-nowrap`}
+                    style={{ fontVariant: 'small-caps', letterSpacing: '0.04em' }}
+                  >
+                    {renderInlineMarkdown(h)}
+                  </th>
+                );
+              })}
+            </tr>
+          </thead>
+        )}
+        <tbody className="divide-y divide-[#EAE3D5] dark:divide-[#2E2B25]">
+          {rows.map((row, rIdx) => (
+            <tr
+              key={rIdx}
+              className="even:bg-[#F5EFE4]/40 dark:even:bg-[#201F1C]/40 hover:bg-[#EFE8DC]/60 dark:hover:bg-[#282622]/60 transition-colors"
+            >
+              {row.map((cell, cIdx) => {
+                const align = alignments[cIdx] || 'left';
+                const alignClass = align === 'center' ? 'text-center' : align === 'right' ? 'text-right' : 'text-left';
+                return (
+                  <td
+                    key={cIdx}
+                    className={`px-3.5 py-2 align-top ${alignClass} border-r last:border-r-0 border-[#EAE3D5]/60 dark:border-[#2E2B25]/60 leading-relaxed`}
+                  >
+                    {renderInlineMarkdown(cell)}
+                  </td>
+                );
+              })}
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  );
+}
+
 export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
   content,
   fontSize,
@@ -276,9 +368,11 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
 
     const allowDropCaps = !isNonServiceText;
 
-    // Normalize content: ensure all Markdown headers (#, ##, ###) are followed by double newlines
-    // so headers never swallow subsequent prayers
-    const normalized = content.replace(/^(#{1,6}\s+[^\n]+)\n+(?!\n)/gm, '$1\n\n');
+    // Normalize content: ensure all Markdown headers (#, ##, ###) and tables are cleanly isolated by double newlines
+    const normalized = content
+      .replace(/^(#{1,6}\s+[^\n]+)\n+(?!\n)/gm, '$1\n\n')
+      .replace(/([^\n|])\n(\|[^\n]+\|\n\|[\s:|-]+\|)/g, '$1\n\n$2')
+      .replace(/(\|[^\n]+\|)\n([^|\n#])/g, '$1\n\n$2');
     const rawParagraphs = normalized.split(/\n\s*\n/);
 
     // Helper to detect if a paragraph has an italicized Bible citation (e.g. *Psalm li. 3.*, *Jer. x. 24. Psalm vi. 1.*, *St. Matth. v.*, *Acts xx. 35.*)
@@ -550,16 +644,23 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
         );
       }
 
-      // Paragraph with multiple lines (e.g. canticles, psalm verses, responsive prayers, dialogues)
+      // Paragraph with multiple lines (e.g. canticles, psalm verses, responsive prayers, dialogues, tables)
       const lines = trimmed.split('\n');
       if (lines.length > 1) {
-        // If this multi-line block is a dialogue (versicles & responses), do NOT apply drop cap
-        const isDialogueBlock = lines.some((l, idx) => idx > 0 && /^\*(?:Answer|Response|People|The People|Congregation)\b/i.test(l.trim()));
+        // First check for Markdown tables
+        if (isMarkdownTable(lines)) {
+          return renderTable(lines, pIdx, fontSize);
+        }
 
-        // Check if the very first line of this multi-line block qualifies for drop cap or small caps
-        const blockAnalysis = !isDialogueBlock
-          ? analyzeLiturgicalBlock(trimmed, fontSize)
-          : ({ type: 'none', lineCount: lines.length, remainder: trimmed, fullBodyText: trimmed } as DropCapAnalysis);
+        // If this multi-line block is a dialogue (versicles & responses) or Q&A / Catechism, do NOT apply drop cap
+        const isDialogueBlock = lines.some((l, idx) => idx > 0 && /^\*(?:Answer|Response|People|The People|Congregation|Question|Catechist)\b/i.test(l.trim()));
+        const isQABlock = /^\*(?:Question|Answer|Catechist)\b/i.test(lines[0].trim());
+
+        // Check if the very first line alone of this multi-line block qualifies for drop cap or small caps
+        const firstLine = lines[0].trim();
+        const blockAnalysis = (!isDialogueBlock && !isQABlock)
+          ? analyzeLiturgicalBlock(firstLine, fontSize)
+          : ({ type: 'none', lineCount: 1, remainder: firstLine, fullBodyText: firstLine } as DropCapAnalysis);
 
         const canApplyDropCap = allowDropCaps && !skipDropCapForScripture;
 

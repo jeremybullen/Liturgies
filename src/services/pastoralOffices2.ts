@@ -108,6 +108,7 @@ export const catechism: ServiceItem = {
   title: 'A Catechism',
   shortTitle: 'A Catechism',
   category: 'Instruction',
+  isService: false,
   content: `# A Catechism, That is to Say, an Instruction to be Learned of Every Person, Before He be Brought to be Confirmed by the Bishop
 
 *Question.* WHAT is your Name?  
@@ -133,20 +134,29 @@ Thirdly, in God the Holy Ghost, who sanctifieth me, and all the elect people of 
 
 *Question.* You said, that your Godfathers and Godmothers did promise for you, that you should keep God's Commandments. Tell me how many there be?  
 *Answer.* Ten.  
-*Question.* Which be they?  
-*Answer.*
 
-THE same which God spake in the twentieth Chapter of Exodus, saying, I am the Lord thy God, who brought thee out of the land of Egypt, out of the house of bondage.  
-I. Thou shalt have none other gods but me.  
-II. Thou shalt not make to thyself any graven image, nor the likeness of any thing that is in heaven above, or in the earth beneath, or in the water under the earth. Thou shalt not bow down to them, nor worship them: for I the Lord thy God am a jealous God, and visit the sins of the fathers upon the children unto the third and fourth generation of them that hate me, and shew mercy unto thousands in them that love me, and keep my commandments.  
-III. Thou shalt not take the Name of the Lord thy God in vain: for the Lord will not hold him guiltless that taketh his Name in vain.  
-IV. Remember that thou keep holy the Sabbath-day. Six days shalt thou labour, and do all that thou hast to do; but the seventh day is the Sabbath of the Lord thy God. In it thou shalt do no manner of work, thou, and thy son, and thy daughter, thy man-servant, and thy maid-servant, thy cattle, and the stranger that is within thy gates. For in six days the Lord made heaven and earth, the sea, and all that in them is, and rested the seventh day: wherefore the Lord blessed the seventh day, and hallowed it.  
-V. Honour thy father and thy mother, that thy days may be long in the land which the Lord thy God giveth thee.  
-VI. Thou shalt do no murder.  
-VII. Thou shalt not commit adultery.  
-VIII. Thou shalt not steal.  
-IX. Thou shalt not bear false witness against thy neighbour.  
-X. Thou shalt not covet thy neighbour's house, thou shalt not covet thy neighbour's wife, nor his servant, nor his maid, nor his ox, nor his ass, nor any thing that is his.  
+*Question.* Which be they?  
+*Answer.* THE same which God spake in the twentieth Chapter of Exodus, saying, I am the Lord thy God, who brought thee out of the land of Egypt, out of the house of bondage.
+
+I. Thou shalt have none other gods but me.
+
+II. Thou shalt not make to thyself any graven image, nor the likeness of any thing that is in heaven above, or in the earth beneath, or in the water under the earth. Thou shalt not bow down to them, nor worship them: for I the Lord thy God am a jealous God, and visit the sins of the fathers upon the children unto the third and fourth generation of them that hate me, and shew mercy unto thousands in them that love me, and keep my commandments.
+
+III. Thou shalt not take the Name of the Lord thy God in vain: for the Lord will not hold him guiltless that taketh his Name in vain.
+
+IV. Remember that thou keep holy the Sabbath-day. Six days shalt thou labour, and do all that thou hast to do; but the seventh day is the Sabbath of the Lord thy God. In it thou shalt do no manner of work, thou, and thy son, and thy daughter, thy man-servant, and thy maid-servant, thy cattle, and the stranger that is within thy gates. For in six days the Lord made heaven and earth, the sea, and all that in them is, and rested the seventh day: wherefore the Lord blessed the seventh day, and hallowed it.
+
+V. Honour thy father and thy mother, that thy days may be long in the land which the Lord thy God giveth thee.
+
+VI. Thou shalt do no murder.
+
+VII. Thou shalt not commit adultery.
+
+VIII. Thou shalt not steal.
+
+IX. Thou shalt not bear false witness against thy neighbour.
+
+X. Thou shalt not covet thy neighbour's house, thou shalt not covet thy neighbour's wife, nor his servant, nor his maid, nor his ox, nor his ass, nor any thing that is his.
 
 *Question.* What dost thou chiefly learn by these Commandments?  
 *Answer.* I learn two things: my duty towards God, and my duty towards my Neighbour.  

@@ -21,6 +21,7 @@ import {
   consecrationOfBishops1662
 } from './ordinal1662';
 import { psalter1662 } from './psalter1662';
+import { articlesOfReligion1662 } from './articlesOfReligion1662';
 
 import { services1947, get1947ServiceBySlug } from './er1947';
 import { services1928, get1928ServiceBySlug } from './bcp1928';
@@ -39,8 +40,19 @@ export {
   consecrationOfBishops1662
 } from './ordinal1662';
 export { psalter1662 } from './psalter1662';
+export { articlesOfReligion1662 } from './articlesOfReligion1662';
 export { services1947, get1947ServiceBySlug } from './er1947';
-export { services1928, get1928ServiceBySlug } from './bcp1928';
+export {
+  services1928,
+  get1928ServiceBySlug,
+  ratification1928,
+  preface1928,
+  serviceOfTheChurch1928,
+  calendarAndTables1928,
+  tableOfLessons1928,
+  catechism1928,
+  familyPrayer1928
+} from './bcp1928';
 
 export const services1662: ServiceItem[] = [
   preface1662,
@@ -70,7 +82,8 @@ export const services1662: ServiceItem[] = [
   ordinalPreface1662,
   makingOfDeacons1662,
   orderingOfPriests1662,
-  consecrationOfBishops1662
+  consecrationOfBishops1662,
+  articlesOfReligion1662
 ];
 
 export function get1662ServiceBySlug(slug?: string): ServiceItem {
