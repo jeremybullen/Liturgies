@@ -4,7 +4,7 @@ export const holyCommunion: ServiceItem = {
   id: 'holy-communion',
   slug: 'holy-communion',
   title: 'The Order for the Administration of the Lord\'s Supper, or Holy Communion',
-  shortTitle: 'Holy Communion',
+  shortTitle: 'The Order for the Administration of the Lord\'s Supper, or Holy Communion',
   category: 'The Holy Communion',
   content: `# The Order for the Administration of the Lord's Supper, or Holy Communion
 

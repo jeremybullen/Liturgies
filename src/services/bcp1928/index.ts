@@ -78,9 +78,7 @@ export const services1928: ServiceItem[] = [
   communionOfSick1928,
   burialOfTheDead1928,
   burialOfChild1928,
-  visitationOfPrisoners1928,
-  thanksgivingDay1928,
-  familyPrayer1928,
+  psalter1928,
   ordinalPreface1928,
   makingOfDeacons1928,
   orderingOfPriests1928,
@@ -88,8 +86,10 @@ export const services1928: ServiceItem[] = [
   litanyForOrdinations1928,
   consecrationOfChurch1928,
   institutionOfMinisters1928,
-  articlesOfReligion1928,
-  psalter1928
+  visitationOfPrisoners1928,
+  thanksgivingDay1928,
+  familyPrayer1928,
+  articlesOfReligion1928
 ];
 
 export function get1928ServiceBySlug(slug?: string): ServiceItem {

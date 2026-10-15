@@ -3,8 +3,8 @@ import { ServiceItem } from './types';
 export const orderOfPsalter1662: ServiceItem = {
   id: 'order-of-the-psalter',
   slug: 'order-of-the-psalter',
-  title: 'The Order How the Psalter is Appointed to be Read',
-  shortTitle: 'Order of the Psalter',
+  title: 'The Order how the Psalter is appointed to be read',
+  shortTitle: 'The Order how the Psalter is appointed to be read',
   category: 'Prefaces & Tables',
   content: `# THE ORDER HOW THE PSALTER IS APPOINTED TO BE READ.
 

@@ -4,7 +4,7 @@ export const confirmation1928: ServiceItem = {
   id: 'confirmation-1928',
   slug: 'confirmation',
   title: 'The Order of Confirmation',
-  shortTitle: 'Confirmation',
+  shortTitle: 'The Order of Confirmation',
   category: 'Pastoral Offices',
   content: `# The Order of Confirmation
 ## Or Laying on of Hands upon those that are Baptized, and come to Years of Discretion

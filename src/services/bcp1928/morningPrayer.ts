@@ -4,7 +4,7 @@ export const morningPrayer1928: ServiceItem = {
   id: 'morning-prayer-1928',
   slug: 'morning-prayer',
   title: 'The Order for Daily Morning Prayer',
-  shortTitle: 'Morning Prayer',
+  shortTitle: 'The Order for Daily Morning Prayer',
   category: 'Daily Office',
   content: `# The Order for Daily Morning Prayer
 

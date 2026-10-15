@@ -4,7 +4,7 @@ export const communionOfSick1928: ServiceItem = {
   id: 'communion-of-the-sick-1928',
   slug: 'communion-of-the-sick',
   title: 'The Communion of the Sick',
-  shortTitle: 'Communion of the Sick',
+  shortTitle: 'The Communion of the Sick',
   category: 'Pastoral Offices',
   content: `# The Communion of the Sick
 

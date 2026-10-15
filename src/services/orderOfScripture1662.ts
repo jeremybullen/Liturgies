@@ -3,8 +3,8 @@ import { ServiceItem } from './types';
 export const orderOfScripture1662: ServiceItem = {
   id: 'order-of-holy-scripture',
   slug: 'order-of-holy-scripture',
-  title: 'The Order How the Rest of Holy Scripture is Appointed to be Read',
-  shortTitle: 'Order of Holy Scripture',
+  title: 'The Order how the rest of holy Scripture is appointed to be read',
+  shortTitle: 'The Order how the rest of holy Scripture is appointed to be read',
   category: 'Prefaces & Tables',
   content: `# THE ORDER HOW THE REST OF HOLY SCRIPTURE IS APPOINTED TO BE READ.
 

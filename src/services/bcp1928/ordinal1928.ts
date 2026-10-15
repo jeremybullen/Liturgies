@@ -7,7 +7,7 @@ export const ordinalPreface1928: ServiceItem = {
   id: 'ordinal-preface-1928',
   slug: 'ordinal-preface',
   title: 'The Preface to the Form and Manner of Making, Ordaining, and Consecrating Bishops, Priests, and Deacons',
-  shortTitle: 'Ordinal: Preface',
+  shortTitle: 'The Preface to the Ordinal',
   category: 'The Ordinal',
   isService: false,
   content: `# THE FORM AND MANNER OF MAKING, ORDAINING, AND CONSECRATING BISHOPS, PRIESTS, AND DEACONS
@@ -31,7 +31,7 @@ export const makingOfDeacons1928: ServiceItem = {
   id: 'making-deacons-1928',
   slug: 'making-deacons',
   title: 'The Form and Manner of Making Deacons',
-  shortTitle: 'Making Deacons',
+  shortTitle: 'The Form and Manner of Making Deacons',
   category: 'The Ordinal',
   isService: true,
   content: `# THE FORM AND MANNER OF MAKING DEACONS.
@@ -117,7 +117,7 @@ export const orderingOfPriests1928: ServiceItem = {
   id: 'ordering-priests-1928',
   slug: 'ordering-priests',
   title: 'The Form and Manner of Ordering Priests',
-  shortTitle: 'Ordering Priests',
+  shortTitle: 'The Form and Manner of Ordering Priests',
   category: 'The Ordinal',
   isService: true,
   content: `# THE FORM AND MANNER OF ORDERING PRIESTS.
@@ -231,7 +231,7 @@ export const consecrationOfBishops1928: ServiceItem = {
   id: 'consecrating-bishops-1928',
   slug: 'consecrating-bishops',
   title: 'The Form of Ordaining or Consecrating a Bishop',
-  shortTitle: 'Consecrating Bishops',
+  shortTitle: 'The Form of Ordaining or Consecrating a Bishop',
   category: 'The Ordinal',
   isService: true,
   content: `# THE FORM OF ORDAINING OR CONSECRATING A BISHOP.
@@ -353,7 +353,7 @@ export const litanyForOrdinations1928: ServiceItem = {
   id: 'litany-for-ordinations-1928',
   slug: 'litany-for-ordinations',
   title: 'The Litany and Suffrages for Ordinations',
-  shortTitle: 'Litany for Ordinations',
+  shortTitle: 'The Litany and Suffrages for Ordinations',
   category: 'The Ordinal',
   isService: true,
   content: `# THE LITANY AND SUFFRAGES FOR ORDINATIONS.
@@ -429,7 +429,7 @@ export const consecrationOfChurch1928: ServiceItem = {
   id: 'consecration-of-church-1928',
   slug: 'consecration-of-church',
   title: 'The Form of Consecration of a Church or Chapel',
-  shortTitle: 'Consecration of a Church',
+  shortTitle: 'The Form of Consecration of a Church or Chapel',
   category: 'The Ordinal',
   isService: true,
   content: `# THE FORM OF CONSECRATION OF A CHURCH OR CHAPEL.
@@ -493,7 +493,7 @@ export const institutionOfMinisters1928: ServiceItem = {
   id: 'institution-of-ministers-1928',
   slug: 'institution-of-ministers',
   title: 'An Office of Institution of Ministers into Parishes or Churches',
-  shortTitle: 'Institution of Ministers',
+  shortTitle: 'An Office of Institution of Ministers into Parishes or Churches',
   category: 'The Ordinal',
   isService: true,
   content: `# AN OFFICE OF INSTITUTION OF MINISTERS INTO PARISHES OR CHURCHES.

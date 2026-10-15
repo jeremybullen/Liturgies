@@ -4,7 +4,7 @@ export const penitentialOffice1928: ServiceItem = {
   id: 'penitential-office-1928',
   slug: 'penitential-office',
   title: 'A Penitential Office for Ash Wednesday',
-  shortTitle: 'Penitential Office',
+  shortTitle: 'A Penitential Office for Ash Wednesday',
   category: 'Penitential',
   content: `# A Penitential Office for Ash Wednesday
 

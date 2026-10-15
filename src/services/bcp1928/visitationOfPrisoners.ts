@@ -4,7 +4,7 @@ export const visitationOfPrisoners1928: ServiceItem = {
   id: 'visitation-of-prisoners-1928',
   slug: 'visitation-of-prisoners',
   title: 'A Form of Prayer for the Visitation of Prisoners',
-  shortTitle: 'Visitation of Prisoners',
+  shortTitle: 'A Form of Prayer for the Visitation of Prisoners',
   category: 'Pastoral Offices',
   content: `# A Form of Prayer for the Visitation of Prisoners
 

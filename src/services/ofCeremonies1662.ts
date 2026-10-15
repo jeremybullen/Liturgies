@@ -3,8 +3,8 @@ import { ServiceItem } from './types';
 export const ofCeremonies1662: ServiceItem = {
   id: 'of-ceremonies',
   slug: 'of-ceremonies',
-  title: 'Of Ceremonies, Why Some Be Abolished, and Some Retained',
-  shortTitle: 'Of Ceremonies',
+  title: 'Of Ceremonies, why some be abolished, and some retained',
+  shortTitle: 'Of Ceremonies, why some be abolished, and some retained',
   category: 'Prefaces & Tables',
   content: `# OF CEREMONIES, WHY SOME BE ABOLISHED, AND SOME RETAINED.
 

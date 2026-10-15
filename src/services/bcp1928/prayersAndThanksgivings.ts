@@ -4,7 +4,7 @@ export const prayersAndThanksgivings1928: ServiceItem = {
   id: 'prayers-and-thanksgivings-1928',
   slug: 'prayers-and-thanksgivings',
   title: 'Prayers and Thanksgivings',
-  shortTitle: 'Prayers & Thanksgivings',
+  shortTitle: 'Prayers and Thanksgivings',
   category: 'Prayers & Devotions',
   content: `# Prayers and Thanksgivings
 

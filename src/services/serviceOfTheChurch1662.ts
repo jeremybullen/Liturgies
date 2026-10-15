@@ -4,7 +4,7 @@ export const serviceOfTheChurch1662: ServiceItem = {
   id: 'concerning-the-service-of-the-church',
   slug: 'concerning-the-service-of-the-church',
   title: 'Concerning the Service of the Church',
-  shortTitle: 'Service of the Church',
+  shortTitle: 'Concerning the Service of the Church',
   category: 'Prefaces & Tables',
   content: `# CONCERNING THE SERVICE OF THE CHURCH.
 

@@ -3,8 +3,8 @@ import { ServiceItem } from './types';
 export const baptismInfants: ServiceItem = {
   id: 'baptism-infants',
   slug: 'baptism-infants',
-  title: 'The Ministration of Publick Baptism of Infants, to Be Used in the Church',
-  shortTitle: 'Publick Baptism of Infants',
+  title: 'The Ministration of Publick Baptism of Infants',
+  shortTitle: 'The Ministration of Publick Baptism of Infants',
   category: 'Sacraments & Rites',
   content: `# The Ministration of Publick Baptism of Infants, to Be Used in the Church
 
@@ -119,8 +119,8 @@ YE are to take care that this Child be brought to the Bishop to be confirmed by 
 export const privateBaptism: ServiceItem = {
   id: 'private-baptism',
   slug: 'private-baptism',
-  title: 'The Ministration of Private Baptism of Children in Houses',
-  shortTitle: 'Private Baptism of Children',
+  title: 'The Ministration of Private Baptism of Children',
+  shortTitle: 'The Ministration of Private Baptism of Children',
   category: 'Sacraments & Rites',
   content: `# The Ministration of Private Baptism of Children in Houses
 

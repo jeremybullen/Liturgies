@@ -28,7 +28,7 @@ export const services1947: ServiceItem[] = [
     id: 'er-alternate-order-of-worship',
     slug: 'alternate-order-of-worship',
     title: 'An Alternate Order of Worship',
-    shortTitle: 'Alternate Order of Worship',
+    shortTitle: 'An Alternate Order of Worship',
     category: 'Worship',
     content: anAlternateOrderOfWorshipContent
   },
@@ -52,7 +52,7 @@ export const services1947: ServiceItem[] = [
     id: 'er-holy-communion',
     slug: 'holy-communion',
     title: 'The Order for Holy Communion',
-    shortTitle: 'Holy Communion',
+    shortTitle: 'The Order for Holy Communion',
     category: 'Communion',
     content: theOrderForHolyCommunionContent
   },
@@ -60,7 +60,7 @@ export const services1947: ServiceItem[] = [
     id: 'er-alternate-holy-communion',
     slug: 'alternate-holy-communion',
     title: 'An Alternate Order for Holy Communion',
-    shortTitle: 'Alternate Holy Communion',
+    shortTitle: 'An Alternate Order for Holy Communion',
     category: 'Communion',
     content: anAlternateOrderForHolyCommunionContent
   },
@@ -84,7 +84,7 @@ export const services1947: ServiceItem[] = [
     id: 'er-baptism-infants',
     slug: 'baptism-of-infants',
     title: 'The Order for Baptism of Infants',
-    shortTitle: 'Baptism of Infants',
+    shortTitle: 'The Order for Baptism of Infants',
     category: 'Baptism',
     content: baptismOfInfantsContent
   },
@@ -92,7 +92,7 @@ export const services1947: ServiceItem[] = [
     id: 'er-baptism-adults',
     slug: 'baptism-of-adults',
     title: 'The Order for Baptism of Adults',
-    shortTitle: 'Baptism of Adults',
+    shortTitle: 'The Order for Baptism of Adults',
     category: 'Baptism',
     content: baptismOfAdultsContent
   },
@@ -100,7 +100,7 @@ export const services1947: ServiceItem[] = [
     id: 'er-confirmation',
     slug: 'confirmation',
     title: 'The Order for Confirmation',
-    shortTitle: 'Confirmation',
+    shortTitle: 'The Order for Confirmation',
     category: 'Rites',
     content: confirmationContent
   },
@@ -108,7 +108,7 @@ export const services1947: ServiceItem[] = [
     id: 'er-marriage',
     slug: 'marriage',
     title: 'The Order for Marriage',
-    shortTitle: 'Marriage',
+    shortTitle: 'The Order for Marriage',
     category: 'Rites',
     content: marriageContent
   },
@@ -116,7 +116,7 @@ export const services1947: ServiceItem[] = [
     id: 'er-alternate-marriage',
     slug: 'alternate-marriage',
     title: 'An Alternate Order for Marriage',
-    shortTitle: 'Alternate Marriage',
+    shortTitle: 'An Alternate Order for Marriage',
     category: 'Rites',
     content: alternateMarriageContent
   },
@@ -124,7 +124,7 @@ export const services1947: ServiceItem[] = [
     id: 'er-burial',
     slug: 'burial',
     title: 'The Order for Burial of the Dead',
-    shortTitle: 'Burial of the Dead',
+    shortTitle: 'The Order for Burial of the Dead',
     category: 'Rites',
     content: burialContent
   },
@@ -132,7 +132,7 @@ export const services1947: ServiceItem[] = [
     id: 'er-ordination',
     slug: 'ordination',
     title: 'The Order for Ordination of a Minister',
-    shortTitle: 'Ordination of a Minister',
+    shortTitle: 'The Order for Ordination of a Minister',
     category: 'Rites',
     content: ordinationContent
   }

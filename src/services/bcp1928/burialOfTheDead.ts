@@ -4,7 +4,7 @@ export const burialOfTheDead1928: ServiceItem = {
   id: 'burial-of-the-dead-1928',
   slug: 'burial-of-the-dead',
   title: 'The Order for the Burial of the Dead',
-  shortTitle: 'Burial of the Dead',
+  shortTitle: 'The Order for the Burial of the Dead',
   category: 'Pastoral Offices',
   content: `# The Order for the Burial of the Dead
 

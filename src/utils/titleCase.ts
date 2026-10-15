@@ -17,9 +17,8 @@ export function toTitleCase(str: string): string {
   const trimmed = str.trim();
   if (!trimmed) return '';
 
-  // Split into tokens: words, whitespace, and punctuation delimiters
-  // We keep delimiters so we can rebuild the exact spacing and punctuation
-  const rawTokens = trimmed.split(/(\s+|[-—–:,;.()\[\]"“"'’])/g).filter(Boolean);
+  // Split into tokens: words, whitespace, and punctuation delimiters (excluding internal contractions/possessives)
+  const rawTokens = trimmed.split(/(\s+|[-—–:,;.()\[\]"“”]|\B['’]|['’]\B)/g).filter(Boolean);
 
   // Identify all word token indices (excluding pure punctuation/whitespace)
   const wordIndices: number[] = [];

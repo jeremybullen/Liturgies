@@ -4,7 +4,7 @@ export const churchingOfWomen1928: ServiceItem = {
   id: 'churching-of-women-1928',
   slug: 'churching-of-women',
   title: 'The Thanksgiving of Women after Child-birth',
-  shortTitle: 'Churching of Women',
+  shortTitle: 'The Thanksgiving of Women after Child-birth',
   category: 'Pastoral Offices',
   content: `# The Thanksgiving of Women after Child-birth
 ## Commonly called The Churching of Women

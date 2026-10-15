@@ -3,8 +3,8 @@ import { ServiceItem } from '../types';
 export const familyPrayer1928: ServiceItem = {
   id: 'family-prayer-1928',
   slug: 'family-prayer',
-  title: 'Forms of Prayer to Be Used in Families',
-  shortTitle: 'Family Prayer',
+  title: 'Forms of Prayer to be used in Families',
+  shortTitle: 'Forms of Prayer to be used in Families',
   category: 'Prayers & Devotions',
   content: `# Forms of Prayer to Be Used in Families
 

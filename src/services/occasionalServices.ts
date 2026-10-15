@@ -4,7 +4,7 @@ export const visitationSick: ServiceItem = {
   id: 'visitation-sick',
   slug: 'visitation-sick',
   title: 'The Order for the Visitation of the Sick',
-  shortTitle: 'Visitation of the Sick',
+  shortTitle: 'The Order for the Visitation of the Sick',
   category: 'Pastoral Care',
   content: `# The Order for the Visitation of the Sick
 
@@ -129,7 +129,7 @@ export const communionSick: ServiceItem = {
   id: 'communion-sick',
   slug: 'communion-sick',
   title: 'The Communion of the Sick',
-  shortTitle: 'Communion of the Sick',
+  shortTitle: 'The Communion of the Sick',
   category: 'Pastoral Care',
   content: `# The Communion of the Sick
 
@@ -159,7 +159,7 @@ export const burial: ServiceItem = {
   id: 'burial',
   slug: 'burial',
   title: 'The Order for the Burial of the Dead',
-  shortTitle: 'Burial of the Dead',
+  shortTitle: 'The Order for the Burial of the Dead',
   category: 'Pastoral Care',
   content: `# The Order for the Burial of the Dead
 
@@ -255,8 +255,8 @@ THE grace of our Lord Jesus Christ, and the love of God, and the fellowship of t
 export const churchingOfWomen: ServiceItem = {
   id: 'churching-women',
   slug: 'churching-women',
-  title: 'The Thanksgiving of Women after Child-birth, Commonly Called, The Churching of Women',
-  shortTitle: 'The Churching of Women',
+  title: 'The Thanksgiving of Women after Child-birth',
+  shortTitle: 'The Thanksgiving of Women after Child-birth',
   category: 'Thanksgivings',
   content: `# The Thanksgiving of Women After Child-Birth, Commonly Called, The Churching of Women
 
@@ -323,8 +323,8 @@ O ALMIGHTY God, we give thee humble thanks for that thou hast vouchsafed to deli
 export const commination: ServiceItem = {
   id: 'commination',
   slug: 'commination',
-  title: 'A Commination, or Denouncing of God\'s Anger and Judgements Against Sinners',
-  shortTitle: 'A Commination (Lent)',
+  title: "A Commination, or denouncing of God's anger and judgements against sinners",
+  shortTitle: "A Commination, or Denouncing of God's Anger and Judgements Against Sinners",
   category: 'Penitential',
   content: `# A Commination, or Denouncing of God's Anger and Judgements Against Sinners
 

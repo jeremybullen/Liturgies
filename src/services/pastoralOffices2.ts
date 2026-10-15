@@ -3,8 +3,8 @@ import { ServiceItem } from './types';
 export const baptismRiperYears: ServiceItem = {
   id: 'baptism-riper-years',
   slug: 'baptism-riper-years',
-  title: 'The Ministration of Baptism to Such as Are of Riper Years, and Able to Answer for Themselves',
-  shortTitle: 'Baptism of Riper Years',
+  title: 'The Ministration of Baptism to such as are of Riper Years',
+  shortTitle: 'The Ministration of Baptism to such as are of Riper Years',
   category: 'Sacraments & Rites',
   content: `# The Ministration of Baptism to Such as Are of Riper Years, and Able to Answer for Themselves
 
@@ -193,7 +193,7 @@ export const confirmation: ServiceItem = {
   id: 'confirmation',
   slug: 'confirmation',
   title: 'The Order of Confirmation',
-  shortTitle: 'Confirmation',
+  shortTitle: 'The Order of Confirmation',
   category: 'Sacraments & Rites',
   content: `# The Order of Confirmation, or Laying on of Hands Upon Those That are Baptized and Come to Years of Discretion
 
@@ -252,7 +252,7 @@ export const matrimony: ServiceItem = {
   id: 'matrimony',
   slug: 'matrimony',
   title: 'The Form of Solemnization of Matrimony',
-  shortTitle: 'Holy Matrimony',
+  shortTitle: 'The Form of Solemnization of Matrimony',
   category: 'Sacraments & Rites',
   content: `# The Form of Solemnization of Matrimony
 

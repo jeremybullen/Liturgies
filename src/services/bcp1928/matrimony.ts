@@ -4,7 +4,7 @@ export const matrimony1928: ServiceItem = {
   id: 'matrimony-1928',
   slug: 'matrimony',
   title: 'The Solemnization of Matrimony',
-  shortTitle: 'Matrimony',
+  shortTitle: 'The Solemnization of Matrimony',
   category: 'Pastoral Offices',
   content: `# The Solemnization of Matrimony
 

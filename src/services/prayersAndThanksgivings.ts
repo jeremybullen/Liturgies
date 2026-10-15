@@ -3,8 +3,8 @@ import { ServiceItem } from './types';
 export const prayersAndThanksgivings: ServiceItem = {
   id: 'prayers-thanksgivings',
   slug: 'prayers-thanksgivings',
-  title: 'Prayers and Thanksgivings, Upon Several Occasions',
-  shortTitle: 'Prayers & Thanksgivings',
+  title: 'Prayers and Thanksgivings upon several Occasions',
+  shortTitle: 'Prayers and Thanksgivings upon several Occasions',
   category: 'Occasional Prayers',
   content: `# Prayers and Thanksgivings, Upon Several Occasions
 

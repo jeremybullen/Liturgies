@@ -4,7 +4,7 @@ export const burialOfChild1928: ServiceItem = {
   id: 'burial-of-a-child-1928',
   slug: 'burial-of-a-child',
   title: 'At the Burial of a Child',
-  shortTitle: 'Burial of a Child',
+  shortTitle: 'At the Burial of a Child',
   category: 'Pastoral Offices',
   content: `# At the Burial of a Child
 

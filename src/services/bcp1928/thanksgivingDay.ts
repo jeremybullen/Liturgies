@@ -4,7 +4,7 @@ export const thanksgivingDay1928: ServiceItem = {
   id: 'thanksgiving-day-1928',
   slug: 'thanksgiving-day',
   title: 'A Form of Prayer and Thanksgiving for the Fruits of the Earth',
-  shortTitle: 'Thanksgiving Day',
+  shortTitle: 'A Form of Prayer and Thanksgiving for the Fruits of the Earth',
   category: 'Prayers & Devotions',
   content: `# A Form of Prayer and Thanksgiving for the Fruits of the Earth
 ## And all the other Blessings of his merciful Providence

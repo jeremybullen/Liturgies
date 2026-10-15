@@ -315,15 +315,15 @@ export function App() {
                 aria-haspopup="listbox"
                 title="Select Service"
               >
-                <span className="truncate max-w-[170px] xs:max-w-[220px] sm:max-w-[320px]">
-                  {toTitleCase(currentService.shortTitle)}
+                <span className="truncate max-w-[170px] xs:max-w-[220px] sm:max-w-[340px] md:max-w-[440px]">
+                  {currentService.shortTitle || currentService.title}
                 </span>
                 <ChevronDown className={`w-3.5 h-3.5 opacity-60 shrink-0 transition-transform duration-150 ${isServiceMenuOpen ? 'rotate-180' : ''}`} />
               </button>
 
               {isServiceMenuOpen && (
                 <div
-                  className="absolute top-full left-0 sm:left-auto sm:right-0 mt-1 w-72 max-h-[70vh] overflow-y-auto bg-[#FAF8F5] dark:bg-[#1E1D1A] border border-[#D5CCBA] dark:border-[#38352F] rounded-md shadow-xl py-1 z-50 animate-in fade-in zoom-in-95 duration-100 divide-y divide-[#ECE5D8]/50 dark:divide-[#33302A]/50"
+                  className="absolute top-full left-0 sm:left-auto sm:right-0 mt-1 w-80 sm:w-96 max-h-[75vh] overflow-y-auto bg-[#FAF8F5] dark:bg-[#1E1D1A] border border-[#D5CCBA] dark:border-[#38352F] rounded-md shadow-xl py-1 z-50 animate-in fade-in zoom-in-95 duration-100 divide-y divide-[#ECE5D8]/50 dark:divide-[#33302A]/50"
                   role="listbox"
                 >
                   {currentBook.services.map((s) => {
@@ -340,7 +340,7 @@ export function App() {
                         role="option"
                         aria-selected={isSelected}
                       >
-                        <span className="truncate">{toTitleCase(s.shortTitle)}</span>
+                        <span className="truncate">{s.shortTitle || s.title}</span>
                         {isSelected && <Check className="w-3.5 h-3.5 text-[#8A211D] dark:text-[#E86558] shrink-0" />}
                       </button>
                     );

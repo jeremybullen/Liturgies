@@ -50,10 +50,10 @@ export const services1662: ServiceItem[] = [
   orderOfScripture1662,
   morningPrayer,
   eveningPrayer,
+  athanasianCreed,
   litany,
   prayersAndThanksgivings,
   holyCommunion,
-  athanasianCreed,
   baptismInfants,
   privateBaptism,
   baptismRiperYears,
@@ -65,12 +65,12 @@ export const services1662: ServiceItem[] = [
   burial,
   churchingOfWomen,
   commination,
+  psalter1662,
   prayersAtSea1662,
   ordinalPreface1662,
   makingOfDeacons1662,
   orderingOfPriests1662,
-  consecrationOfBishops1662,
-  psalter1662
+  consecrationOfBishops1662
 ];
 
 export function get1662ServiceBySlug(slug?: string): ServiceItem {

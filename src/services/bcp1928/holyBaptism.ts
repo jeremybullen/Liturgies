@@ -4,7 +4,7 @@ export const holyBaptism1928: ServiceItem = {
   id: 'holy-baptism-1928',
   slug: 'holy-baptism',
   title: 'The Ministration of Holy Baptism',
-  shortTitle: 'Holy Baptism',
+  shortTitle: 'The Ministration of Holy Baptism',
   category: 'Pastoral Offices',
   content: `# The Ministration of Holy Baptism
 

@@ -4,7 +4,7 @@ export const visitationOfSick1928: ServiceItem = {
   id: 'visitation-of-the-sick-1928',
   slug: 'visitation-of-the-sick',
   title: 'The Order for the Visitation of the Sick',
-  shortTitle: 'Visitation of the Sick',
+  shortTitle: 'The Order for the Visitation of the Sick',
   category: 'Pastoral Offices',
   content: `# The Order for the Visitation of the Sick
 

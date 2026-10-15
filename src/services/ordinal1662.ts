@@ -6,8 +6,8 @@ import { ServiceItem } from './types';
 export const ordinalPreface1662: ServiceItem = {
   id: 'the-ordinal-preface',
   slug: 'the-ordinal-preface',
-  title: 'The Preface to the Form and Manner of Making, Ordaining, and Consecrating of Bishops, Priests, and Deacons',
-  shortTitle: 'Ordinal: Preface',
+  title: 'The Ordinal: The Preface',
+  shortTitle: 'The Ordinal: The Preface',
   category: 'Prefaces & Tables',
   isService: false,
   content: `# THE FORM AND MANNER OF MAKING, ORDAINING, AND CONSECRATING OF BISHOPS, PRIESTS, AND DEACONS, ACCORDING TO THE ORDER OF THE CHURCH OF ENGLAND.
@@ -29,7 +29,7 @@ export const makingOfDeacons1662: ServiceItem = {
   id: 'making-of-deacons',
   slug: 'making-of-deacons',
   title: 'The Form and Manner of Making of Deacons',
-  shortTitle: 'Making of Deacons',
+  shortTitle: 'The Form and Manner of Making of Deacons',
   category: 'The Ordinal',
   isService: true,
   content: `# THE FORM AND MANNER OF MAKING OF DEACONS.
@@ -165,7 +165,7 @@ export const orderingOfPriests1662: ServiceItem = {
   id: 'ordering-of-priests',
   slug: 'ordering-of-priests',
   title: 'The Form and Manner of Ordering of Priests',
-  shortTitle: 'Ordering of Priests',
+  shortTitle: 'The Form and Manner of Ordering of Priests',
   category: 'The Ordinal',
   isService: true,
   content: `# THE FORM AND MANNER OF ORDERING OF PRIESTS.
@@ -336,7 +336,7 @@ export const consecrationOfBishops1662: ServiceItem = {
   id: 'consecration-of-bishops',
   slug: 'consecration-of-bishops',
   title: 'The Form of Ordaining or Consecrating of an Archbishop or Bishop',
-  shortTitle: 'Consecration of Bishops',
+  shortTitle: 'The Form of Ordaining or Consecrating of an Archbishop or Bishop',
   category: 'The Ordinal',
   isService: true,
   content: `# THE FORM OF ORDAINING OR CONSECRATING OF AN ARCHBISHOP OR BISHOP; WHICH IS ALWAYS TO BE PERFORMED UPON SOME SUNDAY OR HOLY-DAY.

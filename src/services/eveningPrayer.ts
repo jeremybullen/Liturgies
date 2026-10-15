@@ -3,8 +3,8 @@ import { ServiceItem } from './types';
 export const eveningPrayer: ServiceItem = {
   id: 'evening-prayer',
   slug: 'evening-prayer',
-  title: 'The Order for Evening Prayer, Daily Throughout the Year',
-  shortTitle: 'Evening Prayer',
+  title: 'The Order for Evening Prayer',
+  shortTitle: 'The Order for Evening Prayer',
   category: 'Daily Offices',
   content: `# The Order for Evening Prayer, Daily Throughout the Year
 

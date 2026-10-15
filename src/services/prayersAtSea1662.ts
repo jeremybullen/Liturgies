@@ -3,8 +3,8 @@ import { ServiceItem } from './types';
 export const prayersAtSea1662: ServiceItem = {
   id: 'prayers-at-sea',
   slug: 'prayers-at-sea',
-  title: 'Forms of Prayer to be Used at Sea',
-  shortTitle: 'Prayers at Sea',
+  title: 'Forms of Prayer to be used at Sea',
+  shortTitle: 'Forms of Prayer to be used at Sea',
   category: 'Occasional Offices',
   content: `# FORMS OF PRAYER TO BE USED AT SEA.
 

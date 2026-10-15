@@ -3,8 +3,8 @@ import { ServiceItem } from './types';
 export const athanasianCreed: ServiceItem = {
   id: 'athanasian-creed',
   slug: 'athanasian-creed',
-  title: 'At Morning Prayer (The Creed of Saint Athanasius)',
-  shortTitle: 'Athanasian Creed',
+  title: 'The Creed of Saint Athanasius',
+  shortTitle: 'The Creed of Saint Athanasius',
   category: 'Creeds & Confessions',
   content: `# At Morning Prayer
 
