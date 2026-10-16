@@ -1,3 +1,731 @@
-export interface ProperDayItem { id: string; title: string; shortTitle: string; season: string; date?: string; citation?: string;
-} export const PROPERS_1662_INDEX: ProperDayItem[] = [ { "id": "first-sunday-in-advent", "title": "The First Sunday in Advent", "shortTitle": "1st Sunday in Advent", "season": "Advent Season", "date": "", "citation": "Romans 13. 8. \u00b7 St. Matthew 21. 1." }, { "id": "second-sunday-in-advent", "title": "The Second Sunday in Advent", "shortTitle": "2nd Sunday in Advent", "season": "Advent Season", "date": "", "citation": "Romans 15. 4. \u00b7 St. Luke 21. 25." }, { "id": "third-sunday-in-advent", "title": "The Third Sunday in Advent", "shortTitle": "3rd Sunday in Advent", "season": "Advent Season", "date": "", "citation": "1 Cor. 4. 1. \u00b7 St. Matthew 11. 2." }, { "id": "fourth-sunday-in-advent", "title": "The Fourth Sunday in Advent", "shortTitle": "4th Sunday in Advent", "season": "Advent Season", "date": "", "citation": "Philippians. 4. 4. \u00b7 St. John 1. 19." }, { "id": "christmas-day", "title": "The Nativity of our Lord, or the Birth-Day of Christ, commonly called Christmas-Day", "shortTitle": "Christmas Day", "season": "Christmastide", "date": "Dec 25", "citation": "Hebrews. 1. 1. \u00b7 St. John 1. 1." }, { "id": "saint-stephen", "title": "Saint Stephen's Day", "shortTitle": "St. Stephen", "season": "Christmastide", "date": "Dec 26", "citation": "Acts 7. 55. \u00b7 St. Matthew 23. 34." }, { "id": "saint-john-evangelist", "title": "Saint John the Evangelist's Day", "shortTitle": "St. John Evangelist", "season": "Christmastide", "date": "Dec 27", "citation": "1 St. John 1. 1. \u00b7 St. John 21. 19." }, { "id": "the-innocents-day", "title": "The Innocents' Day", "shortTitle": "The Innocents' Day", "season": "Christmastide", "date": "Dec 28", "citation": "Revelation 14. 1. \u00b7 St. Matthew 2. 13." }, { "id": "sunday-after-christmas", "title": "The Sunday after Christmas-Day", "shortTitle": "Sunday after Christmas", "season": "Christmastide", "date": "", "citation": "Galatians. 4. 1. \u00b7 St. Matthew 1. 18." }, { "id": "circumcision-of-christ", "title": "The Circumcision of Christ", "shortTitle": "Circumcision of Christ", "season": "Christmastide", "date": "Jan 1", "citation": "Romans 4. 8. \u00b7 St. Luke 2. 15." }, { "id": "the-epiphany", "title": "The Epiphany, or the Manifestation of Christ to the Gentiles", "shortTitle": "The Epiphany", "season": "Epiphany Season", "date": "Jan 6", "citation": "Ephesians. 3. 1. \u00b7 St. Matthew 2. 1." }, { "id": "first-sunday-after-epiphany", "title": "The First Sunday after the Epiphany", "shortTitle": "1st Sun after Epiphany", "season": "Epiphany Season", "date": "", "citation": "Romans 12. 1. \u00b7 St. Luke 2. 41." }, { "id": "second-sunday-after-epiphany", "title": "The Second Sunday after the Epiphany", "shortTitle": "2nd Sun after Epiphany", "season": "Epiphany Season", "date": "", "citation": "Romans 12. 6. \u00b7 St. John 2. 1." }, { "id": "third-sunday-after-epiphany", "title": "The Third Sunday after the Epiphany", "shortTitle": "3rd Sun after Epiphany", "season": "Epiphany Season", "date": "", "citation": "Romans 12. 16. \u00b7 St. Matthew 8. 1." }, { "id": "fourth-sunday-after-epiphany", "title": "The Fourth Sunday after the Epiphany", "shortTitle": "4th Sun after Epiphany", "season": "Epiphany Season", "date": "", "citation": "Romans 13. 1. \u00b7 St. Matthew 8. 23." }, { "id": "fifth-sunday-after-epiphany", "title": "The Fifth Sunday after the Epiphany", "shortTitle": "5th Sun after Epiphany", "season": "Epiphany Season", "date": "", "citation": "Colossians. 3. 12. \u00b7 St. Matthew 13. 24." }, { "id": "sixth-sunday-after-epiphany", "title": "The Sixth Sunday after the Epiphany", "shortTitle": "6th Sun after Epiphany", "season": "Epiphany Season", "date": "", "citation": "1 St. John 3. 1. \u00b7 St. Matthew 24. 23." }, { "id": "septuagesima", "title": "The Sunday called Septuagesima, or the third Sunday before Lent", "shortTitle": "Septuagesima", "season": "Pre-Lenten Season", "date": "", "citation": "1 Cor. 9. 24. \u00b7 St. Matthew 20. 1." }, { "id": "sexagesima", "title": "The Sunday called Sexagesima, or the second Sunday before Lent", "shortTitle": "Sexagesima", "season": "Pre-Lenten Season", "date": "", "citation": "2 Cor. 11. 19. \u00b7 St. Luke 8. 4." }, { "id": "quinquagesima", "title": "The Sunday called Quinquagesima, or the next Sunday before Lent", "shortTitle": "Quinquagesima", "season": "Pre-Lenten Season", "date": "", "citation": "1 Cor. 13. 1. \u00b7 St. Luke 18. 31." }, { "id": "ash-wednesday", "title": "The First Day of Lent, commonly called Ash-Wednesday", "shortTitle": "Ash Wednesday", "season": "Lenten Season", "date": "", "citation": "Joel 2. 12 \u00b7 St. Matthew 6. 16." }, { "id": "first-sunday-in-lent", "title": "The First Sunday in Lent", "shortTitle": "1st Sunday in Lent", "season": "Lenten Season", "date": "", "citation": "2 Cor. 6. 1. \u00b7 St. Matthew 4. 1." }, { "id": "second-sunday-in-lent", "title": "The Second Sunday in Lent", "shortTitle": "2nd Sunday in Lent", "season": "Lenten Season", "date": "", "citation": "1 Thess. 4. 1. \u00b7 St. Matthew 15. 21." }, { "id": "third-sunday-in-lent", "title": "The Third Sunday in Lent", "shortTitle": "3rd Sunday in Lent", "season": "Lenten Season", "date": "", "citation": "Ephesians. 5. 1. \u00b7 St. Luke 11. 14." }, { "id": "fourth-sunday-in-lent", "title": "The Fourth Sunday in Lent", "shortTitle": "4th Sunday in Lent", "season": "Lenten Season", "date": "", "citation": "Galatians. 4. 21. \u00b7 St. John 6. 1." }, { "id": "fifth-sunday-in-lent", "title": "The Fifth Sunday in Lent", "shortTitle": "5th Sunday in Lent", "season": "Lenten Season", "date": "", "citation": "Hebrews. 9. 11. \u00b7 St. John 8. 46." }, { "id": "sunday-next-before-easter", "title": "The Sunday next before Easter", "shortTitle": "Sunday before Easter", "season": "Passiontide & Holy Week", "date": "", "citation": "Philippians. 2. 5. \u00b7 St. Matthew 27. 1." }, { "id": "monday-before-easter", "title": "Monday before Easter", "shortTitle": "Monday before Easter", "season": "Passiontide & Holy Week", "date": "", "citation": "Isaiah A H 63. 1. \u00b7 St. Mark 14. 1." }, { "id": "tuesday-before-easter", "title": "Tuesday before Easter", "shortTitle": "Tuesday before Easter", "season": "Passiontide & Holy Week", "date": "", "citation": "Isaiah A H 50. 5. \u00b7 St. Mark 15. 1." }, { "id": "wednesday-before-easter", "title": "Wednesday before Easter", "shortTitle": "Wednesday before Easter", "season": "Passiontide & Holy Week", "date": "", "citation": "Hebr. 9. 16. \u00b7 St. Luke 22. 1." }, { "id": "thursday-before-easter", "title": "Thursday before Easter", "shortTitle": "Thursday before Easter", "season": "Passiontide & Holy Week", "date": "", "citation": "1 Cor. 11. 17. \u00b7 St. Luke 23. 1." }, { "id": "good-friday", "title": "Good Friday", "shortTitle": "Good Friday", "season": "Passiontide & Holy Week", "date": "", "citation": "Heb. 10. 1. \u00b7 St. John 19. 1." }, { "id": "easter-even", "title": "Easter Even", "shortTitle": "Easter Even", "season": "Passiontide & Holy Week", "date": "", "citation": "1 St. Peter. 3. 17. \u00b7 St. Matthew 27. 57." }, { "id": "easter-day", "title": "Easter-Day", "shortTitle": "Easter Day", "season": "Eastertide", "date": "", "citation": "Colossians. 3. 1. \u00b7 St. John 20. 1." }, { "id": "monday-in-easter-week", "title": "Monday in Easter-Week", "shortTitle": "Easter Monday", "season": "Eastertide", "date": "", "citation": "Acts 10. 34. \u00b7 St. Luke 24. 13." }, { "id": "tuesday-in-easter-week", "title": "Tuesday in Easter-Week", "shortTitle": "Easter Tuesday", "season": "Eastertide", "date": "", "citation": "Acts 13. 26. \u00b7 St. Luke 24. 36." }, { "id": "first-sunday-after-easter", "title": "The First Sunday after Easter", "shortTitle": "1st Sun after Easter", "season": "Eastertide", "date": "", "citation": "1 St. John 5. 4. \u00b7 St. John 20. 19." }, { "id": "second-sunday-after-easter", "title": "The Second Sunday after Easter", "shortTitle": "2nd Sun after Easter", "season": "Eastertide", "date": "", "citation": "1 S. PETER 2. 19. \u00b7 St. John 10. 11." }, { "id": "third-sunday-after-easter", "title": "The Third Sunday after Easter", "shortTitle": "3rd Sun after Easter", "season": "Eastertide", "date": "", "citation": "1 S. PETER 2. 11. \u00b7 St. John 16. 16." }, { "id": "fourth-sunday-after-easter", "title": "The Fourth Sunday after Easter", "shortTitle": "4th Sun after Easter", "season": "Eastertide", "date": "", "citation": "S. St. James 1. 17. \u00b7 St. John 16. 5." }, { "id": "fifth-sunday-after-easter", "title": "The Fifth Sunday after Easter", "shortTitle": "5th Sun after Easter", "season": "Eastertide", "date": "", "citation": "S. St. James 1. 22. \u00b7 St. John 16. 23." }, { "id": "ascension-day", "title": "The Ascension-day", "shortTitle": "Ascension Day", "season": "Ascensiontide", "date": "", "citation": "Acts 1. 1. \u00b7 St. Mark 16. 14." }, { "id": "sunday-after-ascension-day", "title": "Sunday after Ascension-Day", "shortTitle": "Sunday after Ascension", "season": "Ascensiontide", "date": "", "citation": "1 St. Peter. 4. 7. \u00b7 St. John 15. 26. and part of Chap. 16." }, { "id": "whit-sunday", "title": "Whit-Sunday", "shortTitle": "Whit-Sunday", "season": "Whitsuntide", "date": "", "citation": "Acts 2. 1. \u00b7 St. John 14. 15." }, { "id": "monday-in-whitsun-week", "title": "Monday in Whitsun-Week", "shortTitle": "Whitsun Monday", "season": "Whitsuntide", "date": "", "citation": "Acts 10. 34. \u00b7 St. John 3. 16." }, { "id": "tuesday-in-whitsun-week", "title": "Tuesday in Whitsun-Week", "shortTitle": "Whitsun Tuesday", "season": "Whitsuntide", "date": "", "citation": "Acts 8. 14. \u00b7 St. John 10. 1." }, { "id": "trinity-sunday", "title": "Trinity-Sunday", "shortTitle": "Trinity Sunday", "season": "Trinity Season", "date": "", "citation": "Revelation 4. 1. \u00b7 St. John 3. 1." }, { "id": "first-sunday-after-trinity", "title": "The First Sunday after Trinity", "shortTitle": "1st Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "1 St. John 4. 7. \u00b7 St. Luke 16. 19." }, { "id": "second-sunday-after-trinity", "title": "The Second Sunday after Trinity", "shortTitle": "2nd Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "1 St. John 3. 13. \u00b7 St. Luke 14. 16." }, { "id": "third-sunday-after-trinity", "title": "The Third Sunday after Trinity", "shortTitle": "3rd Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "1 St. Peter. 5. 5. \u00b7 St. Luke 15. 1." }, { "id": "fourth-sunday-after-trinity", "title": "The Fourth Sunday after Trinity", "shortTitle": "4th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Romans 8. 18. \u00b7 St. Luke 6. 36." }, { "id": "fifth-sunday-after-trinity", "title": "The Fifth Sunday after Trinity", "shortTitle": "5th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "1 St. Peter. 3. 8. \u00b7 St. Luke 5. 1." }, { "id": "sixth-sunday-after-trinity", "title": "The Sixth Sunday after Trinity", "shortTitle": "6th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Romans 6. 3. \u00b7 St. Matthew 5. 20." }, { "id": "seventh-sunday-after-trinity", "title": "The Seventh Sunday after Trinity", "shortTitle": "7th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Romans 6. 19. \u00b7 St. Mark 8. 1." }, { "id": "eighth-sunday-after-trinity", "title": "The Eighth Sunday after Trinity", "shortTitle": "8th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Romans 8. 12. \u00b7 St. Matthew 7. 15." }, { "id": "ninth-sunday-after-trinity", "title": "The Ninth Sunday after Trinity", "shortTitle": "9th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "1 Cor. 10. 1. \u00b7 St. Luke 16. 1." }, { "id": "tenth-sunday-after-trinity", "title": "The Tenth Sunday after Trinity", "shortTitle": "10th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "1 Cor. 12. 1. \u00b7 St. Luke 19. 41." }, { "id": "eleventh-sunday-after-trinity", "title": "The Eleventh Sunday after Trinity", "shortTitle": "11th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "1 Cor. 15. 1. \u00b7 St. Luke 18. 9." }, { "id": "twelfth-sunday-after-trinity", "title": "The Twelfth Sunday after Trinity", "shortTitle": "12th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "2 Cor. 3. 4. \u00b7 St. Mark 7. 31." }, { "id": "thirteenth-sunday-after-trinity", "title": "The Thirteenth Sunday after Trinity", "shortTitle": "13th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Galatians. 3. 16. \u00b7 St. Luke 10. 23." }, { "id": "fourteenth-sunday-after-trinity", "title": "The Fourteenth Sunday after Trinity", "shortTitle": "14th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Galatians. 5. 16. \u00b7 St. Luke 17. 11." }, { "id": "fifteenth-sunday-after-trinity", "title": "The Fifteenth Sunday after Trinity", "shortTitle": "15th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Galatians. 6. 11. \u00b7 St. Matthew 6. 24." }, { "id": "sixteenth-sunday-after-trinity", "title": "The Sixteenth Sunday after Trinity", "shortTitle": "16th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Ephesians. 3. 13. \u00b7 St. Luke 7. 11." }, { "id": "seventeenth-sunday-after-trinity", "title": "The Seventeenth Sunday after Trinity", "shortTitle": "17th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Ephesians. 4. 1. \u00b7 St. Luke 14. 1." }, { "id": "eighteenth-sunday-after-trinity", "title": "The Eighteenth Sunday after Trinity", "shortTitle": "18th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "1 Cor. 1. 4. \u00b7 St. Matthew 22. 34." }, { "id": "nineteenth-sunday-after-trinity", "title": "The Nineteenth Sunday after Trinity", "shortTitle": "19th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Ephesians. 4. 17. \u00b7 St. Matthew 9. 1." }, { "id": "twentieth-sunday-after-trinity", "title": "The Twentieth Sunday after Trinity", "shortTitle": "20th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Ephesians. 5. 15. \u00b7 St. Matthew 22. 1." }, { "id": "twenty-first-sunday-after-trinity", "title": "The Twenty-first Sunday after Trinity", "shortTitle": "21st Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Ephesians. 6. 10. \u00b7 St. John 4. 46." }, { "id": "twenty-second-sunday-after-trinity", "title": "The Twenty-second Sunday after Trinity", "shortTitle": "22nd Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Philippians. 1. 3. \u00b7 St. Matthew 18. 21." }, { "id": "twenty-third-sunday-after-trinity", "title": "The Twenty-third Sunday after Trinity", "shortTitle": "23rd Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Philippians. 3. 17. \u00b7 St. Matthew 22. 15." }, { "id": "twenty-fourth-sunday-after-trinity", "title": "The Twenty-fourth Sunday after Trinity", "shortTitle": "24th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Colossians. 1. 3. \u00b7 St. Matthew 9. 18." }, { "id": "twenty-fifth-sunday-after-trinity", "title": "The Twenty-fifth Sunday after Trinity", "shortTitle": "25th Sun after Trinity", "season": "Trinity Season", "date": "", "citation": "Jeremiah. 23. 5. \u00b7 St. John 6. 5." }, { "id": "saint-andrews-day", "title": "Saint Andrew's Day", "shortTitle": "St. Andrew", "season": "Holy Days", "date": "Nov 30", "citation": "Romans 10. 9. \u00b7 For Esaias saith, Lord," }, { "id": "saint-thomas-the-apostle", "title": "Saint Thomas the Apostle", "shortTitle": "St. Thomas", "season": "Holy Days", "date": "Dec 21", "citation": "Ephesians. 2. 19. \u00b7 St. John 20. 24." }, { "id": "conversion-of-saint-paul", "title": "The Conversion of Saint Paul", "shortTitle": "Conversion of St. Paul", "season": "Holy Days", "date": "Jan 25", "citation": "Acts 9. 1, \u00b7 St. Matthew 19. 27." }, { "id": "purification-of-saint-mary", "title": "The Presentation of Christ in the Temple, commonly called The Purification of Saint Mary the Virgin", "shortTitle": "Purification of St. Mary", "season": "Holy Days", "date": "Feb 2", "citation": "Malachi. 3. 1. \u00b7 St. Luke 2. 22." }, { "id": "saint-matthiass-day", "title": "Saint Matthias's Day", "shortTitle": "St. Matthias", "season": "Holy Days", "date": "Feb 24", "citation": "Acts 1. 15. \u00b7 St. Matthew 11. 25." }, { "id": "annunciation-of-the-virgin-mary", "title": "The Annunciation of the blessed Virgin Mary", "shortTitle": "Annunciation of BVM", "season": "Holy Days", "date": "Mar 25", "citation": "Isaiah A H 7. 10. \u00b7 St. Luke 1. 26." }, { "id": "saint-marks-day", "title": "Saint Mark's Day", "shortTitle": "St. Mark", "season": "Holy Days", "date": "Apr 25", "citation": "Ephesians. 4. 7. \u00b7 St. John 15. 1." }, { "id": "saint-philip-and-saint-jamess-day", "title": "Saint Philip and Saint James's Day", "shortTitle": "SS. Philip & James", "season": "Holy Days", "date": "May 1", "citation": "S. St. James 1. 1. \u00b7 St. John 14. 1." }, { "id": "saint-barnabas-the-apostle", "title": "Saint Barnabas the Apostle", "shortTitle": "St. Barnabas", "season": "Holy Days", "date": "Jun 11", "citation": "Acts 11. 22. \u00b7 St. John 15. 12." }, { "id": "saint-john-baptists-day", "title": "Saint John Baptist's Day", "shortTitle": "St. John Baptist", "season": "Holy Days", "date": "Jun 24", "citation": "Isaiah A H 40. 1. \u00b7 St. Luke 1. 57." }, { "id": "saint-peters-day", "title": "Saint Peter's Day", "shortTitle": "St. Peter", "season": "Holy Days", "date": "Jun 29", "citation": "Acts 12. 1. \u00b7 St. Matthew 16. 13." }, { "id": "saint-james-the-apostle", "title": "Saint James the Apostle", "shortTitle": "St. James", "season": "Holy Days", "date": "Jul 25", "citation": "Acts 11. 27, and part of Chap. 12. \u00b7 St. Matthew 20. 20." }, { "id": "saint-bartholomew-the-apostle", "title": "Saint Bartholomew the Apostle", "shortTitle": "St. Bartholomew", "season": "Holy Days", "date": "Aug 24", "citation": "Acts 5. 12. \u00b7 St. Luke 22. 24." }, { "id": "saint-matthew-the-apostle", "title": "Saint Matthew the Apostle", "shortTitle": "St. Matthew", "season": "Holy Days", "date": "Sep 21", "citation": "2 Cor. 4. 1. \u00b7 St. Matthew 9. 9." }, { "id": "saint-michael-and-all-angels", "title": "Saint Michael and all Angels", "shortTitle": "St. Michael & All Angels", "season": "Holy Days", "date": "Sep 29", "citation": "Revelation 12. 7. \u00b7 St. Matthew 18. 1." }, { "id": "saint-luke-the-evangelist", "title": "Saint Luke the Evangelist", "shortTitle": "St. Luke", "season": "Holy Days", "date": "Oct 18", "citation": "2 Tim. 4. 5. \u00b7 St. Luke 10. 1." }, { "id": "saint-simon-and-saint-jude-apostles", "title": "Saint Simon and Saint Jude, Apostles", "shortTitle": "SS. Simon & Jude", "season": "Holy Days", "date": "Oct 28", "citation": "St. Jude 1. \u00b7 St. John 15. 17." }, { "id": "all-saints-day", "title": "All Saints' Day", "shortTitle": "All Saints' Day", "season": "Holy Days", "date": "Nov 1", "citation": "Revelation 7. 2. \u00b7 St. Matthew 5. 1." }
+export interface ProperDayItem {
+  id: string;
+  title: string;
+  shortTitle: string;
+  season: string;
+  date?: string;
+  citation?: string;
+}
+
+export const PROPERS_1662_INDEX: ProperDayItem[] = [
+  {
+    "id": "first-sunday-in-advent",
+    "title": "The First Sunday in Advent",
+    "shortTitle": "1st Sunday in Advent",
+    "season": "Advent Season",
+    "date": "",
+    "citation": "Romans 13. 8. \u00b7 St. Matthew 21. 1."
+  },
+  {
+    "id": "second-sunday-in-advent",
+    "title": "The Second Sunday in Advent",
+    "shortTitle": "2nd Sunday in Advent",
+    "season": "Advent Season",
+    "date": "",
+    "citation": "Romans 15. 4. \u00b7 St. Luke 21. 25."
+  },
+  {
+    "id": "third-sunday-in-advent",
+    "title": "The Third Sunday in Advent",
+    "shortTitle": "3rd Sunday in Advent",
+    "season": "Advent Season",
+    "date": "",
+    "citation": "1 Cor. 4. 1. \u00b7 St. Matthew 11. 2."
+  },
+  {
+    "id": "fourth-sunday-in-advent",
+    "title": "The Fourth Sunday in Advent",
+    "shortTitle": "4th Sunday in Advent",
+    "season": "Advent Season",
+    "date": "",
+    "citation": "Philippians 4. 4. \u00b7 St. John 1. 19."
+  },
+  {
+    "id": "christmas-day",
+    "title": "The Nativity of our Lord, or the Birth-Day of Christ, commonly called Christmas-Day",
+    "shortTitle": "Christmas Day",
+    "season": "Christmastide",
+    "date": "Dec 25",
+    "citation": "Hebrews 1. 1. \u00b7 St. John 1. 1."
+  },
+  {
+    "id": "saint-stephen",
+    "title": "Saint Stephen's Day",
+    "shortTitle": "St. Stephen",
+    "season": "Christmastide",
+    "date": "Dec 26",
+    "citation": "Acts 7. 55. \u00b7 St. Matthew 23. 34."
+  },
+  {
+    "id": "saint-john-evangelist",
+    "title": "Saint John the Evangelist's Day",
+    "shortTitle": "St. John Evangelist",
+    "season": "Christmastide",
+    "date": "Dec 27",
+    "citation": "1 St. John 1. 1. \u00b7 St. John 21. 19."
+  },
+  {
+    "id": "the-innocents-day",
+    "title": "The Innocents' Day",
+    "shortTitle": "The Innocents' Day",
+    "season": "Christmastide",
+    "date": "Dec 28",
+    "citation": "Revelation 14. 1. \u00b7 St. Matthew 2. 13."
+  },
+  {
+    "id": "sunday-after-christmas",
+    "title": "The Sunday after Christmas-Day",
+    "shortTitle": "Sunday after Christmas",
+    "season": "Christmastide",
+    "date": "",
+    "citation": "Galatians 4. 1. \u00b7 St. Matthew 1. 18."
+  },
+  {
+    "id": "circumcision-of-christ",
+    "title": "The Circumcision of Christ",
+    "shortTitle": "Circumcision of Christ",
+    "season": "Christmastide",
+    "date": "Jan 1",
+    "citation": "Romans 4. 8. \u00b7 St. Luke 2. 15."
+  },
+  {
+    "id": "the-epiphany",
+    "title": "The Epiphany, or the Manifestation of Christ to the Gentiles",
+    "shortTitle": "The Epiphany",
+    "season": "Epiphany Season",
+    "date": "Jan 6",
+    "citation": "Ephesians 3. 1. \u00b7 St. Matthew 2. 1."
+  },
+  {
+    "id": "first-sunday-after-epiphany",
+    "title": "The First Sunday after the Epiphany",
+    "shortTitle": "1st Sun after Epiphany",
+    "season": "Epiphany Season",
+    "date": "",
+    "citation": "Romans 12. 1. \u00b7 St. Luke 2. 41."
+  },
+  {
+    "id": "second-sunday-after-epiphany",
+    "title": "The Second Sunday after the Epiphany",
+    "shortTitle": "2nd Sun after Epiphany",
+    "season": "Epiphany Season",
+    "date": "",
+    "citation": "Romans 12. 6. \u00b7 St. John 2. 1."
+  },
+  {
+    "id": "third-sunday-after-epiphany",
+    "title": "The Third Sunday after the Epiphany",
+    "shortTitle": "3rd Sun after Epiphany",
+    "season": "Epiphany Season",
+    "date": "",
+    "citation": "Romans 12. 16. \u00b7 St. Matthew 8. 1."
+  },
+  {
+    "id": "fourth-sunday-after-epiphany",
+    "title": "The Fourth Sunday after the Epiphany",
+    "shortTitle": "4th Sun after Epiphany",
+    "season": "Epiphany Season",
+    "date": "",
+    "citation": "Romans 13. 1. \u00b7 St. Matthew 8. 23."
+  },
+  {
+    "id": "fifth-sunday-after-epiphany",
+    "title": "The Fifth Sunday after the Epiphany",
+    "shortTitle": "5th Sun after Epiphany",
+    "season": "Epiphany Season",
+    "date": "",
+    "citation": "Colossians 3. 12. \u00b7 St. Matthew 13. 24."
+  },
+  {
+    "id": "sixth-sunday-after-epiphany",
+    "title": "The Sixth Sunday after the Epiphany",
+    "shortTitle": "6th Sun after Epiphany",
+    "season": "Epiphany Season",
+    "date": "",
+    "citation": "1 St. John 3. 1. \u00b7 St. Matthew 24. 23."
+  },
+  {
+    "id": "septuagesima",
+    "title": "The Sunday called Septuagesima, or the third Sunday before Lent",
+    "shortTitle": "Septuagesima",
+    "season": "Pre-Lenten Season",
+    "date": "",
+    "citation": "1 Cor. 9. 24. \u00b7 St. Matthew 20. 1."
+  },
+  {
+    "id": "sexagesima",
+    "title": "The Sunday called Sexagesima, or the second Sunday before Lent",
+    "shortTitle": "Sexagesima",
+    "season": "Pre-Lenten Season",
+    "date": "",
+    "citation": "2 Cor. 11. 19. \u00b7 St. Luke 8. 4."
+  },
+  {
+    "id": "quinquagesima",
+    "title": "The Sunday called Quinquagesima, or the next Sunday before Lent",
+    "shortTitle": "Quinquagesima",
+    "season": "Pre-Lenten Season",
+    "date": "",
+    "citation": "1 Cor. 13. 1. \u00b7 St. Luke 18. 31."
+  },
+  {
+    "id": "ash-wednesday",
+    "title": "The First Day of Lent, commonly called Ash-Wednesday",
+    "shortTitle": "Ash Wednesday",
+    "season": "Lenten Season",
+    "date": "",
+    "citation": "Joel 2. 12. \u00b7 St. Matthew 6. 16."
+  },
+  {
+    "id": "first-sunday-in-lent",
+    "title": "The First Sunday in Lent",
+    "shortTitle": "1st Sunday in Lent",
+    "season": "LENTEN SEASON",
+    "date": "",
+    "citation": "2 Cor. 6. 1. \u00b7 St. Matthew 4. 1."
+  },
+  {
+    "id": "second-sunday-in-lent",
+    "title": "The Second Sunday in Lent",
+    "shortTitle": "2nd Sunday in Lent",
+    "season": "Lenten Season",
+    "date": "",
+    "citation": "1 Thess. 4. 1. \u00b7 St. Matthew 15. 21."
+  },
+  {
+    "id": "third-sunday-in-lent",
+    "title": "The Third Sunday in Lent",
+    "shortTitle": "3rd Sunday in Lent",
+    "season": "Lenten Season",
+    "date": "",
+    "citation": "Ephesians 5. 1. \u00b7 St. Luke 11. 14."
+  },
+  {
+    "id": "fourth-sunday-in-lent",
+    "title": "The Fourth Sunday in Lent",
+    "shortTitle": "4th Sunday in Lent",
+    "season": "Lenten Season",
+    "date": "",
+    "citation": "Galatians 4. 21. \u00b7 St. John 6. 1."
+  },
+  {
+    "id": "fifth-sunday-in-lent",
+    "title": "The Fifth Sunday in Lent",
+    "shortTitle": "5th Sunday in Lent",
+    "season": "Lenten Season",
+    "date": "",
+    "citation": "Hebrews 9. 11. \u00b7 St. John 8. 46."
+  },
+  {
+    "id": "sunday-next-before-easter",
+    "title": "The Sunday next before Easter",
+    "shortTitle": "Sunday before Easter",
+    "season": "Passiontide & Holy Week",
+    "date": "",
+    "citation": "Philippians 2. 5. \u00b7 St. Matthew 27. 1."
+  },
+  {
+    "id": "monday-before-easter",
+    "title": "Monday before Easter",
+    "shortTitle": "Monday before Easter",
+    "season": "Passiontide & Holy Week",
+    "date": "",
+    "citation": "Isaiah 63. 1. \u00b7 St. Mark 14. 1."
+  },
+  {
+    "id": "tuesday-before-easter",
+    "title": "Tuesday before Easter",
+    "shortTitle": "Tuesday before Easter",
+    "season": "Passiontide & Holy Week",
+    "date": "",
+    "citation": "Isaiah 50. 5. \u00b7 St. Mark 15. 1."
+  },
+  {
+    "id": "wednesday-before-easter",
+    "title": "Wednesday before Easter",
+    "shortTitle": "Wednesday before Easter",
+    "season": "Passiontide & Holy Week",
+    "date": "",
+    "citation": "Hebrews 9. 16. \u00b7 St. Luke 22. 1."
+  },
+  {
+    "id": "thursday-before-easter",
+    "title": "Thursday before Easter",
+    "shortTitle": "Thursday before Easter",
+    "season": "Passiontide & Holy Week",
+    "date": "",
+    "citation": "1 Cor. 11. 17. \u00b7 St. Luke 23. 1."
+  },
+  {
+    "id": "good-friday",
+    "title": "Good Friday",
+    "shortTitle": "Good Friday",
+    "season": "Passiontide & Holy Week",
+    "date": "",
+    "citation": "Hebrews 10. 1. \u00b7 St. John 19. 1."
+  },
+  {
+    "id": "easter-even",
+    "title": "Easter Even",
+    "shortTitle": "Easter Even",
+    "season": "Passiontide & Holy Week",
+    "date": "",
+    "citation": "1 St. Peter 3. 17. \u00b7 St. Matthew 27. 57."
+  },
+  {
+    "id": "easter-day",
+    "title": "Easter-Day",
+    "shortTitle": "Easter Day",
+    "season": "Eastertide",
+    "date": "",
+    "citation": "Colossians 3. 1. \u00b7 St. John 20. 1."
+  },
+  {
+    "id": "monday-in-easter-week",
+    "title": "Monday in Easter-Week",
+    "shortTitle": "Easter Monday",
+    "season": "Eastertide",
+    "date": "",
+    "citation": "Acts 10. 34. \u00b7 St. Luke 24. 13."
+  },
+  {
+    "id": "tuesday-in-easter-week",
+    "title": "Tuesday in Easter-Week",
+    "shortTitle": "Easter Tuesday",
+    "season": "Eastertide",
+    "date": "",
+    "citation": "Acts 13. 26. \u00b7 St. Luke 24. 36."
+  },
+  {
+    "id": "first-sunday-after-easter",
+    "title": "The First Sunday after Easter",
+    "shortTitle": "1st Sun after Easter",
+    "season": "Eastertide",
+    "date": "",
+    "citation": "1 St. John 5. 4. \u00b7 St. John 20. 19."
+  },
+  {
+    "id": "second-sunday-after-easter",
+    "title": "The Second Sunday after Easter",
+    "shortTitle": "2nd Sun after Easter",
+    "season": "Eastertide",
+    "date": "",
+    "citation": "1 St. Peter E R 2. 19. \u00b7 St. John 10. 11."
+  },
+  {
+    "id": "third-sunday-after-easter",
+    "title": "The Third Sunday after Easter",
+    "shortTitle": "3rd Sun after Easter",
+    "season": "Eastertide",
+    "date": "",
+    "citation": "1 St. Peter E R 2. 11. \u00b7 St. John 16. 16."
+  },
+  {
+    "id": "fourth-sunday-after-easter",
+    "title": "The Fourth Sunday after Easter",
+    "shortTitle": "4th Sun after Easter",
+    "season": "Eastertide",
+    "date": "",
+    "citation": "St. James 1. 17. \u00b7 St. John 16. 5."
+  },
+  {
+    "id": "fifth-sunday-after-easter",
+    "title": "The Fifth Sunday after Easter",
+    "shortTitle": "5th Sun after Easter",
+    "season": "Eastertide",
+    "date": "",
+    "citation": "St. James 1. 22. \u00b7 St. John 16. 23."
+  },
+  {
+    "id": "ascension-day",
+    "title": "The Ascension-day",
+    "shortTitle": "Ascension Day",
+    "season": "Ascensiontide",
+    "date": "",
+    "citation": "Acts 1. 1. \u00b7 St. Mark 16. 14."
+  },
+  {
+    "id": "sunday-after-ascension-day",
+    "title": "Sunday after Ascension-Day",
+    "shortTitle": "Sunday after Ascension",
+    "season": "Ascensiontide",
+    "date": "",
+    "citation": "1 St. Peter 4. 7. \u00b7 St. John 15. 26. and part of Chap. 16."
+  },
+  {
+    "id": "whit-sunday",
+    "title": "Whit-Sunday",
+    "shortTitle": "Whit-Sunday",
+    "season": "Whitsuntide",
+    "date": "",
+    "citation": "Acts 2. 1. \u00b7 St. John 14. 15."
+  },
+  {
+    "id": "monday-in-whitsun-week",
+    "title": "Monday in Whitsun-Week",
+    "shortTitle": "Whitsun Monday",
+    "season": "Whitsuntide",
+    "date": "",
+    "citation": "Acts 10. 34. \u00b7 St. John 3. 16."
+  },
+  {
+    "id": "tuesday-in-whitsun-week",
+    "title": "Tuesday in Whitsun-Week",
+    "shortTitle": "Whitsun Tuesday",
+    "season": "Whitsuntide",
+    "date": "",
+    "citation": "Acts 8. 14. \u00b7 St. John 10. 1."
+  },
+  {
+    "id": "trinity-sunday",
+    "title": "Trinity-Sunday",
+    "shortTitle": "Trinity Sunday",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Revelation 4. 1. \u00b7 St. John 3. 1."
+  },
+  {
+    "id": "first-sunday-after-trinity",
+    "title": "The First Sunday after Trinity",
+    "shortTitle": "1st Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "1 St. John 4. 7. \u00b7 St. Luke 16. 19."
+  },
+  {
+    "id": "second-sunday-after-trinity",
+    "title": "The Second Sunday after Trinity",
+    "shortTitle": "2nd Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "1 St. John 3. 13. \u00b7 St. Luke 14. 16."
+  },
+  {
+    "id": "third-sunday-after-trinity",
+    "title": "The Third Sunday after Trinity",
+    "shortTitle": "3rd Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "1 St. Peter 5. 5. \u00b7 St. Luke 15. 1."
+  },
+  {
+    "id": "fourth-sunday-after-trinity",
+    "title": "The Fourth Sunday after Trinity",
+    "shortTitle": "4th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Romans 8. 18. \u00b7 St. Luke 6. 36."
+  },
+  {
+    "id": "fifth-sunday-after-trinity",
+    "title": "The Fifth Sunday after Trinity",
+    "shortTitle": "5th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "1 St. Peter 3. 8. \u00b7 St. Luke 5. 1."
+  },
+  {
+    "id": "sixth-sunday-after-trinity",
+    "title": "The Sixth Sunday after Trinity",
+    "shortTitle": "6th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Romans 6. 3. \u00b7 St. Matthew 5. 20."
+  },
+  {
+    "id": "seventh-sunday-after-trinity",
+    "title": "The Seventh Sunday after Trinity",
+    "shortTitle": "7th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Romans 6. 19. \u00b7 St. Mark 8. 1."
+  },
+  {
+    "id": "eighth-sunday-after-trinity",
+    "title": "The Eighth Sunday after Trinity",
+    "shortTitle": "8th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Romans 8. 12. \u00b7 St. Matthew 7. 15."
+  },
+  {
+    "id": "ninth-sunday-after-trinity",
+    "title": "The Ninth Sunday after Trinity",
+    "shortTitle": "9th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "1 Cor. 10. 1. \u00b7 St. Luke 16. 1."
+  },
+  {
+    "id": "tenth-sunday-after-trinity",
+    "title": "The Tenth Sunday after Trinity",
+    "shortTitle": "10th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "1 Cor. 12. 1. \u00b7 St. Luke 19. 41."
+  },
+  {
+    "id": "eleventh-sunday-after-trinity",
+    "title": "The Eleventh Sunday after Trinity",
+    "shortTitle": "11th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "1 Cor. 15. 1. \u00b7 St. Luke 18. 9."
+  },
+  {
+    "id": "twelfth-sunday-after-trinity",
+    "title": "The Twelfth Sunday after Trinity",
+    "shortTitle": "12th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "2 Cor. 3. 4. \u00b7 St. Mark 7. 31."
+  },
+  {
+    "id": "thirteenth-sunday-after-trinity",
+    "title": "The Thirteenth Sunday after Trinity",
+    "shortTitle": "13th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Galatians 3. 16. \u00b7 St. Luke 10. 23."
+  },
+  {
+    "id": "fourteenth-sunday-after-trinity",
+    "title": "The Fourteenth Sunday after Trinity",
+    "shortTitle": "14th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Galatians 5. 16. \u00b7 St. Luke 17. 11."
+  },
+  {
+    "id": "fifteenth-sunday-after-trinity",
+    "title": "The Fifteenth Sunday after Trinity",
+    "shortTitle": "15th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Galatians 6. 11. \u00b7 St. Matthew 6. 24."
+  },
+  {
+    "id": "sixteenth-sunday-after-trinity",
+    "title": "The Sixteenth Sunday after Trinity",
+    "shortTitle": "16th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Ephesians 3. 13. \u00b7 St. Luke 7. 11."
+  },
+  {
+    "id": "seventeenth-sunday-after-trinity",
+    "title": "The Seventeenth Sunday after Trinity",
+    "shortTitle": "17th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Ephesians 4. 1. \u00b7 St. Luke 14. 1."
+  },
+  {
+    "id": "eighteenth-sunday-after-trinity",
+    "title": "The Eighteenth Sunday after Trinity",
+    "shortTitle": "18th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "1 Cor. 1. 4. \u00b7 St. Matthew 22. 34."
+  },
+  {
+    "id": "nineteenth-sunday-after-trinity",
+    "title": "The Nineteenth Sunday after Trinity",
+    "shortTitle": "19th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Ephesians 4. 17. \u00b7 St. Matthew 9. 1."
+  },
+  {
+    "id": "twentieth-sunday-after-trinity",
+    "title": "The Twentieth Sunday after Trinity",
+    "shortTitle": "20th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Ephesians 5. 15. \u00b7 St. Matthew 22. 1."
+  },
+  {
+    "id": "twenty-first-sunday-after-trinity",
+    "title": "The Twenty-first Sunday after Trinity",
+    "shortTitle": "21st Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Ephesians 6. 10. \u00b7 St. John 4. 46."
+  },
+  {
+    "id": "twenty-second-sunday-after-trinity",
+    "title": "The Twenty-second Sunday after Trinity",
+    "shortTitle": "22nd Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Philippians 1. 3. \u00b7 St. Matthew 18. 21."
+  },
+  {
+    "id": "twenty-third-sunday-after-trinity",
+    "title": "The Twenty-third Sunday after Trinity",
+    "shortTitle": "23rd Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Philippians 3. 17. \u00b7 St. Matthew 22. 15."
+  },
+  {
+    "id": "twenty-fourth-sunday-after-trinity",
+    "title": "The Twenty-fourth Sunday after Trinity",
+    "shortTitle": "24th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Colossians 1. 3. \u00b7 St. Matthew 9. 18."
+  },
+  {
+    "id": "twenty-fifth-sunday-after-trinity",
+    "title": "The Twenty-fifth Sunday after Trinity",
+    "shortTitle": "25th Sun after Trinity",
+    "season": "Trinity Season",
+    "date": "",
+    "citation": "Jeremiah 23. 5. \u00b7 St. John 6. 5."
+  },
+  {
+    "id": "saint-andrews-day",
+    "title": "Saint Andrew's Day",
+    "shortTitle": "St. Andrew",
+    "season": "Holy Days",
+    "date": "Nov 30",
+    "citation": "Romans 10. 9. \u00b7 St. Matthew 4. 18."
+  },
+  {
+    "id": "saint-thomas-the-apostle",
+    "title": "Saint Thomas the Apostle",
+    "shortTitle": "St. Thomas",
+    "season": "Holy Days",
+    "date": "Dec 21",
+    "citation": "Ephesians 2. 19. \u00b7 St. John 20. 24."
+  },
+  {
+    "id": "conversion-of-saint-paul",
+    "title": "The Conversion of Saint Paul",
+    "shortTitle": "Conversion of St. Paul",
+    "season": "Holy Days",
+    "date": "Jan 25",
+    "citation": "Acts 9. 1,. \u00b7 St. Matthew 19. 27."
+  },
+  {
+    "id": "purification-of-saint-mary",
+    "title": "The Presentation of Christ in the Temple, commonly called The Purification of Saint Mary the Virgin",
+    "shortTitle": "Purification of St. Mary",
+    "season": "Holy Days",
+    "date": "Feb 2",
+    "citation": "Malachi 3. 1. \u00b7 St. Luke 2. 22."
+  },
+  {
+    "id": "saint-matthiass-day",
+    "title": "Saint Matthias's Day",
+    "shortTitle": "St. Matthias",
+    "season": "Holy Days",
+    "date": "Feb 24",
+    "citation": "Acts 1. 15. \u00b7 St. Matthew 11. 25."
+  },
+  {
+    "id": "annunciation-of-the-virgin-mary",
+    "title": "The Annunciation of the blessed Virgin Mary",
+    "shortTitle": "Annunciation of BVM",
+    "season": "Holy Days",
+    "date": "Mar 25",
+    "citation": "Isaiah 7. 10. \u00b7 St. Luke 1. 26."
+  },
+  {
+    "id": "saint-marks-day",
+    "title": "Saint Mark's Day",
+    "shortTitle": "St. Mark",
+    "season": "Holy Days",
+    "date": "Apr 25",
+    "citation": "Ephesians 4. 7. \u00b7 St. John 15. 1."
+  },
+  {
+    "id": "saint-philip-and-saint-jamess-day",
+    "title": "Saint Philip and Saint James's Day",
+    "shortTitle": "SS. Philip & James",
+    "season": "Holy Days",
+    "date": "May 1",
+    "citation": "St. James 1. 1. \u00b7 St. John 14. 1."
+  },
+  {
+    "id": "saint-barnabas-the-apostle",
+    "title": "Saint Barnabas the Apostle",
+    "shortTitle": "St. Barnabas",
+    "season": "Holy Days",
+    "date": "Jun 11",
+    "citation": "Acts 11. 22. \u00b7 St. John 15. 12."
+  },
+  {
+    "id": "saint-john-baptists-day",
+    "title": "Saint John Baptist's Day",
+    "shortTitle": "St. John Baptist",
+    "season": "Holy Days",
+    "date": "Jun 24",
+    "citation": "Isaiah 40. 1. \u00b7 St. Luke 1. 57."
+  },
+  {
+    "id": "saint-peters-day",
+    "title": "Saint Peter's Day",
+    "shortTitle": "St. Peter",
+    "season": "Holy Days",
+    "date": "Jun 29",
+    "citation": "Acts 12. 1. \u00b7 St. Matthew 16. 13."
+  },
+  {
+    "id": "saint-james-the-apostle",
+    "title": "Saint James the Apostle",
+    "shortTitle": "St. James",
+    "season": "Holy Days",
+    "date": "Jul 25",
+    "citation": "Acts 11. 27, and part of Chap. 12. \u00b7 St. Matthew 20. 20."
+  },
+  {
+    "id": "saint-bartholomew-the-apostle",
+    "title": "Saint Bartholomew the Apostle",
+    "shortTitle": "St. Bartholomew",
+    "season": "Holy Days",
+    "date": "Aug 24",
+    "citation": "Acts 5. 12. \u00b7 St. Luke 22. 24."
+  },
+  {
+    "id": "saint-matthew-the-apostle",
+    "title": "Saint Matthew the Apostle",
+    "shortTitle": "St. Matthew",
+    "season": "Holy Days",
+    "date": "Sep 21",
+    "citation": "2 Cor. 4. 1. \u00b7 St. Matthew 9. 9."
+  },
+  {
+    "id": "saint-michael-and-all-angels",
+    "title": "Saint Michael and all Angels",
+    "shortTitle": "St. Michael & All Angels",
+    "season": "Holy Days",
+    "date": "Sep 29",
+    "citation": "Revelation 12. 7. \u00b7 St. Matthew 18. 1."
+  },
+  {
+    "id": "saint-luke-the-evangelist",
+    "title": "Saint Luke the Evangelist",
+    "shortTitle": "St. Luke",
+    "season": "Holy Days",
+    "date": "Oct 18",
+    "citation": "2 Tim. 4. 5. \u00b7 St. Luke 10. 1."
+  },
+  {
+    "id": "saint-simon-and-saint-jude-apostles",
+    "title": "Saint Simon and Saint Jude, Apostles",
+    "shortTitle": "SS. Simon & Jude",
+    "season": "Holy Days",
+    "date": "Oct 28",
+    "citation": "St. Jude 1. \u00b7 St. John 15. 17."
+  },
+  {
+    "id": "all-saints-day",
+    "title": "All Saints' Day",
+    "shortTitle": "All Saints' Day",
+    "season": "Holy Days",
+    "date": "Nov 1",
+    "citation": "Revelation 7. 2. \u00b7 St. Matthew 5. 1."
+  }
 ];
