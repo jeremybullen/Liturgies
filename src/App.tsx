@@ -417,6 +417,7 @@ export function App() {
                   <PropersJumpSelector
                     isOpen={isPropersJumpOpen}
                     onClose={() => setIsPropersJumpOpen(false)}
+                    bookId={route.bookId}
                     onSelectTarget={(targetId, label) => {
                       setActiveProperLabel(label);
                       setIsPropersJumpOpen(false);

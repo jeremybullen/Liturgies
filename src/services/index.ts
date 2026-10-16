@@ -22,6 +22,8 @@ import {
 } from './ordinal1662';
 import { psalter1662 } from './psalter1662';
 import { articlesOfReligion1662 } from './articlesOfReligion1662';
+import { collectsEpistlesGospels1662 } from './collectsEpistlesGospels1662';
+import { PROPERS_1662_INDEX } from './propersIndex1662';
 
 import { services1947, get1947ServiceBySlug } from './er1947';
 import { services1928, get1928ServiceBySlug } from './bcp1928';
@@ -41,6 +43,8 @@ export {
 } from './ordinal1662';
 export { psalter1662 } from './psalter1662';
 export { articlesOfReligion1662 } from './articlesOfReligion1662';
+export { collectsEpistlesGospels1662 } from './collectsEpistlesGospels1662';
+export { PROPERS_1662_INDEX } from './propersIndex1662';
 export { services1947, get1947ServiceBySlug } from './er1947';
 export {
   services1928,
@@ -65,6 +69,7 @@ export const services1662: ServiceItem[] = [
   athanasianCreed,
   litany,
   prayersAndThanksgivings,
+  collectsEpistlesGospels1662,
   holyCommunion,
   baptismInfants,
   privateBaptism,
@@ -89,6 +94,15 @@ export const services1662: ServiceItem[] = [
 export function get1662ServiceBySlug(slug?: string): ServiceItem {
   if (!slug) return morningPrayer;
   const clean = slug.toLowerCase().replace(/^\/+|\/+$/g, '');
+  if (
+    clean === 'collects' ||
+    clean === 'propers' ||
+    clean === 'collects-epistles-gospels' ||
+    clean === 'collects-epistles-and-gospels' ||
+    clean === 'collects-epistles-gospels-1662'
+  ) {
+    return collectsEpistlesGospels1662;
+  }
   const found = services1662.find(s => s.slug.toLowerCase() === clean || s.id.toLowerCase() === clean);
   return found || morningPrayer;
 }

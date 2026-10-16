@@ -1,15 +1,21 @@
 import React, { useState, useMemo, useEffect, useRef } from 'react';
 import { PROPERS_1928_INDEX, ProperDayItem } from '../services/bcp1928/propersIndex';
+import { PROPERS_1662_INDEX } from '../services/propersIndex1662';
 
 interface PropersJumpSelectorProps {
   isOpen: boolean;
   onClose: () => void;
   onSelectTarget: (targetId: string, label: string) => void;
+  bookId?: string;
 }
 
-export function PropersJumpSelector({ isOpen, onClose, onSelectTarget }: PropersJumpSelectorProps) {
+export function PropersJumpSelector({ isOpen, onClose, onSelectTarget, bookId = '1662' }: PropersJumpSelectorProps) {
   const [query, setQuery] = useState('');
   const inputRef = useRef<HTMLInputElement>(null);
+
+  const activeIndex = useMemo(() => {
+    return bookId === '1928' ? PROPERS_1928_INDEX : PROPERS_1662_INDEX;
+  }, [bookId]);
 
   useEffect(() => {
     if (isOpen) {
@@ -23,8 +29,8 @@ export function PropersJumpSelector({ isOpen, onClose, onSelectTarget }: Propers
 
   const filtered = useMemo(() => {
     const q = query.trim().toLowerCase();
-    if (!q) return PROPERS_1928_INDEX;
-    return PROPERS_1928_INDEX.filter((p: ProperDayItem) => {
+    if (!q) return activeIndex;
+    return activeIndex.filter((p: ProperDayItem) => {
       if (p.title.toLowerCase().includes(q)) return true;
       if (p.shortTitle.toLowerCase().includes(q)) return true;
       if (p.season.toLowerCase().includes(q)) return true;
@@ -32,7 +38,7 @@ export function PropersJumpSelector({ isOpen, onClose, onSelectTarget }: Propers
       if (p.citation && p.citation.toLowerCase().includes(q)) return true;
       return false;
     });
-  }, [query]);
+  }, [query, activeIndex]);
 
   if (!isOpen) return null;
 
@@ -98,7 +104,7 @@ export function PropersJumpSelector({ isOpen, onClose, onSelectTarget }: Propers
 
       {/* Footer count indicator */}
       <div className="px-3 py-1 bg-[#F4EFE6]/60 dark:bg-[#181715]/60 border-t border-[#ECE5D8] dark:border-[#33302A] text-[10px] text-stone-500 text-right shrink-0">
-        Showing {filtered.length} of {PROPERS_1928_INDEX.length} days
+        Showing {filtered.length} of {activeIndex.length} days
       </div>
     </div>
   );
