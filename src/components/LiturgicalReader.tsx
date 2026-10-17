@@ -110,6 +110,42 @@ export function isSpokenLiturgicalText(text: string): boolean {
 }
 
 /**
+ * Detects whether a line or text is a congregational response
+ * (e.g., in the Litany, versicles, suffrages, responsive prayers, Kyrie, etc.)
+ */
+export function isCongregationalResponse(text: string): boolean {
+  if (!text) return false;
+  const trimmed = text.trim();
+  if (!trimmed) return false;
+
+  // Explicit response speaker tags or versicle markers (*Answer.*, *People.*, *Response.*, R., etc.)
+  if (/^[*_]?(?:Answer|Response|People|The People|Congregation)\b/i.test(trimmed)) {
+    return true;
+  }
+
+  // Canonical congregational responses across the Litany and prayer book offices
+  const clean = trimmed.replace(/^[*_#“\"‘'(\s]+|[*_#”\"’')\s]+$/g, '').trim();
+
+  return /^(?:Good Lord,\s+deliver us|We beseech thee to hear us(?:,\s+good Lord)?|Spare us,\s+good Lord|Have mercy upon us|Grant us thy peace|Neither reward us (?:after|according to) our iniquities|O Lord,\s+arise,\s+help us|Graciously look upon our afflictions|Mercifully forgive the sins of thy people|O Son of David,\s+have mercy upon us|Graciously hear us,\s+O Christ;\s+graciously hear us|As we do put our trust in thee|And with thy spirit|And with your spirit|The Lord's Name be praised|Praise ye the Lord|Thanks be to God|Glory be to thee,\s+O Lord|Praise be to thee,\s+O Christ|It is meet and right so to do|Lord,\s+have mercy upon us|Christ,\s+have mercy upon us|Lord,\s+have mercy|Christ,\s+have mercy|As it was in the beginning,\s+is now,\s+and ever shall be|And grant us thy salvation|And our mouth shall shew forth thy praise|And my mouth shall shew forth thy praise|O Lord,\s+make haste to help us|And make thy chosen people joyful|And bless thine inheritance|Because there is none other that fighteth for us|And take not thy Holy Spirit from us|And mercifully hear us when we call upon thee|Amen\.?$)/i.test(clean);
+}
+
+/**
+ * Detects whether a text block or line is a Litany call/petition or suffrage.
+ */
+export function isLitanyCall(text: string): boolean {
+  if (!text) return false;
+  const clean = text.replace(/^[*_#“\"‘'(\s]+|[*_#”\"’')\s]+$/g, '').trim();
+  return /^(?:From all\b|From\b|By the\b|By thine\b|In all time\b|That it may please thee\b|We sinners do beseech\b|O God the Father\b|O God the Son\b|O God the Holy\b|O holy,\s+blessed\b|Remember not,\s+Lord\b|Son of God\b|O Lamb of God\b|O Christ,\s+hear us\b|Lord,\s+have mercy\b|Christ,\s+have mercy\b|Pitifully behold\b|Favourably with mercy\b|Both now and ever\b|O God,\s+we have heard with our ears\b)/i.test(clean);
+}
+
+/**
+ * Detects whether a text is part of a call-and-response / Litany sequence.
+ */
+export function isCallAndResponseText(text: string): boolean {
+  return isLitanyCall(text) || isCongregationalResponse(text);
+}
+
+/**
  * Estimates the rendered number of lines for a liturgical paragraph or block
  * based on explicit line-breaks and column character capacity at current font size.
  */
@@ -209,6 +245,11 @@ function analyzeLiturgicalBlock(text: string, fontSize: number): DropCapAnalysis
     return { type: 'none', lineCount: 1, remainder: trimmed, fullBodyText: trimmed };
   }
 
+  // Call-and-response sections, Litany petitions, and congregational responses are NEVER drop-capped
+  if (isCallAndResponseText(trimmed)) {
+    return { type: 'none', lineCount: 1, remainder: trimmed, fullBodyText: trimmed };
+  }
+
   // Extract leading speaker rubric like *Priest.*, *Minister.*, *Question.*, *The Bishop.*
   let speakerRubric: string | undefined;
   const speakerMatch = trimmed.match(/^(\*[A-Za-z\s/&.]+\*)\s*([\s\S]*)$/);
@@ -301,7 +342,7 @@ function parseMarkdownTable(lines: string[]): {
   return { headers, alignments, rows };
 }
 
-function renderTable(lines: string[], pIdx: number, fontSize: number): React.ReactNode {
+function renderTable(lines: string[], pIdx: number, fontSize: number, isServiceDoc: boolean = true): React.ReactNode {
   const { headers, alignments, rows } = parseMarkdownTable(lines);
 
   return (
@@ -319,7 +360,7 @@ function renderTable(lines: string[], pIdx: number, fontSize: number): React.Rea
                     className={`px-3.5 py-2.5 font-semibold text-[#8A211D] dark:text-[#E86558] ${alignClass} border-r last:border-r-0 border-[#D5CCBA]/60 dark:border-[#38352F]/60 whitespace-nowrap`}
                     style={{ fontVariant: 'small-caps', letterSpacing: '0.04em' }}
                   >
-                    {renderInlineMarkdown(h)}
+                    {renderInlineMarkdown(h, false, false, isServiceDoc)}
                   </th>
                 );
               })}
@@ -340,7 +381,7 @@ function renderTable(lines: string[], pIdx: number, fontSize: number): React.Rea
                     key={cIdx}
                     className={`px-3.5 py-2 align-top ${alignClass} border-r last:border-r-0 border-[#EAE3D5]/60 dark:border-[#2E2B25]/60 leading-relaxed`}
                   >
-                    {renderInlineMarkdown(cell)}
+                    {renderInlineMarkdown(cell, false, false, isServiceDoc)}
                   </td>
                 );
               })}
@@ -359,14 +400,19 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
   isService
 }) => {
   const elements = useMemo(() => {
-    // Drop caps are strictly reserved for liturgical worship services (never in prefaces, tables, or non-service prose)
+    // Drop caps and liturgical rubrics are strictly reserved for worship services (never in statutory acts, prefaces, tables, or non-service prose)
     const isNonServiceText =
       isService === false ||
       category === 'Prefaces & Tables' ||
-      (category && /preface|table|calendar|intro/i.test(category)) ||
-      /^\s*#+\s*(?:THE\s+)?PREFACE\b/i.test(content);
+      category === 'Historical Documents & Tables' ||
+      category === 'Articles of Religion' ||
+      (category && /preface|table|calendar|intro|article/i.test(category)) ||
+      /^\s*#+\s*(?:THE\s+)?PREFACE\b/i.test(content) ||
+      /^\s*#+\s*AN\s+ACT\s+FOR\s+THE\s+UNIFORMITY\b/i.test(content) ||
+      /^\s*#+\s*ARTICLES\s+OF\s+RELIGION\b/i.test(content);
 
     const allowDropCaps = !isNonServiceText;
+    const isServiceDoc = !isNonServiceText;
 
     // Normalize content: ensure all Markdown headers (#, ##, ###) and tables are cleanly isolated by double newlines
     const normalized = content
@@ -431,6 +477,17 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
         if (!inOptionalScriptureSection) {
           seenFirstVerseInSeries = false;
         }
+      }
+
+      // Horizontal rule / Section divider (---, ***, ___)
+      if (/^[-*_]{3,}$/.test(trimmed)) {
+        return (
+          <div key={pIdx} className="my-8 sm:my-10 flex items-center justify-center clear-both" role="separator">
+            <div className="w-16 sm:w-28 border-t border-[#D5CCBA] dark:border-[#38352F]" />
+            <span className="mx-3 text-[#8A211D]/40 dark:text-[#E86558]/40 text-xs select-none">✠</span>
+            <div className="w-16 sm:w-28 border-t border-[#D5CCBA] dark:border-[#38352F]" />
+          </div>
+        );
       }
 
       // H1 Header (# ) -> Service / Book Title: Grandest scale, dignified centered
@@ -605,7 +662,22 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
       if (isEntirelyRubric) {
         const inner = trimmed.replace(/^\*+|\*+$/g, '').trim();
 
-        // Check if this text is actually spoken liturgical text (like "*Let us pray.*" or "*Minister. Let us pray.*")
+        // Check if this text is actually a congregational response (e.g. "*Good Lord, deliver us.*" or "*Have mercy upon us.*")
+        if (isCongregationalResponse(inner)) {
+          return (
+            <div
+              key={pIdx}
+              className="my-3 pl-6 sm:pl-8 text-stone-900 dark:text-[#EDE7DD] italic font-normal leading-relaxed clear-both"
+              style={{ fontSize: `${fontSize}px` }}
+            >
+              <p className="leading-relaxed">
+                {renderLineContent(inner, true, false, isServiceDoc)}
+              </p>
+            </div>
+          );
+        }
+
+        // Check if this text is spoken liturgical text (like "*Let us pray.*" or "*Minister. Let us pray.*")
         if (isSpokenLiturgicalText(inner)) {
           // Check for embedded speaker label like "*Minister. Let us pray.*" or "*The Bishop. Let us pray.*"
           const spMatch = inner.match(/^((?:The\s+)?(?:Minister|Priest|Bishop|Dean|Reader|Officiant|Deacon|Question|Answer|People|The People|Congregation)[.:]?)\s+([\s\S]+)$/i);
@@ -633,13 +705,26 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
         }
 
         // True directional rubric
+        const cleanInner = inner.replace(/^[¶\u00b6]\s*/, '');
+        if (!isServiceDoc && !isRubricItalic(cleanInner, isServiceDoc, false)) {
+          return (
+            <p
+              key={pIdx}
+              className="text-stone-900 dark:text-[#EDE7DD] italic my-4 leading-relaxed clear-both font-normal"
+              style={{ fontSize: `${fontSize}px` }}
+            >
+              {renderInlineMarkdown(cleanInner, false, false, isServiceDoc)}
+            </p>
+          );
+        }
+
         return (
           <p
             key={pIdx}
             className="text-[#991B1B] dark:text-[#E86558] italic my-4 leading-relaxed clear-both"
             style={{ fontSize: `${Math.round(fontSize * 0.94)}px` }}
           >
-            {renderInlineMarkdown(inner)}
+            {renderInlineMarkdown(cleanInner, false, true, isServiceDoc)}
           </p>
         );
       }
@@ -649,72 +734,38 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
       if (lines.length > 1) {
         // First check for Markdown tables
         if (isMarkdownTable(lines)) {
-          return renderTable(lines, pIdx, fontSize);
+          return renderTable(lines, pIdx, fontSize, isServiceDoc);
         }
 
-        // If this multi-line block is a dialogue (versicles & responses) or Q&A / Catechism, do NOT apply drop cap
-        const isDialogueBlock = lines.some((l, idx) => idx > 0 && /^\*(?:Answer|Response|People|The People|Congregation|Question|Catechist)\b/i.test(l.trim()));
-        const isQABlock = /^\*(?:Question|Answer|Catechist)\b/i.test(lines[0].trim());
-
-        // Check if the very first line alone of this multi-line block qualifies for drop cap or small caps
-        const firstLine = lines[0].trim();
-        const blockAnalysis = (!isDialogueBlock && !isQABlock)
-          ? analyzeLiturgicalBlock(firstLine, fontSize)
-          : ({ type: 'none', lineCount: 1, remainder: firstLine, fullBodyText: firstLine } as DropCapAnalysis);
-
-        const canApplyDropCap = allowDropCaps && !skipDropCapForScripture;
-
-        if (canApplyDropCap && (blockAnalysis.type === 'drop-cap-3' || blockAnalysis.type === 'drop-cap-2')) {
-          const isTwoLine = blockAnalysis.type === 'drop-cap-2';
-          return (
-            <div key={pIdx} className="my-5 leading-relaxed text-stone-900 dark:text-[#EDE7DD] clear-both">
-              {blockAnalysis.speakerRubric && (
-                <div className="text-[#991B1B] dark:text-[#E86558] italic text-[0.9em] mb-1">
-                  {renderInlineMarkdown(blockAnalysis.speakerRubric.replace(/^\*+|\*+$/g, ''))}
-                </div>
-              )}
-              <p className="leading-relaxed">
-                {blockAnalysis.quotePrefix && (
-                  <span className="select-none text-stone-900 dark:text-[#EDE7DD] font-normal mr-0.5">{blockAnalysis.quotePrefix}</span>
-                )}
-                <span
-                  className="float-left text-[#8A211D] dark:text-[#E86558] select-none font-semibold leading-none"
-                  style={{
-                    fontSize: isTwoLine ? '2.2em' : '3.3em',
-                    lineHeight: isTwoLine ? '0.86' : '0.82',
-                    marginTop: isTwoLine ? '0.06em' : '0.05em',
-                    marginRight: isTwoLine ? '0.12em' : '0.13em',
-                    marginBottom: '-0.02em',
-                    fontFamily: "'EB Garamond', Garamond, Georgia, serif"
-                  }}
-                >
-                  {blockAnalysis.firstLetter}
-                </span>
-                <span
-                  className="text-stone-900 dark:text-[#FAF7F0] font-medium"
-                  style={{ fontVariant: 'small-caps', letterSpacing: '0.045em' }}
-                >
-                  {blockAnalysis.smallCapsText?.toLowerCase()}
-                </span>
-                {renderLineContent(toNormalCase(blockAnalysis.remainder || ''))}
-              </p>
-              <div className="space-y-1.5 mt-2">
-                {lines.slice(1).map((line, lIdx) => (
-                  <div key={lIdx}>{renderLine(line)}</div>
-                ))}
-              </div>
-            </div>
-          );
-        }
-
-        // Standard responsive line list (versicles, litany, or plain dialogue lines) - no drop cap, no small caps
+        // Multi-line responsive blocks (versicles, litany calls and responses, dialogues, catechism)
+        // Per user request: call-and-response sections NEVER have drop caps.
+        // Responses are both indented (pl-6 sm:pl-8) and italicized.
         return (
-          <div key={pIdx} className="my-4 space-y-1.5 leading-relaxed text-stone-900 dark:text-[#EDE7DD] clear-both">
-            {lines.map((line, lIdx) => (
-              <div key={lIdx}>
-                {renderLine(toNormalCase(line))}
-              </div>
-            ))}
+          <div key={pIdx} className="my-3.5 space-y-1.5 leading-relaxed text-stone-900 dark:text-[#EDE7DD] clear-both">
+            {lines.map((line, lIdx) => {
+              // In a 2-line pair where line 0 is a call or line 1 is a response, line 1 is explicitly a response
+              const isResponseInPair = lIdx > 0 && (lines.length === 2 || isCongregationalResponse(line));
+              return (
+                <div key={lIdx}>
+                  {renderLine(toNormalCase(line), isServiceDoc, isResponseInPair)}
+                </div>
+              );
+            })}
+          </div>
+        );
+      }
+
+      // Single continuous paragraph: check if it is a congregational response (e.g. in ER 1947 or standalone line)
+      if (isCongregationalResponse(trimmed)) {
+        return (
+          <div
+            key={pIdx}
+            className="my-3 pl-6 sm:pl-8 text-stone-900 dark:text-[#EDE7DD] italic font-normal leading-relaxed clear-both"
+            style={{ fontSize: `${fontSize}px` }}
+          >
+            <p className="leading-relaxed">
+              {renderLineContent(trimmed, true, false, isServiceDoc)}
+            </p>
           </div>
         );
       }
@@ -731,7 +782,7 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
           <div key={pIdx} className="my-5 leading-relaxed text-stone-900 dark:text-[#EDE7DD] clear-both">
             {analysis.speakerRubric && (
               <div className="text-[#991B1B] dark:text-[#E86558] italic text-[0.9em] mb-1">
-                {renderInlineMarkdown(analysis.speakerRubric.replace(/^\*+|\*+$/g, ''))}
+                {renderInlineMarkdown(analysis.speakerRubric.replace(/^\*+|\*+$/g, ''), false, true, isServiceDoc)}
               </div>
             )}
             <p className="leading-relaxed">
@@ -757,7 +808,7 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
               >
                 {analysis.smallCapsText?.toLowerCase()}
               </span>
-              {renderLineContent(toNormalCase(analysis.remainder || ''))}
+              {renderLineContent(toNormalCase(analysis.remainder || ''), false, false, isServiceDoc)}
             </p>
           </div>
         );
@@ -769,14 +820,14 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
         <div key={pIdx} className="my-4 leading-relaxed text-stone-900 dark:text-[#EDE7DD] clear-both">
           {analysis.speakerRubric && (
             <span className="text-[#991B1B] dark:text-[#E86558] italic text-[0.92em] mr-2">
-              {renderInlineMarkdown(analysis.speakerRubric.replace(/^\*+|\*+$/g, ''))}
+              {renderInlineMarkdown(analysis.speakerRubric.replace(/^\*+|\*+$/g, ''), false, true, isServiceDoc)}
             </span>
           )}
           <p className="inline leading-relaxed">
             {analysis.quotePrefix && (
               <span className="select-none text-stone-900 dark:text-[#EDE7DD] font-normal mr-0.5">{analysis.quotePrefix}</span>
             )}
-            {renderLineContent(toNormalCase(analysis.fullBodyText))}
+            {renderLineContent(toNormalCase(analysis.fullBodyText), false, false, isServiceDoc)}
           </p>
         </div>
       );
@@ -793,23 +844,80 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
   );
 };
 
+/**
+ * Determines whether an italicized text segment is a liturgical rubric (rendered in vermilion red)
+ * or standard body text italic (rendered in standard ink, e.g. in the Act of Uniformity,
+ * book titles, Latin phrases, Scripture citations, or parentheticals).
+ */
+export function isRubricItalic(
+  text: string,
+  isServiceDoc: boolean = true,
+  isInsideRubricBlock: boolean = false
+): boolean {
+  if (isInsideRubricBlock) return true;
+  if (!isServiceDoc) return false;
+
+  const trimmed = text.replace(/^[¶\u00b6]\s*/, '').trim();
+  if (!trimmed) return false;
+
+  // Speaker labels are liturgical rubrics (e.g. *Priest.*, *Minister.*, *Question.*)
+  if (/^(?:The\s+)?(?:Minister|Priest|Bishop|Dean|Reader|Officiant|Deacon|Question|Answer|People|The People|Congregation)[.:]?$/i.test(trimmed)) {
+    return true;
+  }
+
+  // Standalone Amen or spoken prayers/responses are NOT rubrics
+  if (/^Amen\.?$/i.test(trimmed) || isSpokenLiturgicalText(trimmed)) {
+    return false;
+  }
+
+  // Scripture citations are NOT rubrics (e.g. *Psalm li. 3.*, *St. John xi. 25.*, *Rom. viii. 14.*)
+  if (/^(?:(?:1|2|3|First|Second|Third)\s+)?(?:St\.|Gen\.|Exod\.|Lev\.|Num\.|Deut\.|Josh\.|Judg\.|Ruth|Sam\.|Kings|Chron\.|Ezra|Neh\.|Esth\.|Job|Ps\.|Psalm|Prov\.|Eccles\.|Song|Isa\.|Jer\.|Lam\.|Ezek\.|Dan\.|Hos\.|Joel|Amos|Obad\.|Jonah|Mic\.|Nah\.|Hab\.|Zeph\.|Hag\.|Zech\.|Mal\.|Matt\.|Matth\.|Mark|Luke|John|Acts|Rom\.|Cor\.|Gal\.|Eph\.|Phil\.|Col\.|Thess\.|Tim\.|Tit\.|Philem\.|Heb\.|Jas\.|James|Pet\.|Jude|Rev\.)\b/i.test(trimmed)) {
+    return false;
+  }
+
+  // Book titles, Acts, and statutory citations are NOT rubrics
+  if (/^(?:The\s+)?(?:Book\s+of\s+Common\s+Prayer|Act\s+for\s+the\s+Uniformity|Act\s+of\s+Uniformity|Book\s+of\s+Homilies|Articles\s+of\s+Religion|Table\s+of\s+Kindred)\b/i.test(trimmed)) {
+    return false;
+  }
+
+  // Latin or theological terms in body text are NOT rubrics
+  if (/^(?:ipso\s+facto|phronema\s+sarkos|ex\s+opere\s+operato|in\s+loco\s+parentis|et\s+cetera|&c\.?)$/i.test(trimmed)) {
+    return false;
+  }
+
+  // Parenthetical definitions or commentary (like in the Act of Uniformity) are NOT rubrics
+  if (trimmed.startsWith('(') && trimmed.endsWith(')')) {
+    const hasRubricVerb = /\b(?:shall|kneel|stand|say|sing|read|turning|laying)\b/i.test(trimmed);
+    if (!hasRubricVerb) return false;
+  }
+
+  // Liturgical directional rubrics contain action instructions
+  const hasRubricLead = /^(?:Then\s+(?:shall|all|the)|Here\s+(?:the|is|shall|may)|And\s+then|Note,\s+that|Note\s+that|All\s+kneeling|The\s+People\s+kneeling|Kneeling|Standing|To\s+be\s+(?:said|sung|read)|Or\s+this:|Or\s+say:|When\s+the\s+Priest|If\s+there\s+be|At\s+the\s+Communion)\b/i.test(trimmed);
+  const hasRubricAction = /\b(?:shall\s+say|shall\s+sing|shall\s+read|shall\s+be\s+said|shall\s+be\s+sung|shall\s+kneel|shall\s+stand|shall\s+minister|shall\s+deliver|turning\s+to\s+the\s+people|turning\s+him|laying\s+his\s+hand|take\s+the\s+cup|take\s+the\s+bread|break\s+the\s+bread|saying\s+first|saying\s+privately|audible\s+voice|loud\s+voice)\b/i.test(trimmed);
+
+  return hasRubricLead || hasRubricAction;
+}
+
 // Helper to render markdown line with red rubrics (*italic*) and versicle formatting
-function renderLine(line: string): React.ReactNode {
+function renderLine(
+  line: string,
+  isServiceDoc: boolean = true,
+  isExplicitResponse: boolean = false
+): React.ReactNode {
   const trimmed = line.trim();
 
   // Standalone Amen on a responsive line: must be rendered in standard ink italic, NEVER rubric red
   const isAmenOnlyLine = /^[*_\s]*Amen\.?[*_\s]*$/i.test(trimmed);
   if (isAmenOnlyLine) {
     return (
-      <div className="pl-5 sm:pl-8 text-stone-900 dark:text-[#EDE7DD] italic font-normal leading-relaxed">
+      <div className="pl-6 sm:pl-8 text-stone-900 dark:text-[#EDE7DD] italic font-normal leading-relaxed">
         Amen.
       </div>
     );
   }
 
   // Check if this line is an italicized congregational response (e.g. in Kyrie or Litany)
-  const isCongregationalResponse =
-    /^\*(?:Good Lord|We beseech|Spare us|Lord,|Christ,|Have mercy|Thanks be|Glory be|Praise be|Amen|And with)\b/i.test(trimmed);
+  const isCongregational = isExplicitResponse || isCongregationalResponse(trimmed);
 
   // If the whole line is italic, check if it's purely a rubric or spoken text / Amen / response
   if (trimmed.startsWith('*') && trimmed.endsWith('*')) {
@@ -817,52 +925,80 @@ function renderLine(line: string): React.ReactNode {
 
     if (/^Amen\.?$/i.test(inner)) {
       return (
-        <div className="text-stone-900 dark:text-[#EDE7DD] italic font-normal leading-relaxed">
+        <div className="pl-6 sm:pl-8 text-stone-900 dark:text-[#EDE7DD] italic font-normal leading-relaxed">
           {inner}
         </div>
       );
     }
 
-    if (isSpokenLiturgicalText(inner) || isCongregationalResponse) {
+    if (isSpokenLiturgicalText(inner) || isCongregational) {
       // Check for embedded speaker like "*Minister. Let us pray.*"
       const spMatch = inner.match(/^((?:The\s+)?(?:Minister|Priest|Bishop|Dean|Reader|Officiant|Deacon|Question|Answer|People|The People|Congregation)[.:]?)\s+([\s\S]+)$/i);
       if (spMatch) {
         return (
-          <div className="text-stone-900 dark:text-[#EDE7DD] font-normal leading-relaxed">
+          <div className={isCongregational ? "pl-6 sm:pl-8 text-stone-900 dark:text-[#EDE7DD] italic font-normal leading-relaxed" : "text-stone-900 dark:text-[#EDE7DD] font-normal leading-relaxed"}>
             <span className="text-[#991B1B] dark:text-[#E86558] italic mr-2">{spMatch[1]}</span>
-            {renderLineContent(spMatch[2])}
+            {renderLineContent(spMatch[2], isCongregational, false, isServiceDoc)}
           </div>
         );
       }
 
-      // If it's a congregational response line, apply hanging indent
-      const isResponse = isCongregationalResponse || /^\*(?:Answer|People|Congregation)\b/i.test(trimmed);
+      // If it's a congregational response line, apply hanging indent and italics
       return (
-        <div className={isResponse ? "pl-5 sm:pl-8 text-stone-900 dark:text-[#EDE7DD] italic font-normal leading-relaxed" : "text-stone-900 dark:text-[#EDE7DD] font-normal leading-relaxed"}>
-          {renderLineContent(inner, isResponse)}
+        <div className={isCongregational ? "pl-6 sm:pl-8 text-stone-900 dark:text-[#EDE7DD] italic font-normal leading-relaxed" : "text-stone-900 dark:text-[#EDE7DD] font-normal leading-relaxed"}>
+          {renderLineContent(inner, isCongregational, false, isServiceDoc)}
         </div>
       );
     }
 
     // Pure rubric line
     if (!/^(?:Minister|Priest|Bishop|Question|Answer|People|Congregation)\b/i.test(inner)) {
+      const cleanInner = inner.replace(/^[¶\u00b6]\s*/, '');
+      // If it's not a service document or not a rubric, keep in standard body ink
+      if (!isServiceDoc && !isRubricItalic(cleanInner, isServiceDoc, false)) {
+        return (
+          <div className="text-stone-900 dark:text-[#EDE7DD] italic font-normal leading-relaxed">
+            {renderInlineMarkdown(cleanInner, false, false, isServiceDoc)}
+          </div>
+        );
+      }
       return (
         <div className="text-[#991B1B] dark:text-[#E86558] italic leading-relaxed">
-          {renderInlineMarkdown(inner)}
+          {renderInlineMarkdown(cleanInner, false, true, isServiceDoc)}
         </div>
       );
     }
   }
 
-  // Response lines (*Answer.*, *People.*, *Congregation.*, or Litany congregational responses) receive classic liturgical hanging indent
+  // Check if line has an explicit response speaker tag like `*Answer.* Neither reward us...` or `Answer. ...`
+  const speakerPrefixMatch = trimmed.match(/^(\*(?:Answer|Response|People|The People|Congregation)\*|\b(?:Answer|Response|People|The People|Congregation)\.)\s+([\s\S]+)$/i);
+  if (speakerPrefixMatch) {
+    return (
+      <div className="pl-6 sm:pl-8 text-stone-900 dark:text-[#EDE7DD] italic font-normal leading-relaxed">
+        <span className="text-[#991B1B] dark:text-[#E86558] mr-2 font-normal not-italic">{speakerPrefixMatch[1].replace(/^\*+|\*+$/g, '')}</span>
+        {renderLineContent(speakerPrefixMatch[2], true, false, isServiceDoc)}
+      </div>
+    );
+  }
+
+  // Check if line has a clergy speaker tag like `*Priest.* ...` or `*Minister.* ...`
+  const clergyPrefixMatch = trimmed.match(/^(\*(?:Priest|Minister|Bishop|Dean|Reader|Officiant|Deacon|Question|Catechist)\*|\b(?:Priest|Minister|Bishop|Dean|Reader|Officiant|Deacon|Question|Catechist)\.)\s+([\s\S]+)$/i);
+  if (clergyPrefixMatch) {
+    return (
+      <div className="text-stone-900 dark:text-[#EDE7DD] font-normal leading-relaxed">
+        <span className="text-[#991B1B] dark:text-[#E86558] italic mr-2">{clergyPrefixMatch[1].replace(/^\*+|\*+$/g, '')}</span>
+        {renderLineContent(clergyPrefixMatch[2], false, false, isServiceDoc)}
+      </div>
+    );
+  }
+
+  // Response lines receive classic liturgical hanging indent and italics
   // Responses remain strictly in standard ink, never styled as rubrics
-  const isResponseLine =
-    /^\*(?:Answer|People|The People|Congregation)\b/i.test(trimmed) ||
-    isCongregationalResponse;
+  const isResponseLine = isCongregational;
 
   return (
-    <div className={isResponseLine ? 'pl-5 sm:pl-8 text-stone-900 dark:text-[#EDE7DD] font-normal' : 'text-stone-900 dark:text-[#EDE7DD] font-normal'}>
-      {renderLineContent(line, isResponseLine)}
+    <div className={isResponseLine ? 'pl-6 sm:pl-8 text-stone-900 dark:text-[#EDE7DD] italic font-normal leading-relaxed' : 'text-stone-900 dark:text-[#EDE7DD] font-normal leading-relaxed'}>
+      {renderLineContent(line, isResponseLine, false, isServiceDoc)}
     </div>
   );
 }
@@ -870,7 +1006,12 @@ function renderLine(line: string): React.ReactNode {
 /**
  * Renders line content with caesura (choral colon ` : ` or asterisk ` * `) formatted with breathing space
  */
-function renderLineContent(text: string, isResponse: boolean = false): React.ReactNode {
+function renderLineContent(
+  text: string,
+  isResponse: boolean = false,
+  isInsideRubric: boolean = false,
+  isServiceDoc: boolean = true
+): React.ReactNode {
   // If line contains a 1928 choral asterisk caesura (" * ")
   if (text.includes(' * ')) {
     const parts = text.split(' * ');
@@ -881,7 +1022,7 @@ function renderLineContent(text: string, isResponse: boolean = false): React.Rea
             {idx > 0 && (
               <span className="inline-block px-1.5 text-[#991B1B] dark:text-[#E86558] font-serif select-none text-[0.95em]" title="Choral Pause">*</span>
             )}
-            {renderInlineMarkdown(part, isResponse)}
+            {renderInlineMarkdown(part, isResponse, isInsideRubric, isServiceDoc)}
           </React.Fragment>
         ))}
       </span>
@@ -893,18 +1034,23 @@ function renderLineContent(text: string, isResponse: boolean = false): React.Rea
     const parts = text.split(' : ');
     return (
       <span>
-        {renderInlineMarkdown(parts[0], isResponse)}
+        {renderInlineMarkdown(parts[0], isResponse, isInsideRubric, isServiceDoc)}
         <span className="inline-block px-1.5 text-stone-900/70 dark:text-[#EDE7DD]/70 font-serif select-none" title="Choral Caesura / Breath">:</span>
-        {renderInlineMarkdown(parts.slice(1).join(' : '), isResponse)}
+        {renderInlineMarkdown(parts.slice(1).join(' : '), isResponse, isInsideRubric, isServiceDoc)}
       </span>
     );
   }
 
-  return renderInlineMarkdown(text, isResponse);
+  return renderInlineMarkdown(text, isResponse, isInsideRubric, isServiceDoc);
 }
 
-// Render inline markdown: red for rubrics, standard ink for amens/responses, no small caps
-function renderInlineMarkdown(text: string, isResponse: boolean = false): React.ReactNode {
+// Render inline markdown: red for rubrics and speaker tags, standard ink for body text italics (e.g. Act of Uniformity, titles, Latin words, citations)
+function renderInlineMarkdown(
+  text: string,
+  isResponse: boolean = false,
+  isInsideRubric: boolean = false,
+  isServiceDoc: boolean = true
+): React.ReactNode {
   const parts: React.ReactNode[] = [];
   let remaining = text;
   let key = 0;
@@ -926,8 +1072,8 @@ function renderInlineMarkdown(text: string, isResponse: boolean = false): React.
         parts.push(<span key={key++}>{italicMatch[1]}</span>);
       }
 
-      const italicText = italicMatch[2];
-      const trimmedItalic = italicText.trim();
+      const rawItalicText = italicMatch[2];
+      const trimmedItalic = rawItalicText.replace(/^[¶\u00b6]\s*/, '').trim();
 
       // Check if this italic part is an Amen (e.g. "Amen." or "Amen")
       const isAmen = /^Amen\.?$/i.test(trimmedItalic);
@@ -936,27 +1082,33 @@ function renderInlineMarkdown(text: string, isResponse: boolean = false): React.
       const isSpoken = isSpokenLiturgicalText(trimmedItalic);
 
       // Check if this italic part is a speaker tag like *Minister.*, *Priest.* vs text
-      const isSpeakerTag = /^(?:Minister|Priest|Bishop|Dean|Reader|Officiant|Deacon|Question|Answer|People|The People|Congregation)[.:]?$/i.test(trimmedItalic);
+      const isSpeakerTag = /^(?:The\s+)?(?:Minister|Priest|Bishop|Dean|Reader|Officiant|Deacon|Question|Answer|People|The People|Congregation)[.:]?$/i.test(trimmedItalic);
+
+      // Check if this italic part is an authentic liturgical rubric
+      const isRubric = isRubricItalic(trimmedItalic, isServiceDoc, isInsideRubric);
 
       if (isAmen || isSpoken || (isResponse && !isSpeakerTag)) {
         // Spoken liturgical text, Amens, and congregational responses are strictly standard ink, NEVER red rubrics
         parts.push(
-          <span key={key++} className="text-stone-900 dark:text-[#EDE7DD] font-normal">
-            {italicText}
+          <span key={key++} className={isResponse ? "text-stone-900 dark:text-[#EDE7DD] italic font-normal" : "text-stone-900 dark:text-[#EDE7DD] font-normal"}>
+            {rawItalicText}
           </span>
         );
-      } else if (isSpeakerTag) {
-        // Speaker labels render in vermilion rubric color
+      } else if (isSpeakerTag || isRubric) {
+        // Speaker labels and true rubrics render in vermilion rubric color.
+        // Red & italics make pilcrows redundant; strip any leading pilcrows.
+        const cleanRubricText = rawItalicText.replace(/^[¶\u00b6]\s*/, '');
         parts.push(
           <span key={key++} className="text-[#991B1B] dark:text-[#E86558] italic">
-            {italicText}
+            {cleanRubricText}
           </span>
         );
       } else {
-        // Directional rubrics render in vermilion rubric color
+        // All body text italics that are NOT rubrics (e.g. in the Act of Uniformity, book titles, Latin phrases, Scripture citations, and emphasis)
+        // render in standard body ink, NEVER vermilion rubric red
         parts.push(
-          <span key={key++} className="text-[#991B1B] dark:text-[#E86558] italic">
-            {italicText}
+          <span key={key++} className="text-stone-900 dark:text-[#EDE7DD] italic font-normal">
+            {rawItalicText}
           </span>
         );
       }

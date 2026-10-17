@@ -117,11 +117,11 @@ OUR Father, who art in heaven, Hallowed be thy Name. Thy kingdom come. Thy will 
 
 ---
 
-*¶ The Minister of every Parish shall diligently, upon Sundays and Holy Days, or on some other convenient occasions, openly in the Church, instruct or examine so many Children of his Parish, sent unto him, as he shall think convenient, in some part of this Catechism.*
+*The Minister of every Parish shall diligently, upon Sundays and Holy Days, or on some other convenient occasions, openly in the Church, instruct or examine so many Children of his Parish, sent unto him, as he shall think convenient, in some part of this Catechism.*
 
-*¶ And all Fathers, Mothers, Masters, and Mistresses, shall cause their Children, Servants, and Apprentices, who have not learned their Catechism, to come to the Church at the time appointed, and obediently to hear and to be ordered by the Minister, until such time as they have learned all that is here appointed for them to learn.*
+*And all Fathers, Mothers, Masters, and Mistresses, shall cause their Children, Servants, and Apprentices, who have not learned their Catechism, to come to the Church at the time appointed, and obediently to hear and to be ordered by the Minister, until such time as they have learned all that is here appointed for them to learn.*
 
-*¶ So soon as Children are come to a competent age, and can say the Creed, the Lord's Prayer, and the Ten Commandments, and can answer to the other questions of this short Catechism, they shall be brought to the Bishop.*
+*So soon as Children are come to a competent age, and can say the Creed, the Lord's Prayer, and the Ten Commandments, and can answer to the other questions of this short Catechism, they shall be brought to the Bishop.*
 
-*¶ And whensoever the Bishop shall give knowledge for Children to be brought unto him for their Confirmation, the Minister of every Parish shall either bring, or send in writing, with his hand subscribed thereunto, the Names of all such Persons within his Parish, as he shall think fit to be presented to the Bishop to be confirmed.*`
+*And whensoever the Bishop shall give knowledge for Children to be brought unto him for their Confirmation, the Minister of every Parish shall either bring, or send in writing, with his hand subscribed thereunto, the Names of all such Persons within his Parish, as he shall think fit to be presented to the Bishop to be confirmed.*`
 };

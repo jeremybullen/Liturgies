@@ -13,11 +13,11 @@ export const familyPrayer1928: ServiceItem = {
 
 ## MORNING PRAYER.
 
-*¶ The Master or Mistress having called together as many of the Family as can conveniently be present, let one of them, or any other who may be appointed, say as followeth, all kneeling, and repeating with him the Lord's Prayer.*
+*The Master or Mistress having called together as many of the Family as can conveniently be present, let one of them, or any other who may be appointed, say as followeth, all kneeling, and repeating with him the Lord's Prayer.*
 
 OUR Father, who art in heaven, Hallowed be thy Name. Thy kingdom come. Thy will be done, On earth as it is in heaven. Give us this day our daily bread. And forgive us our trespasses, As we forgive those who trespass against us. And lead us not into temptation, But deliver us from evil. For thine is the kingdom, and the power, and the glory, for ever and ever. Amen.
 
-*¶ Here may follow the Collect for the day.*
+*Here may follow the Collect for the day.*
 
 ### Acknowledgment of God's Mercy and Preservation, especially through the Night past.
 
@@ -41,11 +41,11 @@ THE grace of our Lord Jesus Christ, and the love of God, and the fellowship of t
 
 ## EVENING PRAYER.
 
-*¶ The Family being together, a little before bedtime, let the Master or Mistress, or any other who may be appointed, say as followeth, all kneeling, and repeating with him the Lord's Prayer.*
+*The Family being together, a little before bedtime, let the Master or Mistress, or any other who may be appointed, say as followeth, all kneeling, and repeating with him the Lord's Prayer.*
 
 OUR Father, who art in heaven, Hallowed be thy Name. Thy kingdom come. Thy will be done, On earth as it is in heaven. Give us this day our daily bread. And forgive us our trespasses, As we forgive those who trespass against us. And lead us not into temptation, But deliver us from evil. For thine is the kingdom, and the power, and the glory, for ever and ever. Amen.
 
-*¶ Here may follow the Collect for the day.*
+*Here may follow the Collect for the day.*
 
 ### Confession of Sins, with a Prayer for Contrition and Pardon.
 
@@ -71,7 +71,7 @@ IN particular, we beseech thee to continue thy gracious protection to us this ni
 
 THE grace of our Lord Jesus Christ, and the love of God, and the fellowship of the Holy Ghost, be with us all evermore. *Amen.*
 
-*¶ On Sundays, and on other days when it may be convenient, it will be proper to begin with a Chapter, or part of a Chapter, from the New Testament.*
+*On Sundays, and on other days when it may be convenient, it will be proper to begin with a Chapter, or part of a Chapter, from the New Testament.*
 
 ---
 
@@ -79,25 +79,25 @@ THE grace of our Lord Jesus Christ, and the love of God, and the fellowship of t
 
 ### MORNING.
 
-*¶ After the reading of a brief portion of Holy Scripture, let the Head of the Household, or some other member of the family, say as followeth, all kneeling, and repeating with him the Lord's Prayer.*
+*After the reading of a brief portion of Holy Scripture, let the Head of the Household, or some other member of the family, say as followeth, all kneeling, and repeating with him the Lord's Prayer.*
 
 OUR Father, who art in heaven, Hallowed be thy Name. Thy kingdom come. Thy will be done, On earth as it is in heaven. Give us this day our daily bread. And forgive us our trespasses, As we forgive those who trespass against us. And lead us not into temptation, But deliver us from evil. For thine is the kingdom, and the power, and the glory, for ever and ever. Amen.
 
 O LORD, our heavenly Father, Almighty and everlasting God, who hast safely brought us to the beginning of this day; Defend us in the same with thy mighty power; and grant that this day we fall into no sin, neither run into any kind of danger; but that all our doings, being ordered by thy governance, may be righteous in thy sight; through Jesus Christ our Lord. *Amen.*
 
-*¶ Here may be added any special Prayers.*
+*Here may be added any special Prayers.*
 
 THE grace of our Lord Jesus Christ, and the love of God, and the fellowship of the Holy Ghost, be with us all evermore. *Amen.*
 
 ### EVENING.
 
-*¶ After the reading of a brief portion of Holy Scripture, let the Head of the Household, or some other member of the family, say as followeth, all kneeling and repeating with him the Lord's Prayer.*
+*After the reading of a brief portion of Holy Scripture, let the Head of the Household, or some other member of the family, say as followeth, all kneeling and repeating with him the Lord's Prayer.*
 
 OUR Father, who art in heaven, Hallowed be thy Name. Thy kingdom come. Thy will be done, On earth as it is in heaven. Give us this day our daily bread. And forgive us our trespasses, As we forgive those who trespass against us. And lead us not into temptation, But deliver us from evil. For thine is the kingdom, and the power, and the glory, for ever and ever. Amen.
 
 LIGHTEN our darkness, we beseech thee, O Lord; and by thy great mercy defend us from all perils and dangers of this night; for the love of thy only Son, our Saviour, Jesus Christ. *Amen.*
 
-*¶ Here may be added any special Prayers.*
+*Here may be added any special Prayers.*
 
 THE Lord bless us and keep us. The Lord make his face to shine upon us, and be gracious unto us. The Lord lift up his countenance upon us, and give us peace, this night and evermore. *Amen.*
 

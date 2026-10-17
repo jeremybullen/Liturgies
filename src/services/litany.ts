@@ -52,7 +52,16 @@ Good Lord, deliver us.
 We sinners do beseech thee to hear us, O Lord God; and that it may please thee to rule and govern thy holy Church universal in the right way;  
 We beseech thee to hear us, good Lord.
 
-That it may please thee to keep and strengthen in the true worshipping of thee, in righteousness and holiness of life, thy Servant the PRESIDENT of the United States, and all others in authority;  
+That it may please thee to keep and strengthen in the true worshipping of thee, in righteousness and holiness of life, thy Servant CHARLES, our most gracious King and Governor;  
+We beseech thee to hear us, good Lord.
+
+That it may please thee to rule his heart in thy faith, fear, and love, and that he may evermore have affiance in thee, and ever seek thy honour and glory;  
+We beseech thee to hear us, good Lord.
+
+That it may please thee to be his defender and keeper, giving him the victory over all his enemies;  
+We beseech thee to hear us, good Lord.
+
+That it may please thee to bless and preserve our gracious Queen, and all the Royal Family;  
 We beseech thee to hear us, good Lord.
 
 That it may please thee to illuminate all Bishops, Priests, and Deacons, with true knowledge and understanding of thy Word; and that both by their preaching and living they may set it forth, and shew it accordingly;  

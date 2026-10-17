@@ -75,7 +75,6 @@ export const services1662: ServiceItem[] = [
   orderOfScripture1662,
   tableOfLessons1662,
   calendarAndTables1662,
-  tableOfKindredAndAffinity1662,
   morningPrayer,
   eveningPrayer,
   athanasianCreed,
@@ -100,7 +99,8 @@ export const services1662: ServiceItem[] = [
   makingOfDeacons1662,
   orderingOfPriests1662,
   consecrationOfBishops1662,
-  articlesOfReligion1662
+  articlesOfReligion1662,
+  tableOfKindredAndAffinity1662
 ];
 
 export function get1662ServiceBySlug(slug?: string): ServiceItem {

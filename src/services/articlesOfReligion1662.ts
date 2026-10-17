@@ -4,7 +4,7 @@ import { ServiceItem } from './types';
  * Articles of Religion (1662 Book of Common Prayer edition)
  * Agreed upon by the Archbishops and Bishops of both Provinces, and the Whole Clergy,
  * in the Convocation holden at London in the Year 1562; with His Majesty's Declaration,
- * the Ratification (1571), the Table of the Articles, and the Table of Kindred and Affinity.
+ * the Ratification (1571), and the Table of the Articles.
  */
 export const articlesOfReligion1662: ServiceItem = {
   id: 'articles-of-religion-1662',
@@ -64,7 +64,7 @@ THE Holy Ghost, proceeding from the Father and the Son, is of one substance, maj
 
 HOLY Scripture containeth all things necessary to salvation: so that whatsoever is not read therein, nor may be proved thereby, is not to be required of any man, that it should be believed as an Article of the Faith, or be thought requisite or necessary to salvation. In the name of the holy Scripture we do understand those canonical Books of the Old and New Testament, of whose authority was never any doubt in the Church.
 
-#### ¶ Of the Names and Number of the Canonical BOOKS.
+#### Of the Names and Number of the Canonical BOOKS.
 
 Genesis,  
 Exodus,  
@@ -248,7 +248,7 @@ Every particular or national Church hath authority to ordain, change, and abolis
 
 THE second Book of Homilies, the several titles whereof we have joined under this Article, doth contain a godly and wholesome Doctrine, and necessary for these times, as doth the former Book of Homilies, which were set forth in the time of Edward the Sixth; and therefore we judge them to be read in the Churches by the Ministers, diligently and distinctly, that they may be understanded by the people.
 
-#### ¶ Of the Names of the HOMILIES.
+#### Of the Names of the HOMILIES.
 
 1. Of the right Use of the Church.  
 2. Against peril of Idolatry.  
@@ -345,43 +345,5 @@ THIS Book of Articles before rehearsed, is again approved, and allowed to be hol
 37. Of Civil Magistrates.  
 38. Of Christian men's Goods.  
 39. Of a Christian man's Oath.
-
----
-
-## A TABLE OF KINDRED AND AFFINITY
-### Wherein whosoever are related, are forbidden in Scripture, and our Laws, to marry together.
-
-| A man may not marry his: | A woman may not marry her: |
-| :--- | :--- |
-| 1. Grandmother | 1. Grandfather |
-| 2. Grandfather's Wife | 2. Grandmother's Husband |
-| 3. Wife's Grandmother | 3. Husband's Grandfather |
-| 4. Father's Sister | 4. Father's Brother |
-| 5. Mother's Sister | 5. Mother's Brother |
-| 6. Father's Brother's Wife | 6. Father's Sister's Husband |
-| 7. Mother's Brother's Wife | 7. Mother's Sister's Husband |
-| 8. Wife's Father's Sister | 8. Husband's Father's Brother |
-| 9. Wife's Mother's Sister | 9. Husband's Mother's Brother |
-| 10. Mother | 10. Father |
-| 11. Step-mother | 11. Step-father |
-| 12. Wife's Mother | 12. Husband's Father |
-| 13. Daughter | 13. Son |
-| 14. Wife's Daughter | 14. Husband's Son |
-| 15. Son's Wife | 15. Daughter's Husband |
-| 16. Sister | 16. Brother |
-| 17. Wife's Sister | 17. Husband's Brother |
-| 18. Brother's Wife | 18. Sister's Husband |
-| 19. Son's Daughter | 19. Son's Son |
-| 20. Daughter's Daughter | 20. Daughter's Son |
-| 21. Son's Son's Wife | 21. Son's Daughter's Husband |
-| 22. Daughter's Son's Wife | 22. Daughter's Daughter's Husband |
-| 23. Wife's Son's Daughter | 23. Husband's Son's Son |
-| 24. Wife's Daughter's Daughter | 24. Husband's Daughter's Son |
-| 25. Brother's Daughter | 25. Brother's Son |
-| 26. Sister's Daughter | 26. Sister's Son |
-| 27. Brother's Son's Wife | 27. Brother's Daughter's Husband |
-| 28. Sister's Son's Wife | 28. Sister's Daughter's Husband |
-| 29. Wife's Brother's Daughter | 29. Husband's Brother's Son |
-| 30. Wife's Sister's Daughter | 30. Husband's Sister's Son |
 `
 };

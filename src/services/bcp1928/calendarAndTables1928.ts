@@ -99,37 +99,37 @@ export const calendarAndTables1928: ServiceItem = {
 * 18 g
 * 19 A
 * 20 b
-* 21 c
-* 22 d
+* 21 c [xiv]
+* 22 d [iii]
 * 23 e
-* 24 f
+* 24 f [xi]
 * 25 g **The Annunciation of the Blessed Virgin Mary**
-* 26 A
-* 27 b
+* 26 A [xix]
+* 27 b [viii]
 * 28 c
-* 29 d
-* 30 e
+* 29 d [xvi]
+* 30 e [v]
 * 31 f
 
 ### APRIL
-* 1 g
-* 2 A
+* 1 g [xiii]
+* 2 A [ii]
 * 3 b
-* 4 c
+* 4 c [x]
 * 5 d
-* 6 e
-* 7 f
+* 6 e [xviii]
+* 7 f [vii]
 * 8 g
-* 9 A
-* 10 b
+* 9 A [xv]
+* 10 b [iv]
 * 11 c
-* 12 d
-* 13 e
+* 12 d [xii]
+* 13 e [i]
 * 14 f
-* 15 g
+* 15 g [ix]
 * 16 A
-* 17 b
-* 18 c
+* 17 b [xvii]
+* 18 c [vi]
 * 19 d
 * 20 e
 * 21 f
@@ -533,6 +533,68 @@ On which the Church requires such a measure of abstinence as is more especially 
 THE Numbers prefixed to the several Days, in the Calendar, between the twenty-first Day of March and the eighteenth Day of April, both inclusive, denote the Days upon which those Full Moons do fall, which happen upon or next after the twenty-first Day of March, in those Years of which they are respectively the Golden Numbers; and the Sunday Letter next following any such Full Moon points out Easter Day for that Year. All which holds until the Year of our Lord 2199 inclusive.
 
 To find the Golden Number, or Prime, add 1 to the Year of our Lord, and then divide by 19; the Remainder, if any, is the Golden Number; but if nothing remain, then 19 is the Golden Number.
+
+To find the Dominical or Sunday Letter, according to the Calendar, until the Year of our Lord 2099 inclusive, add to the Year its fourth part, omitting fractions, and also the number 6: Divide the sum by 7; and if there is no remainder, then A is the Sunday Letter: But if any number remaineth, then the Letter standing against that number in the small annexed Table is the Sunday Letter.
+
+| Remainder | Sunday Letter |
+| :--- | :--- |
+| 0 | A |
+| 1 | G |
+| 2 | F |
+| 3 | E |
+| 4 | D |
+| 5 | C |
+| 6 | B |
+
+For the next Century, that is, from the Year 2100 till the Year 2199 inclusive, add to the current Year its fourth part, and also the number 5, and then divide by 7, and proceed as in the last Rule.
+
+*NOTE, That in all Bissextile or Leap-Years, the Letter found, as above, will be the Sunday Letter from the intercalated day exclusive, to the end of the Year.*
+
+---
+
+### A TABLE TO FIND EASTER DAY
+#### From the Year 1900 to the Year 2199 Inclusive
+
+| Golden Number | Day of the Month | Sunday Letter |
+| :--- | :--- | :--- |
+| XIV | March 21 | C |
+| III | March 22 | D |
+| | March 23 | E |
+| XI | March 24 | F |
+| | March 25 | G |
+| XIX | March 26 | A |
+| VIII | March 27 | B |
+| | March 28 | C |
+| XVI | March 29 | D |
+| V | March 30 | E |
+| | March 31 | F |
+| XIII | April 1 | G |
+| II | April 2 | A |
+| | April 3 | B |
+| X | April 4 | C |
+| | April 5 | D |
+| XVIII | April 6 | E |
+| VII | April 7 | F |
+| | April 8 | G |
+| XV | April 9 | A |
+| IV | April 10 | B |
+| | April 11 | C |
+| XII | April 12 | D |
+| I | April 13 | E |
+| | April 14 | F |
+| IX | April 15 | G |
+| XVII | April 16 | A |
+| VI | April 17 | B |
+| | April 18 | C |
+| | April 19 | D |
+| | April 20 | E |
+| | April 21 | F |
+| | April 22 | G |
+| | April 23 | A |
+| | April 24 | B |
+| | April 25 | C |
+
+THIS Table contains so much of the Calendar as is necessary for the determining of Easter; to find which, look for the Golden Number of the year in the first column of the Table, against which stands the day of the Paschal Full Moon; then look in the third column for the Sunday Letter, next after the day of the Full Moon, and the day of the Month standing against that Sunday Letter is Easter Day. If the Full Moon happens upon a Sunday, then (according to the first rule) the next Sunday after is Easter Day.
 
 ---
 
