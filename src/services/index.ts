@@ -1,9 +1,13 @@
 import { ServiceItem } from './types';
+import { actOfUniformity1662 } from './actOfUniformity1662';
 import { preface1662 } from './preface1662';
 import { serviceOfTheChurch1662 } from './serviceOfTheChurch1662';
 import { ofCeremonies1662 } from './ofCeremonies1662';
 import { orderOfPsalter1662 } from './orderOfPsalter1662';
 import { orderOfScripture1662 } from './orderOfScripture1662';
+import { tableOfLessons1662 } from './tableOfLessons1662';
+import { calendarAndTables1662 } from './calendarAndTables1662';
+import { tableOfKindredAndAffinity1662 } from './kindredAndAffinity1662';
 import { morningPrayer } from './morningPrayer';
 import { eveningPrayer } from './eveningPrayer';
 import { athanasianCreed } from './athanasianCreed';
@@ -29,11 +33,15 @@ import { services1947, get1947ServiceBySlug } from './er1947';
 import { services1928, get1928ServiceBySlug } from './bcp1928';
 
 export * from './types';
+export { actOfUniformity1662 } from './actOfUniformity1662';
 export { preface1662 } from './preface1662';
 export { serviceOfTheChurch1662 } from './serviceOfTheChurch1662';
 export { ofCeremonies1662 } from './ofCeremonies1662';
 export { orderOfPsalter1662 } from './orderOfPsalter1662';
 export { orderOfScripture1662 } from './orderOfScripture1662';
+export { tableOfLessons1662 } from './tableOfLessons1662';
+export { calendarAndTables1662 } from './calendarAndTables1662';
+export { tableOfKindredAndAffinity1662 } from './kindredAndAffinity1662';
 export { prayersAtSea1662 } from './prayersAtSea1662';
 export {
   ordinalPreface1662,
@@ -59,11 +67,15 @@ export {
 } from './bcp1928';
 
 export const services1662: ServiceItem[] = [
+  actOfUniformity1662,
   preface1662,
   serviceOfTheChurch1662,
   ofCeremonies1662,
   orderOfPsalter1662,
   orderOfScripture1662,
+  tableOfLessons1662,
+  calendarAndTables1662,
+  tableOfKindredAndAffinity1662,
   morningPrayer,
   eveningPrayer,
   athanasianCreed,
@@ -95,6 +107,14 @@ export function get1662ServiceBySlug(slug?: string): ServiceItem {
   if (!slug) return morningPrayer;
   const clean = slug.toLowerCase().replace(/^\/+|\/+$/g, '');
   if (
+    clean === 'act-of-uniformity' ||
+    clean === 'act-of-uniformity-1662' ||
+    clean === 'uniformity' ||
+    clean === 'act'
+  ) {
+    return actOfUniformity1662;
+  }
+  if (
     clean === 'collects' ||
     clean === 'propers' ||
     clean === 'collects-epistles-gospels' ||
@@ -102,6 +122,32 @@ export function get1662ServiceBySlug(slug?: string): ServiceItem {
     clean === 'collects-epistles-gospels-1662'
   ) {
     return collectsEpistlesGospels1662;
+  }
+  if (
+    clean === 'tables' ||
+    clean === 'calendar-and-tables' ||
+    clean === 'calendar-and-tables-1662' ||
+    clean === 'feasts-and-fasts' ||
+    clean === 'easter-tables'
+  ) {
+    return calendarAndTables1662;
+  }
+  if (
+    clean === 'table-of-lessons' ||
+    clean === 'table-of-lessons-1662' ||
+    clean === 'lessons' ||
+    clean === 'calendar' ||
+    clean === 'proper-lessons'
+  ) {
+    return tableOfLessons1662;
+  }
+  if (
+    clean === 'kindred-and-affinity' ||
+    clean === 'table-of-kindred-and-affinity' ||
+    clean === 'kindred' ||
+    clean === 'affinity'
+  ) {
+    return tableOfKindredAndAffinity1662;
   }
   const found = services1662.find(s => s.slug.toLowerCase() === clean || s.id.toLowerCase() === clean);
   return found || morningPrayer;

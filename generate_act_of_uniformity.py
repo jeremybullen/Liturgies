@@ -1,0 +1,121 @@
+import json
+
+act_content = """# AN ACT FOR THE UNIFORMITY OF COMMON PRAYER
+## And Service in the Church, and Administration of the Sacraments.
+### Primo Elisabethae [1 Eliz. I c. 2 (1559)]
+
+---
+
+### I.
+WHERE at the Death of our late Sovereign Lord King Edward the Sixth, there remained one uniform Order of Common Service and Prayer, and of the Administration of Sacraments, Rites and Ceremonies in the Church of England, which was set forth in one Book, intituled, *The Book of Common Prayer, and Administration of Sacraments, and other Rites and Ceremonies in the Church of England*, authorized by Act of Parliament, holden in the fifth and sixth years of our said late Sovereign Lord King Edward the Sixth, intituled, *An Act for the Uniformity of Common Prayer, and Administration of the Sacraments*; The which was repealed, and taken away by Act of Parliament, in the first Year of the Reign of our late Sovereign Lady Queen Mary, to the great decay of the due honour of God, and discomfort to the Professors of the Truth of Christ’s Religion:
+
+### II.
+Be it therefore Enacted by the Authority of this present Parliament, That the said Statute of Repeal, and every thing therein contained, only concerning the said Book, and the Service, Administration of Sacraments, Rites and Ceremonies, contained or appointed in or by the said Book, shall be void and of none effect, from and after the Feast of the Nativity of St. John Baptist next coming; And that the said Book with the Order of Service, and of the Administration of Sacraments, Rites and Ceremonies, with the Alterations, and Additions therein added and appointed by this Statute, shall stand, and be from and after the said Feast of the Nativity of St. John Baptist, in full force and effect, according to the tenor and effect of this Statute; any thing in the foresaid Statute of Repeal to the contrary notwithstanding.
+
+### III.
+And further be it Enacted by the Queen's Highness, with the assent of the Lords and Commons in this present Parliament assembled, and by the Authority of the same, That all and singular Ministers in any Cathedral, or Parish Church, or other place within this Realm of England, Wales, and the Marches of the same, or other the Queen’s Dominions, shall from and after the Feast of the Nativity of St. John Baptist next coming, be bounden to say and use the Mattins, Evensong, Celebration of the Lord’s Supper, and Administration of each of the Sacraments, and all their common and open Prayer, in such order and form as is mentioned in the said Book, so authorized by Parliament in the said fifth and sixth Years of the Reign of King Edward the Sixth; with one alteration, or addition of certain Lessons to be used on every Sunday in the Year, and the Form of the Litany altered and corrected, and two Sentences only added in the delivery of the Sacrament to the Communicants, and none other, or otherwise.
+
+### IV.
+And that if any manner of Parson, Vicar, or other whatsoever Minister, that ought or should sing or say Common Prayer mentioned in the said Book, or minister the Sacraments, from and after the Feast of the Nativity of St. John Baptist next coming, refuse to use the said Common Prayers, or to minister the Sacraments in such Cathedral or Parish-Church, or other places, as he should use to minister the same, in such order and form as they be mentioned and set forth in the said Book; or shall wilfully or obstinately (standing in the same) use any other Rite, Ceremony, Order, Form, or manner of celebrating of the Lord’s Supper, openly or privily, or Mattens, Evensong, Administration of the Sacraments, or other open Prayers, than is mentioned and set forth in the said Book, *(Open Prayer in and throughout this Act, is meant that Prayer which is for other to come unto or hear, either in Common Churches, or Private Chapels, or Oratories, commonly called the Service of the Church)* or shall preach, declare or speak any thing in the derogation, or depraving of the said Book, or anything therein contained, or of any part thereof, and shall be thereof lawfully convicted, according to the laws of this Realm, by verdict of twelve men, or by his own confession, or by the notorious evidence of the fact, shall lose and forfeit to the Queen's Highness, her Heirs and Successors, for his first Offence, the profit of all his Spiritual Benefices, or Promotions, coming or arising in one whole Year next after his Conviction: And also that the Person so convicted, shall for the same Offence suffer Imprisonment by the space of six Months, without Bail or Mainprise.
+
+### V.
+And if any such Person, once convict of any Offence concerning the Premisses, shall after his first conviction eftsoons offend, and be thereof in form aforesaid lawfully convict; That then the same Person shall for his second Offence suffer Imprisonment by the space of one whole Year, and also shall therefore be deprived, *ipso facto*, of all his Spiritual Promotions; And, that it shall be lawful to all Patrons, or Donors of all and singular the same Spiritual Promotions, or of any of them, to present or collate to the same, as though the Person or Persons so offending were dead.
+
+### VI.
+And that if any such Person or Persons, after he shall be twice convicted in form aforesaid, shall offend against any of the Premisses the third time, and shall be thereof in form aforesaid lawfully convicted; That then the Person so offending, and convicted the third time, shall be deprived *ipso facto* of all his Spiritual Promotions, and also shall suffer Imprisonment during his Life.
+
+### VII.
+And if the Person that shall offend, and be convicted in form aforesaid, concerning any of the Premisses, shall not be beneficed nor have any Spiritual Promotion, that then the same Person so Offending and convict, shall for the first Offence suffer Imprisonment during one whole Year next after his said Conviction, without Bail or Mainprise.
+
+### VIII.
+And if any such Person, not having any Spiritual Promotion, after his first Conviction shall eftsoons offend in any thing concerning the Premisses, and shall be in form aforesaid thereof lawfully convicted, that then the same Person shall for his second Offence suffer Imprisonment during his Life.
+
+### IX.
+And it is Ordained and Enacted by the Authority abovesaid, That if any Person or Persons whatsoever, after the said Feast of the Nativity of St. John Baptist next coming, shall in any Enterludes, Plays, Songs, Rhimes, or by other open Words, declare or speak any thing in the derogation, depraving, or despising of the same Book, or of any thing therein contained, or any part thereof; or shall by open fact, deed, or by open threatenings, compel or cause, or otherwise procure or maintain any Parson, Vicar, or other Minister in any Cathedral or Parish-Church, or in Chapel, or in any other place, to sing or say any common or open Prayer, or to minister any Sacrament, otherwise, or in any other manner and form than is mentioned in the said Book; or that by any of the said means shall unlawfully interrupt, or let any Parson, Vicar, or other Minister, in any Cathedral or Parish-Church, Chapel, or any other place, to sing or say any common and open Prayer, or to minister the Sacraments, or any of them, in such manner and form, as is mentioned in the said Book; that then every such Person, being thereof lawfully convicted, in form above said, shall forfeit to the Queen our Sovereign Lady, her Heirs and Successors, for the first Offence, an hundred Marks.
+
+### X.
+And if any Person or Persons, being once convict of any such Offence, eftsoons offend against any of the last recited Offences, and shall in form aforesaid be thereof lawfully convict; that then the same Person so offending, and convict, shall for the second Offence forfeit to the Queen our Sovereign Lady, her Heirs and Successors, four hundred Marks.
+
+### XI.
+And if any Person, after he in form aforesaid shall have been twice convict of any Offence concerning any of the last recited Offences, shall offend the third time, and be thereof in form abovesaid lawfully convict, that then every Person so offending and convict, shall for his third Offence, forfeit to our Sovereign Lady the Queen, all his Goods and Chattels, and shall suffer Imprisonment during his Life.
+
+### XII.
+And if any Person or Persons, that for his first Offence concerning the Premisses, shall be convict in form aforesaid, do not pay the Sum to be paid by virtue of his Conviction, in such manner and form as the same ought to be paid, within six Weeks next after his Conviction; That then every Person so convict, and so not paying the same, shall for the same first Offence, in the stead of the said Sum, suffer Imprisonment by the space of six Months, without Bail or Mainprise.
+
+### XIII.
+And if any Person or Persons, that for his second Offence concerning the Premisses, shall be convict in form aforesaid, do not pay the said Sum to be paid by virtue of his Conviction and this Statute, in such manner and form as the same ought to be paid, within six Weeks next after his said second Conviction; That then every Person so convicted, and not so paying the same, shall for the same second Offence, in the stead of the said Sum, suffer Imprisonment during twelve Months, without Bail or Mainprise.
+
+### XIV.
+And that from and after the said Feast of the Nativity of St. John Baptist next coming, all and every Person and Persons inhabiting within this Realm, or any other the Queen’s Majesty’s Dominions, shall diligently and faithfully, having no lawful or reasonable excuse to be absent, endeavour themselves, to resort to their Parish Church or Chapel accustomed, or upon reasonable let thereof, to some usual place, wherein Common Prayer, and such Service of God, shall be used in such time of let, upon every Sunday, and other days ordained and used to be kept as Holy-days, and then and there to abide orderly and soberly, during the time of Common Prayer, Preaching, or other Service of God there to be used, and ministered; upon pain of Punishment by the Censures of the Church, and also upon pain that every Person so offending, shall forfeit for every such Offence, twelve Pence, to be levied by the Church-wardens of the Parish where such Offence shall be done, to the use of the Poor of the same Parish, of the Goods, Lands and Tenements of such Offender, by way of Distress.
+
+### XV.
+And for the due execution hereof, the Queen's most excellent Majesty, the Lords Temporal, and all the Commons in this present Parliament assembled, do in God's name earnestly require and charge all the Archbishops, Bishops, and other Ordinaries, that they shall endeavour themselves to the uttermost of their knowledges, that the due and true execution hereof may be had throughout their Dioceses and Charges, as they will answer before God, for such evils and plagues wherewith Almighty God may justly punish his people for neglecting this good and wholesome law.
+
+### XVI.
+And for their Authority in this behalf, be it further Enacted by the Authority aforesaid, That all and singular the said Archbishops, Bishops, and other their Officers exercising Ecclesiastical Jurisdiction, as well in places exempt as not exempt, within their Dioceses, shall have full Power and Authority by this Act, to reform, correct and punish by Censures of the Church, all and singular Persons which shall offend within any of their Jurisdictions, or Dioceses, after the said Feast of the Nativity of St. John Baptist next coming, against this Act and Statute; any other Law, Statute, Privilege, Liberty or Provision heretofore made, had or suffered to the contrary notwithstanding.
+
+### XVII.
+And it is Ordained and Enacted by the Authority aforesaid, That all and every Justices of Oyer and Determiner, or Justices of Assize, shall have full Power and Authority in every of their open and general Sessions, to enquire, hear and determine all and all manner of Offences, that shall be committed or done contrary to any Article contained in this present Act, within the limits of the Commission to them directed, and to make Process for the execution of the same, as they may do against any Person being indicted before them of Trespass, or lawfully convicted thereof.
+
+### XVIII.
+Provided always, and be it Enacted by the Authority aforesaid, That all and every Archbishop and Bishop, shall or may at all time and times, at his liberty and pleasure, join and associate himself by virtue of this Act, to the said Justices of Oyer and Determiner, or to the said Justices of Assize, at every the said open and general Sessions to be holden in any place within his Diocese, for and to the enquiry, hearing, and determining of the Offences aforesaid.
+
+### XIX.
+Provided also, and be it Enacted by the Authority aforesaid, That the Books concerning the said Services, shall at the Costs and Charges of the Parishioners of every Parish and Cathedral Church, be attained and gotten before the said Feast of the Nativity of St. John Baptist next following; and that all such Parishes and Cathedral Churches, or other places, where the said Books shall be attained and gotten before the said Feast of the Nativity of St. John Baptist, shall within three Weeks next after the said Books so attained and gotten, use the said Service, and put the same in use according to this Act.
+
+### XX.
+And be it further Enacted by the Authority aforesaid, That no Person or Persons shall be at any time hereafter impeached, or otherwise molested of, or for any the Offences above mentioned, hereafter to be committed, or done contrary to this Act, unless he or they so offending, be thereof indicted at the next general Sessions, to be holden before any such Justices of Oyer and Determiner, or Justices of Assize, next after any Offence committed or done contrary to the tenor of this Act.
+
+### XXI.
+Provided always, and be it Ordained and Enacted by the Authority aforesaid, That all and singular Lords of the Parliament, for the third Offence above mentioned, shall be tried by their Peers.
+
+### XXII.
+Provided also, and be it Ordained and Enacted by the Authority aforesaid, That the Mayor of London, and all other Mayors, Bailiffs, and all other Head-Officers of all and singular Cities, Boroughs, and Towns-Corporate within this Realm, Wales, and the Marches of the same, to the which Justices of Assize do not commonly repair, shall have full Power and Authority by virtue of this Act, to enquire, hear and determine the Offences abovesaid, and every of them, yearly within fifteen Days after the Feast of Easter and Saint Michael the Archangel, in like manner and form as Justices of Assize and Oyer and Determiner may do.
+
+### XXIII.
+Provided always, and be it Ordained and Enacted by the Authority aforesaid, That all and singular Archbishops and Bishops, and every of their Chancellors, Commissaries, Archdeacons, and other Ordinaries, having any peculiar Ecclesiastical Jurisdiction, shall have full Power and Authority, by virtue of this Act, as well to enquire in their Visitation, Synods, or elsewhere within their Jurisdiction, at any other time and place, to take Accusations and Informations of all and every the things above-mentioned, done, committed, or perpetrated, within the limits of their Jurisdictions and Authority, and to punish the same by Admonition, Excommunication, Sequestration or Deprivation, and other Censures and Process, in like form, as heretofore hath been used in like Cases by the Queen's Ecclesiastical Laws.
+
+### XXIV.
+Provided always, and be it Enacted, That whatsoever Person offending in the Premisses, shall for the first Offence, receive Punishment of the Ordinary, having a Testimonial thereof under the said Ordinary's Seal, shall not for the same Offence eftsoons be convicted before the Justices: And likewise receiving for the said first Offence, punishment by the Justices, he shall not for the same first Offence eftsoons receive Punishment of the Ordinary: any thing contained in this Act to the contrary notwithstanding.
+
+### XXV.
+Provided always, and be it Enacted, That such Ornaments of the Church and of the Ministers thereof, shall be retained, and be in use, as was in the Church of England, by Authority of Parliament, in the second Year of the Reign of King Edward the Sixth, until other Order shall be therein taken by the Authority of the Queen's Majesty, with the Advice of her Commissioners appointed and authorized under the Great Seal of England, for Causes Ecclesiastical, or of the Metropolitan of this Realm.
+
+### XXVI.
+And also, that if there shall happen any Contempt or Irreverence to be used in the Ceremonies or Rites of the Church, by the misusing of the Orders appointed in this Book, the Queen's Majesty may, by the like advice of the said Commissioners or Metropolitan ordain and publish such further Ceremonies or Rites as may be most for the advancement of God's Glory, the edifying of his Church, and the due reverence of Christ's holy Mysteries and Sacraments.
+
+### XXVII.
+And be it further Enacted by the Authority aforesaid, That all Laws, Statutes and Ordinances, wherein or whereby any other Service, Administration of Sacraments, or Common Prayer, is limited, established, or set forth to be used within this Realm, or any other the Queen’s Dominions or Countries, shall from henceforth be utterly void and of none effect.
+
+---
+
+## AN ACT FOR THE UNIFORMITY OF PUBLICK PRAYERS
+### And Administration of Sacraments, and other Rites and Ceremonies: And for establishing the Form of Making, Ordaining, and Consecrating Bishops, Priests, and Deacons in the Church of England.
+### Quarto-decimo Caroli II. [14 Car. II c. 4 (1662)]
+
+WHEREAS in the first year of the late Queen Elizabeth, there was one uniform Order of Common Service and Prayer, and of the Administration of Sacraments, Rites, and Ceremonies in the Church of England (agreeable to the Word of God, and usage of the Primitive Church) compiled by the Reverend Bishops and Clergy, set forth in one Book, intituled, *The Book of Common Prayer, and Administration of Sacraments, and other Rites and Ceremonies in the Church of England*, and enjoined to be used by Act of Parliament...
+
+Be it enacted by the King's most Excellent Majesty, by and with the advice and consent of the Lords Spiritual and Temporal, and of the Commons, in this present Parliament assembled, and by the authority of the same, That all and singular Ministers in any Cathedral, Collegiate or Parish Church or Chapel, or other place of Publick Worship within this Realm of England, Dominion of Wales, and Town of Berwick upon Tweed, shall be bound to say and use the Morning Prayer, Evening Prayer, Celebration and Administration of both the Sacraments, and all other the Publick and Common Prayer, in such order and form as is mentioned in the said Book annexed and joined to this present Act, and intituled, *The Book of Common Prayer, and Administration of the Sacraments, and other Rites and Ceremonies of the Church, according to the Use of the Church of England: together with the Psalter or Psalms of David, pointed as they are to be sung or said in Churches; and the Form or Manner of Making, Ordaining, and Consecrating of Bishops, Priests, and Deacons.*
+"""
+
+ts_content = f'''import {{ ServiceItem }} from './types';
+
+/**
+ * An Act for the Uniformity of Common Prayer
+ * The 1662 Book of Common Prayer (Church of England)
+ */
+export const actOfUniformity1662: ServiceItem = {{
+  id: 'act-of-uniformity-1662',
+  slug: 'act-of-uniformity',
+  title: 'An Act for the Uniformity of Common Prayer',
+  shortTitle: 'Act of Uniformity',
+  category: 'Prefaces & Tables',
+  isService: false,
+  content: {json.dumps(act_content.strip())}
+}};
+'''
+
+with open("src/services/actOfUniformity1662.ts", "w", encoding="utf-8") as f:
+    f.write(ts_content)
+
+print("Created src/services/actOfUniformity1662.ts")
