@@ -10,7 +10,7 @@ export const litany: ServiceItem = {
 
 *Here followeth the LITANY, or General Supplication, to be sung or said after Morning Prayer upon Sundays, Wednesdays, and Fridays, and at other times when it shall be commanded by the Ordinary.*
 
-O GOD the Father, of heaven : have mercy upon us miserable sinners.  
+O God the Father, of heaven : have mercy upon us miserable sinners.  
 O God the Father, of heaven : have mercy upon us miserable sinners.
 
 O God the Son, Redeemer of the world : have mercy upon us miserable sinners.  
@@ -22,7 +22,7 @@ O God the Holy Ghost, proceeding from the Father and the Son : have mercy upon u
 O holy, blessed, and glorious Trinity, three Persons and one God : have mercy upon us miserable sinners.  
 O holy, blessed, and glorious Trinity, three Persons and one God : have mercy upon us miserable sinners.
 
-REMEMBER not, Lord, our offences, nor the offences of our forefathers; neither take thou vengeance of our sins : spare us, good Lord, spare thy people, whom thou hast redeemed with thy most precious blood, and be not angry with us for ever.  
+Remember not, Lord, our offences, nor the offences of our forefathers; neither take thou vengeance of our sins : spare us, good Lord, spare thy people, whom thou hast redeemed with thy most precious blood, and be not angry with us for ever.  
 Spare us, good Lord.
 
 From all evil and mischief; from sin, from the crafts and assaults of the devil; from thy wrath, and from everlasting damnation,  
@@ -132,35 +132,35 @@ Lord, have mercy upon us.
 
 *Then shall the Priest, and the people with him, say the Lord's Prayer.*
 
-OUR Father, which art in heaven, Hallowed be thy Name. Thy kingdom come. Thy will be done in earth, As it is in heaven. Give us this day our daily bread. And forgive us our trespasses, As we forgive them that trespass against us. And lead us not into temptation; But deliver us from evil. Amen.
+Our Father, which art in heaven, Hallowed be thy Name. Thy kingdom come. Thy will be done in earth, As it is in heaven. Give us this day our daily bread. And forgive us our trespasses, As we forgive them that trespass against us. And lead us not into temptation; But deliver us from evil. Amen.
 
 *Priest.* O Lord, deal not with us after our sins.  
 *Answer.* Neither reward us after our iniquities.
 
 Let us pray.
 
-O GOD, merciful Father, that despisest not the sighing of a contrite heart, nor the desire of such as be sorrowful; Mercifully assist our prayers that we make before thee in all our troubles and adversities, whensoever they oppress us; and graciously hear us, that those evils, which the craft and subtilty of the devil or man worketh against us, be brought to nought; and by the providence of thy goodness they may be dispersed; that we thy servants, being hurt by no persecutions, may evermore give thanks unto thee in thy holy Church; through Jesus Christ our Lord.
+O God, merciful Father, that despisest not the sighing of a contrite heart, nor the desire of such as be sorrowful; Mercifully assist our prayers that we make before thee in all our troubles and adversities, whensoever they oppress us; and graciously hear us, that those evils, which the craft and subtilty of the devil or man worketh against us, be brought to nought; and by the providence of thy goodness they may be dispersed; that we thy servants, being hurt by no persecutions, may evermore give thanks unto thee in thy holy Church; through Jesus Christ our Lord.
 
-O Lord, arise, help us, and deliver us for thy Name's sake.
+*Answer.* O Lord, arise, help us, and deliver us for thy Name's sake.
 
-O GOD, we have heard with our ears, and our fathers have declared unto us, the noble works that thou didst in their days, and in the old time before them.
+*Priest.* O God, we have heard with our ears, and our fathers have declared unto us, the noble works that thou didst in their days, and in the old time before them.
 
-O Lord, arise, help us, and deliver us for thine honour.
+*Answer.* O Lord, arise, help us, and deliver us for thine honour.
 
-Glory be to the Father, and to the Son : and to the Holy Ghost;  
+*Priest.* Glory be to the Father, and to the Son : and to the Holy Ghost;  
 *Answer.* As it was in the beginning, is now, and ever shall be : world without end. Amen.
 
 From our enemies defend us, O Christ.  
-Graciously look upon our afflictions.
+*Graciously look upon our afflictions.*
 
 Pitifully behold the sorrows of our hearts.  
-Mercifully forgive the sins of thy people.
+*Mercifully forgive the sins of thy people.*
 
 Favourably with mercy hear our prayers.  
-O Son of David, have mercy upon us.
+*O Son of David, have mercy upon us.*
 
 Both now and ever vouchsafe to hear us, O Christ.  
-Graciously hear us, O Christ; graciously hear us, O Lord Christ.
+*Graciously hear us, O Christ; graciously hear us, O Lord Christ.*
 
 *Priest.* O Lord, let thy mercy be shewed upon us;  
 *Answer.* As we do put our trust in thee.

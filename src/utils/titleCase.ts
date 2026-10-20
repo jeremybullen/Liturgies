@@ -75,6 +75,16 @@ export function toTitleCase(str: string): string {
         return lower;
       }
 
+      // Keep "civil" lowercase in the historical Americanized phrase "civil authority"
+      if (lower === 'civil') {
+        const remainingTokens = rawTokens.slice(index + 1);
+        const nextWord = remainingTokens.find(t => /[a-zA-Z0-9]/.test(t))?.toLowerCase();
+        if (nextWord === 'authority') {
+          prevDelimiter = '';
+          return 'civil';
+        }
+      }
+
       // Normal word: Capitalize first letter, rest lowercase
       return lower.charAt(0).toUpperCase() + lower.slice(1);
     })

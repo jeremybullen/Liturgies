@@ -1,11 +1,13 @@
 import React, { useMemo } from 'react';
 import { toTitleCase } from '../utils/titleCase';
+import { Printer } from 'lucide-react';
 
 interface LiturgicalReaderProps {
   content: string;
   fontSize: number; // in pixels, e.g. 19, 21, 24
   category?: string;
   isService?: boolean;
+  onOpenPrint?: () => void;
 }
 
 const DAY_WORD_MAP: Record<string, number> = {
@@ -126,7 +128,12 @@ export function isCongregationalResponse(text: string): boolean {
   // Canonical congregational responses across the Litany and prayer book offices
   const clean = trimmed.replace(/^[*_#“\"‘'(\s]+|[*_#”\"’')\s]+$/g, '').trim();
 
-  return /^(?:Good Lord,\s+deliver us|We beseech thee to hear us(?:,\s+good Lord)?|Spare us,\s+good Lord|Have mercy upon us|Grant us thy peace|Neither reward us (?:after|according to) our iniquities|O Lord,\s+arise,\s+help us|Graciously look upon our afflictions|Mercifully forgive the sins of thy people|O Son of David,\s+have mercy upon us|Graciously hear us,\s+O Christ;\s+graciously hear us|As we do put our trust in thee|And with thy spirit|And with your spirit|The Lord's Name be praised|Praise ye the Lord|Thanks be to God|Glory be to thee,\s+O Lord|Praise be to thee,\s+O Christ|It is meet and right so to do|Lord,\s+have mercy upon us|Christ,\s+have mercy upon us|Lord,\s+have mercy|Christ,\s+have mercy|As it was in the beginning,\s+is now,\s+and ever shall be|And grant us thy salvation|And our mouth shall shew forth thy praise|And my mouth shall shew forth thy praise|O Lord,\s+make haste to help us|And make thy chosen people joyful|And bless thine inheritance|Because there is none other that fighteth for us|And take not thy Holy Spirit from us|And mercifully hear us when we call upon thee|Amen\.?$)/i.test(clean);
+  // Match 1662 repeated litany invocations ending with "have mercy upon us miserable sinners"
+  if (/have mercy upon us miserable sinners\.?$/i.test(clean)) {
+    return true;
+  }
+
+  return /^(?:Good Lord,\s+deliver us|We beseech thee to hear us(?:,\s+good Lord)?|Spare us,\s+good Lord|Have mercy upon us|Grant us thy peace|Neither reward us (?:after|according to) our iniquities|O Lord,\s+arise,\s+help us.*|Graciously look upon our afflictions|Mercifully forgive the sins of thy people|O Son of David,\s+have mercy upon us|Graciously hear us.*|As we do put our trust in thee|And with thy spirit|And with your spirit|The Lord's Name be praised|Praise ye the Lord|Thanks be to God|Glory be to thee,\s+O Lord|Praise be to thee,\s+O Christ|It is meet and right so to do|Lord,\s+have mercy(?: upon us)?|Christ,\s+have mercy(?: upon us)?|As it was in the beginning,\s+is now,\s+and ever shall be.*|And grant us thy salvation|And our mouth shall shew forth thy praise|And my mouth shall shew forth thy praise|O Lord,\s+make haste to help us|And make thy chosen people joyful|And bless thine inheritance|Because there is none other that fighteth for us|And take not thy Holy Spirit from us|And mercifully hear us when we call upon thee|Amen\.?$)/i.test(clean);
 }
 
 /**
@@ -135,14 +142,16 @@ export function isCongregationalResponse(text: string): boolean {
 export function isLitanyCall(text: string): boolean {
   if (!text) return false;
   const clean = text.replace(/^[*_#“\"‘'(\s]+|[*_#”\"’')\s]+$/g, '').trim();
-  return /^(?:From all\b|From\b|By the\b|By thine\b|In all time\b|That it may please thee\b|We sinners do beseech\b|O God the Father\b|O God the Son\b|O God the Holy\b|O holy,\s+blessed\b|Remember not,\s+Lord\b|Son of God\b|O Lamb of God\b|O Christ,\s+hear us\b|Lord,\s+have mercy\b|Christ,\s+have mercy\b|Pitifully behold\b|Favourably with mercy\b|Both now and ever\b|O God,\s+we have heard with our ears\b)/i.test(clean);
+  return /^(?:From all\b|From\b|By the\b|By thine\b|In all time\b|That it may please thee\b|We sinners do beseech\b|O God the Father\b|O God the Son\b|O God the Holy\b|O holy,\s+blessed\b|O holy Trinity\b|Remember not,\s+Lord\b|Son of God\b|O Lamb of God\b|O Christ,\s+hear us\b|Lord,\s+have mercy\b|Christ,\s+have mercy\b|Pitifully behold\b|With pity behold\b|Favourably with mercy\b|Both now and ever\b|From our enemies defend us\b|O God,\s+we have heard with our ears\b|O Lord,\s+deal not with us\b|O Lord,\s+let thy mercy\b|Hearken unto our voice\b|Glory be to the Father\b)/i.test(clean);
 }
 
 /**
  * Detects whether a text is part of a call-and-response / Litany sequence.
  */
 export function isCallAndResponseText(text: string): boolean {
-  return isLitanyCall(text) || isCongregationalResponse(text);
+  if (isLitanyCall(text) || isCongregationalResponse(text)) return true;
+  // Also matches lines with embedded priest/minister or response tags
+  return /^[*_]?(?:Priest|Minister|Bishop|Officiant|Answer|Response|People|The People)\b/i.test(text.trim());
 }
 
 /**
@@ -397,7 +406,8 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
   content,
   fontSize,
   category,
-  isService
+  isService,
+  onOpenPrint
 }) => {
   const elements = useMemo(() => {
     // Drop caps and liturgical rubrics are strictly reserved for worship services (never in statutory acts, prefaces, tables, or non-service prose)
@@ -445,6 +455,10 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
       );
     };
 
+    const isLitanyDoc =
+      /#\s+(?:THE\s+)?LITANY\b/i.test(content) ||
+      (typeof category === 'string' && /litany/i.test(category));
+    let inLitanyCallAndResponse = isLitanyDoc;
     let inOptionalScriptureSection = false;
     let seenFirstVerseInSeries = false;
     let currentDayNumber: number | null = null;
@@ -452,6 +466,15 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
     return rawParagraphs.map((para, pIdx) => {
       const trimmed = para.trim();
       if (!trimmed) return null;
+
+      if (isLitanyDoc) {
+        if (
+          trimmed.startsWith('### ') ||
+          /(?:WE\s+humbly\s+beseech\s+thee|A\s+Prayer\s+of\s+St\.\s+Chrysostom|2\s+Cor\.\s+xiii)/i.test(trimmed)
+        ) {
+          inLitanyCallAndResponse = false;
+        }
+      }
 
       if (isOptionalScriptureIntro(trimmed)) {
         inOptionalScriptureSection = true;
@@ -721,7 +744,7 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
         return (
           <p
             key={pIdx}
-            className="text-[#991B1B] dark:text-[#E86558] italic my-4 leading-relaxed clear-both"
+            className="liturgical-rubric-block text-[#991B1B] dark:text-[#E86558] italic my-4 leading-relaxed clear-both"
             style={{ fontSize: `${Math.round(fontSize * 0.94)}px` }}
           >
             {renderInlineMarkdown(cleanInner, false, true, isServiceDoc)}
@@ -743,8 +766,12 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
         return (
           <div key={pIdx} className="my-3.5 space-y-1.5 leading-relaxed text-stone-900 dark:text-[#EDE7DD] clear-both">
             {lines.map((line, lIdx) => {
-              // In a 2-line pair where line 0 is a call or line 1 is a response, line 1 is explicitly a response
-              const isResponseInPair = lIdx > 0 && (lines.length === 2 || isCongregationalResponse(line));
+              // In multi-line responsive blocks, identify responses
+              const isEvenAlternate = lines.length % 2 === 0 && lIdx % 2 === 1;
+              const isResponseInPair =
+                (lines.length === 2 && lIdx === 1) ||
+                (isEvenAlternate && (isCongregationalResponse(line) || lines.some(l => isCongregationalResponse(l)))) ||
+                isCongregationalResponse(line);
               return (
                 <div key={lIdx}>
                   {renderLine(toNormalCase(line), isServiceDoc, isResponseInPair)}
@@ -772,7 +799,7 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
 
       // Single continuous paragraph: analyze based on intelligent line count!
       const analysis = analyzeLiturgicalBlock(trimmed, fontSize);
-      const canApplyDropCap = allowDropCaps && !skipDropCapForScripture;
+      const canApplyDropCap = allowDropCaps && !skipDropCapForScripture && !inLitanyCallAndResponse;
 
       // Multi-line drop cap (2 lines scaled, or 3+ lines classical)
       // Small caps is strictly restricted to accompany the drop cap initial
@@ -781,7 +808,7 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
         return (
           <div key={pIdx} className="my-5 leading-relaxed text-stone-900 dark:text-[#EDE7DD] clear-both">
             {analysis.speakerRubric && (
-              <div className="text-[#991B1B] dark:text-[#E86558] italic text-[0.9em] mb-1">
+              <div className="liturgical-rubric-block text-[#991B1B] dark:text-[#E86558] italic text-[0.9em] mb-1">
                 {renderInlineMarkdown(analysis.speakerRubric.replace(/^\*+|\*+$/g, ''), false, true, isServiceDoc)}
               </div>
             )}
@@ -840,6 +867,18 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
       style={{ fontSize: `${fontSize}px` }}
     >
       {elements}
+
+      {/* Footer Print Action (Especially helpful on mobile where top bar is compact) */}
+      <div className="no-print mt-14 pt-6 border-t border-[#E8E2D5] dark:border-[#2D2A24] flex items-center justify-between text-xs font-serif text-stone-500 dark:text-stone-400">
+        <button
+          onClick={onOpenPrint || (() => window.print())}
+          className="inline-flex items-center gap-1.5 py-1 px-2 rounded hover:bg-[#EFE9DC] dark:hover:bg-[#282622] text-stone-600 dark:text-stone-300 hover:text-[#8A211D] dark:hover:text-[#E86558] transition-colors cursor-pointer"
+          title="Print this liturgy"
+        >
+          <Printer className="w-3.5 h-3.5" />
+          <span>Print this liturgy</span>
+        </button>
+      </div>
     </article>
   );
 };
@@ -963,7 +1002,7 @@ function renderLine(
         );
       }
       return (
-        <div className="text-[#991B1B] dark:text-[#E86558] italic leading-relaxed">
+        <div className="liturgical-rubric-block text-[#991B1B] dark:text-[#E86558] italic leading-relaxed">
           {renderInlineMarkdown(cleanInner, false, true, isServiceDoc)}
         </div>
       );

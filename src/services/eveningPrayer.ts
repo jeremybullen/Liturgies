@@ -166,7 +166,7 @@ LIGHTEN our darkness, we beseech thee, O Lord; and by thy great mercy defend us 
 
 *In Quires and Places where they sing, here followeth the Anthem.*
 
-### A Prayer for the President of the United States, and all in Civil Authority
+### A Prayer for the President of the United States, and all in civil authority
 
 O LORD, our heavenly Father, the high and mighty Ruler of the universe, who dost from thy throne behold all the dwellers upon earth; Most heartily we beseech thee, with thy favour, to behold and bless thy servant, The PRESIDENT of the United States, and all others in authority; and so replenish them with the grace of thy Holy Spirit, that they may always incline to thy will, and walk in thy way: Endue them plenteously with heavenly gifts; grant them in health and prosperity long to live; and finally, after this life, to attain everlasting joy and felicity; through Jesus Christ our Lord. Amen.
 

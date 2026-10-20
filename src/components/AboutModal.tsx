@@ -67,9 +67,12 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
                 1662 Book of Common Prayer
               </div>
               <p className="text-xs sm:text-sm text-stone-700 dark:text-stone-300">
-                From the <span className="font-medium text-stone-900 dark:text-stone-100">Statutory Prayer Book</span>:
+                The 1662 source is the statutory book, Americanized according to Sparks and Long, with the 1662 lectionary added back.
               </p>
               <div className="pt-0.5 flex flex-col gap-1.5 text-xs sm:text-sm">
+                <div className="text-xs sm:text-sm text-stone-700 dark:text-stone-300">
+                  Statutory Prayer Book source:
+                </div>
                 <a
                   href="https://justus.anglican.org/resources/bcp/1662/statutory.htm"
                   target="_blank"
@@ -80,7 +83,7 @@ export function AboutModal({ isOpen, onClose }: AboutModalProps) {
                   https://justus.anglican.org/resources/bcp/1662/statutory.htm
                 </a>
                 <div className="text-xs sm:text-sm text-stone-700 dark:text-stone-300 pt-1">
-                  Americanized according to <span className="font-medium text-stone-900 dark:text-stone-100">Sparks and Long</span>:
+                  Americanized according to Sparks and Long:
                 </div>
                 <a
                   href="https://danielsparks.com/how-to-use-the-1662-book-of-common-prayer-in-the-united-states/"

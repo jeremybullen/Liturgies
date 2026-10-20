@@ -11,7 +11,7 @@ export const litany1928: ServiceItem = {
 
 *To be used after the third Collect at Morning or Evening Prayer; or before the Holy Communion; or separately.*
 
-O GOD the Father, Creator of heaven and earth;  
+O God the Father, Creator of heaven and earth;  
 Have mercy upon us.
 
 O God the Son, Redeemer of the world;  
@@ -23,10 +23,10 @@ Have mercy upon us.
 O holy, blessed, and glorious Trinity, one God;  
 Have mercy upon us.
 
-REMEMBER not, Lord, our offences, nor the offences of our forefathers; neither take thou vengeance of our sins: spare us, good Lord, spare thy people, whom thou hast redeemed with thy most precious blood, and be not angry with us for ever.  
+Remember not, Lord, our offences, nor the offences of our forefathers; neither take thou vengeance of our sins: spare us, good Lord, spare thy people, whom thou hast redeemed with thy most precious blood, and be not angry with us for ever.  
 Spare us, good Lord.
 
-FROM all evil and mischief; from sin; from the crafts and assaults of the devil; from thy wrath, and from everlasting damnation,  
+From all evil and mischief; from sin; from the crafts and assaults of the devil; from thy wrath, and from everlasting damnation,  
 Good Lord, deliver us.
 
 From all blindness of heart; from pride, vainglory, and hypocrisy; from envy, hatred, and malice, and all uncharitableness,  
@@ -50,7 +50,7 @@ Good Lord, deliver us.
 In all time of our tribulation; in all time of our prosperity; in the hour of death, and in the day of judgment,  
 Good Lord, deliver us.
 
-WE sinners do beseech thee to hear us, O Lord God; and that it may please thee to rule and govern thy holy Church universal in the right way;  
+We sinners do beseech thee to hear us, O Lord God; and that it may please thee to rule and govern thy holy Church universal in the right way;  
 We beseech thee to hear us, good Lord.
 
 That it may please thee so to rule the heart of thy servant, THE PRESIDENT OF THE UNITED STATES, that he may above all things seek thy honour and glory;  
@@ -127,7 +127,7 @@ Lord, have mercy upon us.
 
 *Then shall the Minister, and the People with him, say the Lord's Prayer.*
 
-OUR Father, who art in heaven, Hallowed be thy Name. Thy kingdom come. Thy will be done, On earth as it is in heaven. Give us this day our daily bread. And forgive us our trespasses, As we forgive those who trespass against us. And lead us not into temptation, But deliver us from evil. Amen.
+Our Father, who art in heaven, Hallowed be thy Name. Thy kingdom come. Thy will be done, On earth as it is in heaven. Give us this day our daily bread. And forgive us our trespasses, As we forgive those who trespass against us. And lead us not into temptation, But deliver us from evil. Amen.
 
 *The Minister may, at his discretion, omit all that followeth, to the Prayer, "We humbly beseech thee, O Father."*
 
@@ -136,15 +136,15 @@ OUR Father, who art in heaven, Hallowed be thy Name. Thy kingdom come. Thy will 
 
 Let us pray.
 
-O GOD, merciful Father, who despisest not the sighing of a contrite heart, nor the desire of such as are sorrowful; Mercifully assist our prayers which we make before thee in all our troubles and adversities, whensoever they oppress us; and graciously hear us, that those evils which the craft and subtilty of the devil or man worketh against us, may, by thy good providence, be brought to nought, and by the providence of thy goodness they may be dispersed; that we thy servants, being hurt by no persecutions, may evermore give thanks unto thee in thy holy Church; through Jesus Christ our Lord.
+O God, merciful Father, who despisest not the sighing of a contrite heart, nor the desire of such as are sorrowful; Mercifully assist our prayers which we make before thee in all our troubles and adversities, whensoever they oppress us; and graciously hear us, that those evils which the craft and subtilty of the devil or man worketh against us, may, by thy good providence, be brought to nought, and by the providence of thy goodness they may be dispersed; that we thy servants, being hurt by no persecutions, may evermore give thanks unto thee in thy holy Church; through Jesus Christ our Lord.
 
-O Lord, arise, help us, and deliver us for thy Name's sake.
+*Answer.* O Lord, arise, help us, and deliver us for thy Name's sake.
 
-O GOD, we have heard with our ears, and our fathers have declared unto us, the noble works that thou didst in their days, and in the old time before them.
+*Minister.* O God, we have heard with our ears, and our fathers have declared unto us, the noble works that thou didst in their days, and in the old time before them.
 
-O Lord, arise, help us, and deliver us for thine honour.
+*Answer.* O Lord, arise, help us, and deliver us for thine honour.
 
-Glory be to the Father, and to the Son, and to the Holy Ghost;  
+*Minister.* Glory be to the Father, and to the Son, and to the Holy Ghost;  
 *Answer.* As it was in the beginning, is now, and ever shall be, world without end. Amen.
 
 From our enemies defend us, O Christ.  

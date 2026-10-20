@@ -68,25 +68,146 @@ html.dark i {
 }
 
 @media print {
-  header, nav, .no-print, button, aside {
+  @page {
+    size: auto;
+    margin: 18mm 15mm;
+  }
+
+  header, nav, .no-print, button, aside, [role="separator"], [role="dialog"], [aria-modal="true"] {
     display: none !important;
   }
-  body, html.dark body {
-    background: white !important;
-    color: black !important;
+
+  html, body, html.dark, html.dark body, div, main {
+    background: #ffffff !important;
+    background-color: #ffffff !important;
+    color: #111111 !important;
+    box-shadow: none !important;
+    text-shadow: none !important;
+  }
+
+  body {
+    font-family: 'EB Garamond', Garamond, Georgia, serif !important;
+    font-size: 11pt !important;
+    line-height: 1.42 !important;
+  }
+
+  /* Traditional liturgical rubrics: red/crimson in print */
+  .rubric, em, i, html.dark .rubric, html.dark em, html.dark i, .text-\[\#8A211D\], .dark\:text-\[\#E86558\] {
+    color: #8A211D !important;
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
+
+  /* Drop caps in print: ensure clean flow without overlap */
+  .float-left {
+    float: left !important;
+    margin-right: 0.15em !important;
+    line-height: 0.85 !important;
+  }
+
+  /* Congregational bold responses in print */
+  .font-semibold, .font-bold {
+    color: #000000 !important;
+  }
+
+  /* Headings: avoid page break after heading */
+  h1, h2, h3, h4, h5, h6 {
+    page-break-after: avoid !important;
+    break-after: avoid !important;
+    color: #000000 !important;
+  }
+
+  h1 {
+    font-size: 18pt !important;
+    margin-top: 10pt !important;
+    margin-bottom: 8pt !important;
+    text-align: center !important;
+  }
+
+  h2 {
+    font-size: 14pt !important;
+    margin-top: 14pt !important;
+    margin-bottom: 6pt !important;
+    text-align: center !important;
+  }
+
+  h3 {
     font-size: 12pt !important;
-    line-height: 1.45 !important;
+    margin-top: 10pt !important;
+    margin-bottom: 4pt !important;
   }
-  .rubric, em, i, html.dark .rubric, html.dark em, html.dark i {
-    color: #991B1B !important;
-  }
-  h1, h2, h3 {
-    page-break-after: avoid;
-    break-after: avoid;
-  }
+
   p {
-    orphans: 2;
-    widows: 2;
+    orphans: 3;
+    widows: 3;
+    margin-bottom: 6pt !important;
+  }
+
+  /* Prevent awkward page breaks inside short liturgical prayers and versicle-response pairs */
+  .liturgical-block {
+    page-break-inside: avoid;
+    break-inside: avoid;
+  }
+
+  /* Two-column layout for bulletins / paper saving (~40-50% paper reduction) */
+  body.print-two-column .liturgical-text {
+    column-count: 2 !important;
+    column-gap: 8mm !important;
+    column-rule: 1px solid #E2DBCF !important;
+  }
+  body.print-two-column h1 {
+    column-span: all !important;
+    margin-bottom: 12pt !important;
+  }
+
+  /* Type sizes for different liturgical use cases */
+  body.print-size-compact {
+    font-size: 9.5pt !important;
+    line-height: 1.35 !important;
+  }
+  body.print-size-compact h1 { font-size: 15pt !important; }
+  body.print-size-compact h2 { font-size: 12pt !important; }
+  body.print-size-compact h3 { font-size: 10.5pt !important; }
+
+  body.print-size-large {
+    font-size: 13.5pt !important;
+    line-height: 1.55 !important;
+  }
+  body.print-size-large h1 { font-size: 22pt !important; }
+  body.print-size-large h2 { font-size: 17pt !important; }
+  body.print-size-large h3 { font-size: 14pt !important; }
+
+  /* High contrast B&W mode for church photocopiers: renders rubrics in dark black italic */
+  body.print-bw .rubric,
+  body.print-bw em,
+  body.print-bw i,
+  body.print-bw .text-\[\#8A211D\],
+  body.print-bw .dark\:text-\[\#E86558\],
+  body.print-bw .text-\[\#991B1B\] {
+    color: #111111 !important;
+    font-style: italic !important;
+  }
+
+  /* Pulpit and Pew Edition Labels for Paper Header */
+  body.print-pew .print-edition-label::before {
+    content: " · Pew Edition";
+  }
+  body.print-pulpit .print-edition-label::before {
+    content: " · Pulpit Edition";
+  }
+
+  /* Pew Edition (Congregational responses): hide lengthy ceremonial/instructional rubrics */
+  body.print-pew .liturgical-rubric-block,
+  body.print-congregational .liturgical-rubric-block {
+    display: none !important;
+  }
+
+  /* Full page width utilization for clean paper margins */
+  main, .max-w-3xl, .max-w-4xl {
+    max-width: 100% !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    width: 100% !important;
   }
 }
 
