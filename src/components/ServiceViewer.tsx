@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { LiturgicalBook, LiturgicalService, ReadingSettings, LiturgicalBlock } from '../types/liturgy';
-import { Copy, Check, Printer, Share2, ArrowLeft, ArrowRight, ChevronRight, BookOpen } from 'lucide-react';
+import { Check, Share2, ArrowLeft, ArrowRight, ChevronRight, BookOpen } from 'lucide-react';
 
 interface ServiceViewerProps {
   book: LiturgicalBook;
@@ -15,7 +15,6 @@ export const ServiceViewer: React.FC<ServiceViewerProps> = ({
   settings,
   onNavigate
 }) => {
-  const [copiedBlockIdx, setCopiedBlockIdx] = useState<number | null>(null);
   const [toastMessage, setToastMessage] = useState<string | null>(null);
 
   const showToast = (msg: string) => {
@@ -23,21 +22,10 @@ export const ServiceViewer: React.FC<ServiceViewerProps> = ({
     setTimeout(() => setToastMessage(null), 2500);
   };
 
-  const copyToClipboard = (text: string, idx?: number) => {
-    navigator.clipboard.writeText(text);
-    if (idx !== undefined) setCopiedBlockIdx(idx);
-    showToast('Copied to clipboard');
-    setTimeout(() => setCopiedBlockIdx(null), 2000);
-  };
-
   const copyPageUrl = () => {
     const url = window.location.href;
     navigator.clipboard.writeText(url);
     showToast('Service link copied to clipboard');
-  };
-
-  const printService = () => {
-    window.print();
   };
 
   // Determine prev and next services
@@ -109,23 +97,15 @@ export const ServiceViewer: React.FC<ServiceViewerProps> = ({
           </p>
         )}
 
-        {/* Toolbar: Print, Share, Copy */}
+        {/* Toolbar: Share Link */}
         <div className="no-print flex items-center justify-center gap-3 mt-6">
           <button
             onClick={copyPageUrl}
-            className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors border border-stone-200 dark:border-stone-700"
+            className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors border border-stone-200 dark:border-stone-700 cursor-pointer"
             title="Copy service link"
           >
             <Share2 className="w-3.5 h-3.5" />
             <span>Share Link</span>
-          </button>
-          <button
-            onClick={printService}
-            className="flex items-center gap-1.5 text-xs px-3 py-1.5 rounded bg-stone-100 dark:bg-stone-800 text-stone-600 dark:text-stone-300 hover:text-stone-900 dark:hover:text-stone-100 transition-colors border border-stone-200 dark:border-stone-700"
-            title="Print liturgy"
-          >
-            <Printer className="w-3.5 h-3.5" />
-            <span>Print</span>
           </button>
         </div>
       </header>
@@ -138,8 +118,6 @@ export const ServiceViewer: React.FC<ServiceViewerProps> = ({
             block={block}
             idx={idx}
             rubricColorClass={rubricColorClass}
-            copiedIdx={copiedBlockIdx}
-            onCopy={copyToClipboard}
           />
         ))}
       </div>
@@ -181,21 +159,17 @@ interface BlockRendererProps {
   block: LiturgicalBlock;
   idx: number;
   rubricColorClass: string;
-  copiedIdx: number | null;
-  onCopy: (text: string, idx: number) => void;
 }
 
 const BlockRenderer: React.FC<BlockRendererProps> = ({
   block,
   idx,
-  rubricColorClass,
-  copiedIdx,
-  onCopy
+  rubricColorClass
 }) => {
   switch (block.type) {
     case 'heading':
       return (
-        <div className="pt-8 pb-3 border-b border-stone-200 dark:border-stone-800 text-center">
+        <div className="pt-8 pb-3 border-b border-stone-200 dark:border-stone-800 text-left">
           <h2 className="font-heading text-2xl font-bold tracking-wider text-stone-900 dark:text-stone-100">
             {block.title}
           </h2>
@@ -204,7 +178,7 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({
 
     case 'subheading':
       return (
-        <div className="pt-6 pb-2 text-center">
+        <div className="pt-6 pb-2 text-left">
           <h3 className="font-heading text-xl font-semibold text-stone-800 dark:text-stone-200">
             {block.title}
           </h3>
@@ -242,17 +216,9 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({
     case 'prayer':
       return (
         <div className="relative group my-5 p-4 rounded-lg bg-stone-100/40 dark:bg-stone-800/20 border border-stone-200/60 dark:border-stone-700/60">
-          {/* Quick Copy Prayer Icon */}
-          <button
-            onClick={() => onCopy(block.text || '', idx)}
-            className="no-print absolute top-3 right-3 opacity-0 group-hover:opacity-100 p-1.5 rounded bg-white dark:bg-stone-800 text-stone-500 hover:text-stone-900 shadow-xs border border-stone-200 dark:border-stone-700 transition-opacity"
-            title="Copy prayer"
-          >
-            {copiedIdx === idx ? <Check className="w-3.5 h-3.5 text-emerald-500" /> : <Copy className="w-3.5 h-3.5" />}
-          </button>
 
           {block.title && (
-            <h4 className="font-heading text-lg font-medium italic text-center text-stone-900 dark:text-stone-100 mb-2">
+            <h4 className="font-heading text-lg font-medium italic text-left text-stone-900 dark:text-stone-100 mb-2">
               {block.title}
             </h4>
           )}
@@ -292,7 +258,7 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({
       return (
         <div className="my-6">
           {block.title && (
-            <div className="text-center mb-4">
+            <div className="text-left mb-4">
               <h3 className="font-heading text-xl font-semibold tracking-wide text-stone-900 dark:text-stone-100">
                 {block.title}
               </h3>
@@ -332,7 +298,7 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({
       return (
         <div className="my-6 p-5 rounded-lg bg-stone-100/60 dark:bg-stone-800/30 border border-stone-200 dark:border-stone-700">
           {block.title && (
-            <h3 className="font-heading text-xl font-semibold text-stone-900 dark:text-stone-100 mb-3 text-center">
+            <h3 className="font-heading text-xl font-semibold text-stone-900 dark:text-stone-100 mb-3 text-left">
               {block.title}
             </h3>
           )}
@@ -346,7 +312,7 @@ const BlockRenderer: React.FC<BlockRendererProps> = ({
       return (
         <div className="my-5 p-4 rounded-lg bg-stone-50 dark:bg-stone-800/20 border-l-4 border-amber-800/40 dark:border-amber-500/40">
           {block.title && (
-            <h4 className="font-heading text-lg font-medium italic text-center text-stone-900 dark:text-stone-100 mb-2">
+            <h4 className="font-heading text-lg font-medium italic text-left text-stone-900 dark:text-stone-100 mb-2">
               {block.title}
             </h4>
           )}

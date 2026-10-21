@@ -57,9 +57,14 @@ export function toTitleCase(str: string): string {
         return upperToken;
       }
 
-      // Check for biblical book abbreviation like "Cor." or "St."
+      // Check for biblical or ecclesiastical abbreviation like "St." (Saint)
       if (/^st$/i.test(token)) {
         prevDelimiter = '';
+        // If the immediate next token is a dot delimiter, return 'St' so it joins with the dot to form 'St.' without doubling
+        const nextToken = rawTokens[index + 1];
+        if (nextToken && nextToken.startsWith('.')) {
+          return 'St';
+        }
         return 'St.';
       }
 
@@ -88,5 +93,6 @@ export function toTitleCase(str: string): string {
       // Normal word: Capitalize first letter, rest lowercase
       return lower.charAt(0).toUpperCase() + lower.slice(1);
     })
-    .join('');
+    .join('')
+    .replace(/\bSt\.\./g, 'St.');
 }

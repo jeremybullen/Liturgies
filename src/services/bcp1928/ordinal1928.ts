@@ -104,7 +104,7 @@ LET your loins be girded about, and your lights burning; and ye yourselves like 
 
 ALMIGHTY God, giver of all good things, who of thy great goodness hast vouchsafed to accept and take these thy servants unto the Office of Deacons in thy Church; Make them, we beseech thee, O Lord, to be modest, humble, and constant in their Ministration, to have a ready will to observe all spiritual Discipline; that they, having always the testimony of a good conscience, and continuing ever stable and strong in thy Son Christ, may so well behave themselves in this inferior Office, that they may be found worthy to be called unto the higher Ministries in thy Church; through the same thy Son our Saviour Jesus Christ, to whom be glory and honour, world without end. Amen .
 
-*THE Peace of God, which passeth all understanding, keep your hearts and minds in the knowledge and love of God, and of his Son Jesus Christ our Lord: And the Blessing of God Almighty, the Father, the Son, and the Holy Ghost, be amongst you, and remain with you always. Amen .*
+THE Peace of God, which passeth all understanding, keep your hearts and minds in the knowledge and love of God, and of his Son Jesus Christ our Lord: And the Blessing of God Almighty, the Father, the Son, and the Holy Ghost, be amongst you, and remain with you always. Amen .
 
 *And here it must be declared unto the Deacon, that he must continue in that Office of a Deacon the space of a whole year, (except for reasonable causes it shall otherwise seem good unto the Bishop,) to the intent he may be perfect and well expert in the things appertaining to the Ecclesiastical Administration. In executing whereof if he be found faithful and diligent, he may be admitted by his Diocesan to the Order of Priesthood, at the times appointed in the Canon; or else, on urgent occasion, upon some other day, in the face of the Church, in such manner and form as hereafter.*
 `
@@ -216,7 +216,9 @@ TAKE thou Authority to preach the Word of God, and to minister the holy Sacramen
 
 MOST merciful Father, we beseech thee to send upon these thy servants thy heavenly blessing; that they may be clothed with righteousness, and that thy Word spoken by their mouths may have such success, that it may never be spoken in vain. Grant also, that we may have grace to hear and receive what they shall deliver out of thy most holy Word, or agreeable to the same, as the means of our salvation; that in all our words and deeds we may seek thy glory, and the increase of thy kingdom; through Jesus Christ our Lord. Amen .
 
-*THE Peace of God, which passeth all understanding, keep your hearts and minds in the knowledge and love of God, and of his Son Jesus Christ our Lord: And the Blessing of God Almighty, the Father, the Son, and the Holy Ghost, be amongst you, and remain with you always. Amen.  And if, on the same day, the Order of Deacons be given to some, and the Order of Priesthood to others; the Deacons shall be first presented, and then the Priests; and it shall suffice that the Litany be once said for both. The Epistle shall be Ephesians iv. 7 to 13, as before in this Office. Immediately after which, they that are to be made Deacons, shall be examined and Ordained, as is above prescribed. Then one of them having read the Gospel, (which shall be either Saint Matthew ix. 36 to 38, as before in this Office; or else Saint Luke xii. 35 to 38, as before in the Form for the Ordering of Deacons,) they that are to be made Priests shall likewise be examined and Ordained, as is in this Office before appointed. The Collect shall be as followeth.*
+THE Peace of God, which passeth all understanding, keep your hearts and minds in the knowledge and love of God, and of his Son Jesus Christ our Lord: And the Blessing of God Almighty, the Father, the Son, and the Holy Ghost, be amongst you, and remain with you always. Amen.
+ 
+*And if, on the same day, the Order of Deacons be given to some, and the Order of Priesthood to others; the Deacons shall be first presented, and then the Priests; and it shall suffice that the Litany be once said for both. The Epistle shall be Ephesians iv. 7 to 13, as before in this Office. Immediately after which, they that are to be made Deacons, shall be examined and Ordained, as is above prescribed. Then one of them having read the Gospel, (which shall be either Saint Matthew ix. 36 to 38, as before in this Office; or else Saint Luke xii. 35 to 38, as before in the Form for the Ordering of Deacons,) they that are to be made Priests shall likewise be examined and Ordained, as is in this Office before appointed. The Collect shall be as followeth.*
 
 ## The Collect.
 
@@ -280,7 +282,7 @@ REVEREND Father in God, we present unto you this godly and well-learned man, to 
 
 *He shall then require of him the following Promise of Conformity to the Doctrine, Discipline, and Worship of the Protestant Episcopal Church.*
 
-*IN the Name of God, Amen. I, N ., chosen Bishop of the Protestant Episcopal Church in N. , do promise conform-ity and obedience to the Doctrine, Discipline, and Worship of the Protestant Episcopal Church in the United States of America. So help me God, through Jesus Christ.*
+IN the Name of God, Amen. I, N ., chosen Bishop of the Protestant Episcopal Church in N. , do promise conform-ity and obedience to the Doctrine, Discipline, and Worship of the Protestant Episcopal Church in the United States of America. So help me God, through Jesus Christ.
 
 *Then the Presiding Bishop shall move the Congregation present to pray, saying thus to them:*
 
@@ -342,7 +344,7 @@ GIVE heed unto reading, exhortation, and doctrine. Think upon the things contain
 
 MOST merciful Father, send down, we beseech thee, upon this thy servant thy heavenly blessing; and so endue him with thy Holy Spirit, that he, preaching thy Word, may not only be earnest to reprove, beseech, and rebuke, with all patience and doctrine; but also may be, to such as believe, a wholesome example in word, in conver-sation, in love, in faith, in chastity, and in purity; that, faithfully fulfilling his course, at the latter day he may receive the crown of righteousness, laid up by the Lord Jesus, the righteous Judge, who liveth and reigneth with thee and the same Holy Spirit, one God, world without end. Amen .
 
-*THE Peace of God, which passeth all understanding, keep your hearts and minds in the knowledge and love of God, and of his Son Jesus Christ our Lord: And the Blessing of God Almighty, the Father, the Son, and the Holy Ghost, be amongst you, and remain with you always. Amen .*
+THE Peace of God, which passeth all understanding, keep your hearts and minds in the knowledge and love of God, and of his Son Jesus Christ our Lord: And the Blessing of God Almighty, the Father, the Son, and the Holy Ghost, be amongst you, and remain with you always. Amen .
 `
 };
 
@@ -480,9 +482,9 @@ AND the Jews&#8217; passover was at hand, and Jesus went up to Jerusalem, and fo
 
 *And immediately before the final Blessing, the Bishop shall say this Prayer.*
 
-*BLESSED be thy Name, O Lord God, for that it hath pleased thee to have thy habitation among the sons of men, and to dwell in the midst of the assembly of the saints upon the earth; Grant, we beseech thee, that in this place now set apart to thy service, thy holy Name may be worshipped in truth and purity through all generations; through Jesus Christ our Lord. Amen .*
+BLESSED be thy Name, O Lord God, for that it hath pleased thee to have thy habitation among the sons of men, and to dwell in the midst of the assembly of the saints upon the earth; Grant, we beseech thee, that in this place now set apart to thy service, thy holy Name may be worshipped in truth and purity through all generations; through Jesus Christ our Lord. Amen .
 
-*THE Peace of God, which passeth all understanding, keep your hearts and minds in the knowledge and love of God, and of his Son Jesus Christ our Lord: And the Blessing of God Almighty, the Father, the Son, and the Holy Ghost, be amongst you, and remain with you always. Amen .*
+THE Peace of God, which passeth all understanding, keep your hearts and minds in the knowledge and love of God, and of his Son Jesus Christ our Lord: And the Blessing of God Almighty, the Father, the Son, and the Holy Ghost, be amongst you, and remain with you always. Amen .
 `
 };
 
@@ -526,7 +528,8 @@ I, A. B ., receive these keys of the House of God at your hands, as the pledges 
 
 *Here the Institutor shall begin the Office.*
 
-*Minister.* The Lord be with you. Answer . And with thy spirit.
+*Minister.* The Lord be with you.
+*Answer.* And with thy spirit.
 
 Let us pray.
 
@@ -540,15 +543,17 @@ RECEIVE these Books; and let them be the rule of thy conduct in dispensing the d
 
 *Then shall be said or sung Exsurgat Deus, Psalm lxviii., or Judica me, Domine, Psalm xxvi.*
 
-*Minister.* The Law was given by Moses; People . But Grace and Truth came by Jesus Christ: Minister and People . Who is God over all, blessed for evermore. Amen.
+*Minister.* The Law was given by Moses;
+*Answer.* But Grace and Truth came by Jesus Christ:
+*Minister and People.* Who is God over all, blessed for evermore. Amen.
 
 Let us pray.
 
 MOST gracious Father, the giver of all good and perfect gifts, who of thy wise providence hast appointed divers Orders in thy Church; Give thy grace, we beseech thee, to thy servant, to whom the charge of this Congrega-tion is now committed; and so replenish him with the truth of thy doctrine, and endue him with innocency of life, that he may faithfully serve before thee, to the glory of thy great Name, and the benefit of thy holy Church; through Jesus Christ, our only Mediator and Redeemer. Amen .
 
-*OHOLY Jesus, who hast purchased to thyself an universal Church, and hast promised to be with the Ministers of Apostolic Succession to the end of the world; Be graciously pleased to bless the ministry and service of him who is now appointed to offer the sacrifices of prayer and praise to thee in this house, which is called by thy Name. May the words of his mouth, and the meditation of his heart, be alway acceptable in thy sight, O Lord, our strength and our Redeemer. Amen .*
+O HOLY Jesus, who hast purchased to thyself an universal Church, and hast promised to be with the Ministers of Apostolic Succession to the end of the world; Be graciously pleased to bless the ministry and service of him who is now appointed to offer the sacrifices of prayer and praise to thee in this house, which is called by thy Name. May the words of his mouth, and the meditation of his heart, be alway acceptable in thy sight, O Lord, our strength and our Redeemer. Amen .
 
-*OGOD, Holy Ghost, Sanctifier of the faithful, visit, we pray thee, this Congregation with thy love and favour; en-lighten their minds more and more with the light of the everlasting Gospel; graft in their hearts a love of the truth; increase in them true religion; nourish them with all good-ness; and of thy great mercy keep them in the same, O blessed Spirit, whom, with the Father and the Son together, we worship and glorify as one God, world without end. Amen .*
+O GOD, Holy Ghost, Sanctifier of the faithful, visit, we pray thee, this Congregation with thy love and favour; en-lighten their minds more and more with the light of the everlasting Gospel; graft in their hearts a love of the truth; increase in them true religion; nourish them with all good-ness; and of thy great mercy keep them in the same, O blessed Spirit, whom, with the Father and the Son together, we worship and glorify as one God, world without end. Amen .
 
 *Benediction.*
 

@@ -58,13 +58,16 @@ BRETHREN, if there be any of you who knoweth any Impediment, or notable Crime, i
 
 ## The Litany and Suffrages.
 
-*O God the Father of heaven : have mercy upon us miserable sinners.*  
 O God the Father of heaven : have mercy upon us miserable sinners.  
-*O God the Son, Redeemer of the world : have mercy upon us miserable sinners.*  
+O God the Father of heaven : have mercy upon us miserable sinners.
+
 O God the Son, Redeemer of the world : have mercy upon us miserable sinners.  
-*O God the Holy Ghost, proceeding from the Father and the Son : have mercy upon us miserable sinners.*  
+O God the Son, Redeemer of the world : have mercy upon us miserable sinners.
+
 O God the Holy Ghost, proceeding from the Father and the Son : have mercy upon us miserable sinners.  
-*O holy, blessed, and glorious Trinity, three Persons and one God : have mercy upon us miserable sinners.*  
+O God the Holy Ghost, proceeding from the Father and the Son : have mercy upon us miserable sinners.
+
+O holy, blessed, and glorious Trinity, three Persons and one God : have mercy upon us miserable sinners.  
 O holy, blessed, and glorious Trinity, three Persons and one God : have mercy upon us miserable sinners.
 
 *Here, after the Suffrage for the Clergy, shall be inserted this following Prayer:*

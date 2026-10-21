@@ -40,16 +40,23 @@ export const HomePage: React.FC<HomePageProps> = ({
 
       {/* Main Header */}
       <header className="text-center mb-10 sm:mb-14">
-        <h1 className="text-4xl sm:text-5xl font-serif font-bold text-stone-900 dark:text-[#FAF7F0] tracking-tight mb-2.5">
+        <h1 className="text-4xl sm:text-5xl font-serif font-bold text-stone-900 dark:text-[#FAF7F0] tracking-tight mb-3">
           Liturgies
         </h1>
+        <div className="flex items-center justify-center gap-3 my-3">
+          <div className="w-8 sm:w-14 border-t border-[#D5CCBA] dark:border-[#38352F]" />
+          <span className="text-[#8A211D] dark:text-[#E86558] text-base sm:text-lg select-none leading-none font-serif" aria-hidden="true">
+            ✠
+          </span>
+          <div className="w-8 sm:w-14 border-t border-[#D5CCBA] dark:border-[#38352F]" />
+        </div>
         <p className="text-sm sm:text-base font-serif italic text-stone-600 dark:text-stone-400">
           as approved for use in the E&amp;R Synod
         </p>
       </header>
 
       {/* The Three Books */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 mb-4 sm:mb-8">
         
         {/* 1662 */}
         <div className="bg-[#FAF8F5] dark:bg-[#1C1B18] border border-[#D5CCBA] dark:border-[#38352F] rounded-lg p-6 flex flex-col justify-between hover:border-[#8A211D]/50 dark:hover:border-[#E86558]/50 transition-colors shadow-xs">
@@ -148,18 +155,6 @@ export const HomePage: React.FC<HomePageProps> = ({
         </div>
 
       </div>
-
-      {/* About & Sources */}
-      <footer className="text-center pt-6 border-t border-[#E8E2D5] dark:border-[#2D2A24] text-xs font-serif text-stone-500 dark:text-stone-400">
-        <button
-          onClick={onOpenAbout}
-          className="inline-flex items-center gap-1.5 text-[#8A211D] dark:text-[#E86558] hover:underline cursor-pointer font-medium"
-        >
-          <Info className="w-3.5 h-3.5" />
-          <span>About &amp; Sources</span>
-        </button>
-      </footer>
-
     </div>
   );
 };

@@ -143,8 +143,7 @@ O God, merciful Father, that despisest not the sighing of a contrite heart, nor 
 
 *Answer.* O Lord, arise, help us, and deliver us for thy Name's sake.
 
-*Priest.* O God, we have heard with our ears, and our fathers have declared unto us, the noble works that thou didst in their days, and in the old time before them.
-
+*Priest.* O God, we have heard with our ears, and our fathers have declared unto us, the noble works that thou didst in their days, and in the old time before them.  
 *Answer.* O Lord, arise, help us, and deliver us for thine honour.
 
 *Priest.* Glory be to the Father, and to the Son : and to the Holy Ghost;  
