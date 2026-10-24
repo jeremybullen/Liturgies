@@ -65,8 +65,9 @@ export const HomePage: React.FC<HomePageProps> = ({
               onClick={() => onNavigate('1662', 'morning-prayer')}
               className="w-full text-center group cursor-pointer pb-3 border-b border-[#E8E2D5] dark:border-[#2E2B25]"
             >
-              <h2 className="text-lg sm:text-xl font-serif font-bold text-stone-900 dark:text-[#FAF7F0] group-hover:text-[#8A211D] dark:group-hover:text-[#E86558] transition-colors leading-snug">
-                1662 Book of Common Prayer
+              <h2 className="text-lg sm:text-xl font-serif font-bold text-stone-900 dark:text-[#FAF7F0] group-hover:text-[#8A211D] dark:group-hover:text-[#E86558] transition-colors leading-snug min-h-[3.25rem] sm:min-h-[3.75rem] flex flex-col justify-center">
+                <span className="block">1662 Book of</span>
+                <span className="block">Common Prayer</span>
               </h2>
             </button>
 
@@ -97,8 +98,9 @@ export const HomePage: React.FC<HomePageProps> = ({
               onClick={() => onNavigate('1928', 'morning-prayer')}
               className="w-full text-center group cursor-pointer pb-3 border-b border-[#E8E2D5] dark:border-[#2E2B25]"
             >
-              <h2 className="text-lg sm:text-xl font-serif font-bold text-stone-900 dark:text-[#FAF7F0] group-hover:text-[#8A211D] dark:group-hover:text-[#E86558] transition-colors leading-snug">
-                1928 Book of Common Prayer
+              <h2 className="text-lg sm:text-xl font-serif font-bold text-stone-900 dark:text-[#FAF7F0] group-hover:text-[#8A211D] dark:group-hover:text-[#E86558] transition-colors leading-snug min-h-[3.25rem] sm:min-h-[3.75rem] flex flex-col justify-center">
+                <span className="block">1928 Book of</span>
+                <span className="block">Common Prayer</span>
               </h2>
             </button>
 
@@ -129,8 +131,9 @@ export const HomePage: React.FC<HomePageProps> = ({
               onClick={() => onNavigate('1947', 'order-of-worship')}
               className="w-full text-center group cursor-pointer pb-3 border-b border-[#E8E2D5] dark:border-[#2E2B25]"
             >
-              <h2 className="text-lg sm:text-xl font-serif font-bold text-stone-900 dark:text-[#FAF7F0] group-hover:text-[#8A211D] dark:group-hover:text-[#E86558] transition-colors leading-snug">
-                1947 Book of Worship
+              <h2 className="text-lg sm:text-xl font-serif font-bold text-stone-900 dark:text-[#FAF7F0] group-hover:text-[#8A211D] dark:group-hover:text-[#E86558] transition-colors leading-snug min-h-[3.25rem] sm:min-h-[3.75rem] flex flex-col justify-center">
+                <span className="block">1947 Book of</span>
+                <span className="block">Worship</span>
               </h2>
             </button>
 

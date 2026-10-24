@@ -394,16 +394,15 @@ export function App() {
 
               {/* Jump to Psalm selector when reading The Psalter */}
               {currentService.slug === 'the-psalter' && (
-                <>
-                  <span className="text-stone-400 dark:text-stone-600 select-none shrink-0 hidden sm:inline">·</span>
-                  <div className="relative shrink-0" ref={psalmJumpRef}>
+                <div className="flex items-center ml-2.5 sm:ml-4 pl-2.5 sm:pl-3.5 border-l border-[#D5CCBA] dark:border-[#38352F] shrink-0" ref={psalmJumpRef}>
+                  <div className="relative">
                     <button
                       onClick={() => {
                         setIsPsalmJumpOpen(prev => !prev);
                         setIsBookMenuOpen(false);
                         setIsServiceMenuOpen(false);
                       }}
-                      className="inline-flex items-center gap-1 py-1 px-1.5 sm:px-2 rounded border border-[#D5CCBA] dark:border-[#38352F] bg-[#F4EFE6] dark:bg-[#22201C] hover:bg-[#EFE9DC] dark:hover:bg-[#2B2925] text-stone-800 dark:text-stone-200 transition-colors cursor-pointer select-none text-xs font-medium shrink-0"
+                      className="inline-flex items-center gap-1.5 py-1 px-2 sm:px-2.5 rounded border border-[#D5CCBA] dark:border-[#38352F] bg-[#F4EFE6] dark:bg-[#22201C] hover:bg-[#EFE9DC] dark:hover:bg-[#2B2925] text-stone-800 dark:text-stone-200 transition-colors cursor-pointer select-none text-xs font-medium shrink-0 shadow-2xs"
                       title="Jump directly to any Psalm by number (1 to 150)"
                       aria-label="Jump to Psalm"
                       aria-expanded={isPsalmJumpOpen}
@@ -434,14 +433,13 @@ export function App() {
                       }}
                     />
                   </div>
-                </>
+                </div>
               )}
 
               {/* Jump to Day selector when reading Collects, Epistles, and Gospels */}
               {currentService.slug === 'collects-epistles-gospels' && (
-                <>
-                  <span className="text-stone-400 dark:text-stone-600 select-none shrink-0 hidden sm:inline">·</span>
-                  <div className="relative shrink-0" ref={propersJumpRef}>
+                <div className="flex items-center ml-2.5 sm:ml-4 pl-2.5 sm:pl-3.5 border-l border-[#D5CCBA] dark:border-[#38352F] shrink-0" ref={propersJumpRef}>
+                  <div className="relative">
                     <button
                       onClick={() => {
                         setIsPropersJumpOpen(prev => !prev);
@@ -449,7 +447,7 @@ export function App() {
                         setIsServiceMenuOpen(false);
                         setIsPsalmJumpOpen(false);
                       }}
-                      className="inline-flex items-center gap-1 py-1 px-1.5 sm:px-2 rounded border border-[#D5CCBA] dark:border-[#38352F] bg-[#F4EFE6] dark:bg-[#22201C] hover:bg-[#EFE9DC] dark:hover:bg-[#2B2925] text-stone-800 dark:text-stone-200 transition-colors cursor-pointer select-none text-xs font-medium shrink-0"
+                      className="inline-flex items-center gap-1.5 py-1 px-2 sm:px-2.5 rounded border border-[#D5CCBA] dark:border-[#38352F] bg-[#F4EFE6] dark:bg-[#22201C] hover:bg-[#EFE9DC] dark:hover:bg-[#2B2925] text-stone-800 dark:text-stone-200 transition-colors cursor-pointer select-none text-xs font-medium shrink-0 shadow-2xs"
                       title="Jump directly to any Sunday or Holy Day"
                       aria-label="Jump to Sunday or Holy Day"
                       aria-expanded={isPropersJumpOpen}
@@ -481,7 +479,7 @@ export function App() {
                       }}
                     />
                   </div>
-                </>
+                </div>
               )}
 
             </div>

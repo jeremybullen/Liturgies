@@ -6,7 +6,7 @@ export const catechism1928: ServiceItem = {
   title: 'A Catechism',
   shortTitle: 'A Catechism',
   category: 'Catechism & Rites',
-  isService: false,
+  isService: true,
   content: `# A CATECHISM
 ### That is to Say, an Instruction, to be Learned by Every Person Before He be Brought to be Confirmed by the Bishop.
 

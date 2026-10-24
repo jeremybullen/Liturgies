@@ -164,7 +164,7 @@ export function isCongregationalResponse(text: string): boolean {
 export function isLitanyCall(text: string): boolean {
   if (!text) return false;
   const clean = text.replace(/^[*_#“\"‘'(\s]+|[*_#”\"’')\s]+$/g, '').trim();
-  return /^(?:From all\b|From\b|By the\b|By thine\b|In all time\b|That it may please thee\b|We sinners do beseech\b|O God the Father\b|O God the Son\b|O God the Holy\b|O holy,\s+blessed\b|O holy Trinity\b|Remember not,\s+Lord\b|Son of God\b|O Lamb of God\b|O Christ,\s+hear us\b|Lord,\s+have mercy\b|Christ,\s+have mercy\b|Pitifully behold\b|With pity behold\b|Favourably with mercy\b|Both now and ever\b|From our enemies defend us\b|O God,\s+we have heard with our ears\b|O Lord,\s+deal not with us\b|O Lord,\s+let thy mercy\b|Hearken unto our voice\b|Glory be to the Father\b)/i.test(clean);
+  return /^(?:From all\b|From\b|By the\b|By thine\b|In all time\b|That it may please thee\b|We sinners do beseech\b|O God,?\s+(?:the\s+)?Father\b|O God,?\s+(?:the\s+)?Son\b|O God,?\s+(?:the\s+)?Holy\b|O holy,?\s+blessed\b|O holy Trinity\b|Remember not,\s+Lord\b|(?:O\s+)?Son of God\b|O Lamb of God\b|O Christ,\s+hear us\b|Lord,\s+have mercy\b|Christ,\s+have mercy\b|Pitifully behold\b|With pity behold\b|Favourably with mercy\b|Both now and ever\b|From our enemies defend us\b|O God,\s+we have heard with our ears\b|O Lord,\s+deal not with us\b|O Lord,\s+let thy mercy\b|Hearken unto our voice\b|Glory be to the Father\b)/i.test(clean);
 }
 
 /**
@@ -174,6 +174,65 @@ export function isCallAndResponseText(text: string): boolean {
   if (isLitanyCall(text) || isCongregationalResponse(text)) return true;
   // Also matches lines with embedded priest/minister or response tags
   return /^[*_]?(?:Priest|Minister|Bishop|Officiant|Answer|Response|People|The People)\b/i.test(text.trim());
+}
+
+/**
+ * Detects whether a paragraph or text block is one of the Ten Commandments,
+ * their introductory preface, or the Summary of the Law (commandments).
+ * Commandments are recited as a cohesive statutory sequence where short
+ * and long commandments appear together; excluding drop caps prevents
+ * visually erratic typography where only longer commandments receive drop caps.
+ */
+export function isCommandment(text: string): boolean {
+  if (!text) return false;
+  let clean = text.replace(/^[*_#“\"‘'(\s]+|[*_#”\"’')\s]+$/g, '').trim();
+
+  // Strip optional leading numbers or ordinal labels (e.g. "I. ", "1. ", "The First Commandment. ")
+  clean = clean.replace(/^(?:(?:The\s+)?(?:First|Second|Third|Fourth|Fifth|Sixth|Seventh|Eighth|Ninth|Tenth)(?:\s+Commandment)?[.:]?|[0-9IVXLCDM]+[.:])\s*/i, '').trim();
+
+  // Decalogue preface
+  if (/^God spake (?:all )?these words\b/i.test(clean)) {
+    return true;
+  }
+
+  // The Ten Commandments
+  if (/^Thou shalt have no(?:ne)? other gods\b/i.test(clean)) {
+    return true;
+  }
+  if (/^Thou shalt not make (?:unto|to) (?:thee|thyself)\b/i.test(clean)) {
+    return true;
+  }
+  if (/^Thou shalt not take the Name of the Lord\b/i.test(clean)) {
+    return true;
+  }
+  if (/^Remember (?:the sabbath day|that thou keep holy the Sabbath-day)\b/i.test(clean)) {
+    return true;
+  }
+  if (/^Honou?r thy father and thy mother\b/i.test(clean)) {
+    return true;
+  }
+  if (/^Thou shalt (?:not kill|do no murder)\b/i.test(clean)) {
+    return true;
+  }
+  if (/^Thou shalt not commit adultery\b/i.test(clean)) {
+    return true;
+  }
+  if (/^Thou shalt not steal\b/i.test(clean)) {
+    return true;
+  }
+  if (/^Thou shalt not bear false witness\b/i.test(clean)) {
+    return true;
+  }
+  if (/^Thou shalt not covet\b/i.test(clean)) {
+    return true;
+  }
+
+  // Summary of the Law: Christ's two commandments
+  if (/^Thou shalt love the Lord thy God with all thy heart\b/i.test(clean)) {
+    return true;
+  }
+
+  return false;
 }
 
 /**
@@ -315,6 +374,12 @@ function analyzeLiturgicalBlock(text: string, fontSize: number): DropCapAnalysis
 
   // Must begin with an alphabetical character
   if (!/^[A-Za-z]/.test(trimmed)) {
+    return { type: 'none', lineCount, speakerRubric, quotePrefix, remainder: trimmed, fullBodyText };
+  }
+
+  // Commandments (Decalogue and Summary of the Law) are never drop-capped,
+  // preserving visual uniformity since shorter commandments do not have drop caps.
+  if (isCommandment(trimmed)) {
     return { type: 'none', lineCount, speakerRubric, quotePrefix, remainder: trimmed, fullBodyText };
   }
 
@@ -859,7 +924,7 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
 
       // Single continuous paragraph: analyze based on intelligent line count!
       const analysis = analyzeLiturgicalBlock(trimmed, fontSize);
-      const canApplyDropCap = allowDropCaps && !skipDropCapForScripture;
+      const canApplyDropCap = allowDropCaps && !skipDropCapForScripture && !isCommandment(trimmed);
 
       // Multi-line drop cap (2 lines scaled, or 3+ lines classical)
       // Small caps is strictly restricted to accompany the drop cap initial
@@ -942,7 +1007,6 @@ export function isRubricItalic(
   isInsideRubricBlock: boolean = false
 ): boolean {
   if (isInsideRubricBlock) return true;
-  if (!isServiceDoc) return false;
 
   const trimmed = text.replace(/^[¶\u00b6]\s*/, '').trim();
   if (!trimmed) return false;
@@ -957,9 +1021,11 @@ export function isRubricItalic(
     return false;
   }
 
-  // Scripture citations are NOT rubrics (e.g. *Psalm li. 3.*, *St. John xi. 25.*, *Rom. viii. 14.*)
-  if (/^(?:(?:1|2|3|First|Second|Third)\s+)?(?:St\.|Gen\.|Exod\.|Lev\.|Num\.|Deut\.|Josh\.|Judg\.|Ruth|Sam\.|Kings|Chron\.|Ezra|Neh\.|Esth\.|Job|Ps\.|Psalm|Prov\.|Eccles\.|Song|Isa\.|Jer\.|Lam\.|Ezek\.|Dan\.|Hos\.|Joel|Amos|Obad\.|Jonah|Mic\.|Nah\.|Hab\.|Zeph\.|Hag\.|Zech\.|Mal\.|Matt\.|Matth\.|Mark|Luke|John|Acts|Rom\.|Cor\.|Gal\.|Eph\.|Phil\.|Col\.|Thess\.|Tim\.|Tit\.|Philem\.|Heb\.|Jas\.|James|Pet\.|Jude|Rev\.)\b/i.test(trimmed)) {
-    return false;
+  // Scripture citations (e.g. *Hab. ii. 20.*, *Psalm cxxii. 1.*, *St. Matthew iii. 2.*, *1 Cor. xv. 57.*)
+  // In liturgical service books (such as 1928 and 1662 BCP), opening sentence citations and marginal references
+  // are rubrics directing the biblical source and are printed in vermilion red.
+  if (/^(?:(?:1|2|3|First|Second|Third)\s+)?(?:St\.?|Gen\.?|Exod\.?|Lev\.?|Num\.?|Deut\.?|Josh\.?|Judg\.?|Ruth|Sam\.?|Kings|Chron\.?|Ezra|Neh\.?|Esth\.?|Job|Ps\.?|Psal\.?|Psalm|Prov\.?|Eccles\.?|Song|Isa\.?|Isaiah|Jer\.?|Lam\.?|Ezek\.?|Ezekiel|Dan\.?|Hos\.?|Joel|Amos|Obad\.?|Jonah|Mic\.?|Nah\.?|Hab\.?|Zeph\.?|Hag\.?|Zech\.?|Mal\.?|Matt\.?|Matthew|Matth\.?|Mark|Luke|John|Acts|Rom\.?|Cor\.?|Gal\.?|Eph\.?|Phil\.?|Col\.?|Thess\.?|Tim\.?|Tit\.?|Philem\.?|Heb\.?|Jas\.?|James|Pet\.?|Jude|Rev\.?)(?:\s+[0-9ivxlc]+|(?:\s+[a-z]+)*\s+[0-9ivxlc]+|\.|\s|$)/i.test(trimmed)) {
+    return isServiceDoc;
   }
 
   // Book titles, Acts, and statutory citations are NOT rubrics
@@ -983,6 +1049,13 @@ export function isRubricItalic(
     const hasRubricVerb = /\b(?:shall|kneel|stand|say|sing|read|turning|laying|minister|use|omitted|ordered)\b/i.test(trimmed);
     if (!hasRubricVerb) return false;
   }
+
+  // Explicit liturgical directions or rubrics (e.g. "The Minister ... shall", "Then shall", "shall be brought", etc.)
+  if (/\b(?:shall\s+(?:diligently|cause|be\s+brought|either\s+bring|say|sing|read|kneel|stand|order|minister)|Then\s+shall|Here\s+(?:followeth|is|shall)|To\s+be\s+(?:said|sung|used)|The\s+(?:Minister|Priest|Bishop)\s+(?:shall|may|of\s+every\s+Parish\s+shall)|So\s+soon\s+as\s+Children|And\s+all\s+Fathers|And\s+whensoever\s+the\s+Bishop)\b/i.test(trimmed)) {
+    return true;
+  }
+
+  if (!isServiceDoc) return false;
 
   // In liturgical service documents, all remaining italic instructions are authentic rubrics
   return true;

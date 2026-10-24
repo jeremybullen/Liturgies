@@ -107,8 +107,8 @@ export const catechism: ServiceItem = {
   slug: 'catechism',
   title: 'A Catechism',
   shortTitle: 'A Catechism',
-  category: 'Instruction',
-  isService: false,
+  category: 'Catechism & Rites',
+  isService: true,
   content: `# A Catechism, That is to Say, an Instruction to be Learned of Every Person, Before He be Brought to be Confirmed by the Bishop
 
 *Question.* WHAT is your Name?  
