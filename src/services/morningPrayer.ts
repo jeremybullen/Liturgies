@@ -87,7 +87,7 @@ As it was in the beginning, is now, and ever shall be : world without end. Amen.
 
 *Then shall be read distinctly with an audible voice the First Lesson, taken out of the Old Testament, as is appointed in the Calendar, except there be proper Lessons assigned for that day: He that readeth so standing and turning himself, as he may best be heard of all such as are present. And after that, shall be said or sung, in English, the Hymn called Te Deum Laudamus, daily throughout the Year.*
 
-*Note, That before every Lesson the Minister shall say, Here beginneth such a Chapter, or Verse of such a Chapter, of such a Book: And after every Lesson, Here endeth the First, or the Second Lesson.*
+*Note, That before every Lesson the Minister shall say,* Here beginneth such a Chapter, or Verse of such a Chapter, of such a Book: *And after every Lesson,* Here endeth the First, or the Second Lesson.
 
 ### Te Deum Laudamus
 

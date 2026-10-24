@@ -105,8 +105,50 @@ export function isSpokenLiturgicalText(text: string): boolean {
   // Strip leading speaker label if present (e.g. "Minister. ", "Priest. ", "The Bishop. ")
   clean = clean.replace(/^(?:The\s+)?(?:Minister|Priest|Bishop|Dean|Reader|Officiant|Deacon|Question|Answer|People|The People|Congregation)[.:]?\s+/i, '');
 
+  // Spoken lesson announcements (e.g. "Here beginneth...", "Here endeth...")
+  if (/^Here\s+(?:beginneth|endeth)\b/i.test(clean)) {
+    return true;
+  }
+
   // Known spoken liturgical biddings, invocations, versicles, and responses
   return /^(?:Let us pray\b|The Lord be with you\b|And with thy spirit\b|And with your spirit\b|Lord, have mercy\b|Christ, have mercy\b|O Lord, open\b|O Lord, make haste\b|O God, make speed\b|And our mouth\b|And my mouth\b|Glory be to the Father\b|As it was in the beginning\b|Praise ye the Lord\b|The Lord's Name be praised\b|Good Lord, deliver us\b|We beseech thee to hear us\b|Graciously hear us\b|Son of God\b|O Lamb of God\b|Grant us thy peace\b|Have mercy upon us\b|Spare us, good Lord\b|O Lord, save\b|Endue thy Ministers\b|And make thy chosen\b|Give peace in our time\b|O God, make clean\b|And take not thy Holy Spirit\b|Lift up your hearts\b|We lift them up\b|Let us give thanks\b|It is meet and right\b|Amen\.?$|I do\.?$|I will\.?$|Our Father\b|I believe in God\b|I believe in one God\b|The peace of God\b|The grace of our Lord\b)/i.test(clean);
+}
+
+/**
+ * Parses lesson introduction rubrics (e.g. in Morning and Evening Prayer)
+ * which mix directional rubric instructions with spoken announcement formulas.
+ * In historical Prayer Book typography:
+ * - Instructions ("Note, That before every Lesson...", "and after every Lesson,") are red italic rubrics.
+ * - Spoken formulas ("Here beginneth...", "Here endeth the First...") are black roman (non-italic).
+ */
+export function parseLessonAnnouncement(raw: string): {
+  rubric1: string;
+  spoken1: string;
+  rubric2: string;
+  spoken2: string;
+} | null {
+  if (!raw) return null;
+  let s = raw.trim();
+
+  // Strip outer asterisks if the entire block was wrapped in *...*
+  if (s.startsWith('*') && s.endsWith('*') && s.indexOf('*', 1) === s.length - 1) {
+    s = s.slice(1, -1).trim();
+  }
+
+  // Quick check: must contain "before every Lesson" (or "before each Lesson") and "Here beginneth"
+  if (!/\bbefore every Lesson\b/i.test(s) || !/\bHere beginneth\b/i.test(s)) {
+    return null;
+  }
+
+  const match = s.match(/^([\s\S]*?(?:shall\s+say|saying)[,\s:]*\*?)\s*(\*?Here\s+beginneth[\s\S]*?(?:;|\:|\.|\s-\s|,))\s*(\*?(?:;\s*and\s+|and\s+|And\s+)?after\s+every\s+Lesson[,\s:]*\*?)\s*(\*?Here\s+endeth[\s\S]*)$/i);
+  if (!match) return null;
+
+  return {
+    rubric1: match[1].replace(/[*_]/g, '').trim(),
+    spoken1: match[2].replace(/[*_]/g, '').trim(),
+    rubric2: match[3].replace(/[*_]/g, '').trim(),
+    spoken2: match[4].replace(/[*_]/g, '').trim(),
+  };
 }
 
 /**
@@ -120,6 +162,11 @@ export function isCongregationalResponse(text: string): boolean {
 
   // Directions instructing congregational action are rubrics, NOT responses
   if (/^(?:The\s+)?(?:People|Congregation)\s+(?:shall|kneel|stand|all|answering|answer\b)/i.test(trimmed)) {
+    return false;
+  }
+
+  // Scripture verses ending with citations (e.g. *1 Cor. xv. 57.*, *Hab. ii. 20.*) are liturgical readings, NEVER responses
+  if (/\*\s*(?:(?:1|2|3|First|Second|Third|I|II|III)\s+)?(?:St\.?|Saint\s+)?[A-Za-z.]+[\s\S]*?[0-9ivxlc]+[^*]*\*\s*$/i.test(trimmed)) {
     return false;
   }
 
@@ -155,7 +202,7 @@ export function isCongregationalResponse(text: string): boolean {
     return false;
   }
 
-  return /^(?:Good Lord,\s+deliver us|We beseech thee to hear us(?:,\s+good Lord)?|Spare us,\s+good Lord|Have mercy upon us|Grant us thy peace|Neither reward us (?:after|according to) our iniquities|O Lord,\s+arise,\s+help us.*|Graciously look upon our afflictions|Mercifully forgive the sins of thy people|O Son of David,\s+have mercy upon us|Graciously hear us.*|As we do put our trust in thee|And with thy spirit|And with your spirit|The Lord's Name be praised|Praise ye the Lord|Thanks be to God|Glory be to thee,\s+O Lord|Praise be to thee,\s+O Christ|It is meet and right so to do|Christ,\s+have mercy(?: upon us)?|As it was in the beginning,\s+is now,\s+and ever shall be.*|And grant us thy salvation|And our mouth shall shew forth thy praise|And my mouth shall shew forth thy praise|O Lord,\s+make haste to help us|And make thy chosen people joyful|And bless thine inheritance|Because there is none other that fighteth for us|And take not thy Holy Spirit from us|And mercifully hear us when we call upon thee|Amen\.?$)/i.test(clean);
+  return /^(?:Good Lord,\s+deliver us|We beseech thee to hear us(?:,\s+good Lord)?|Spare us,\s+good Lord|Have mercy upon us|Grant us thy peace|Neither reward us (?:after|according to) our iniquities|O Lord,\s+arise,\s+help us.*|Graciously look upon our afflictions|Mercifully forgive the sins of thy people|O Son of David,\s+have mercy upon us|Graciously hear us.*|As we do put our trust in thee|And with thy spirit\.?$|And with your spirit\.?$|The Lord's Name be praised\.?$|Praise ye the Lord\.?$|Thanks be to God\.?$|Glory be to thee,\s+O Lord\.?$|Praise be to thee,\s+O Christ\.?$|It is meet and right so to do\.?$|Christ,\s+have mercy(?: upon us)?|As it was in the beginning,\s+is now,\s+and ever shall be.*|And grant us thy salvation|And our mouth shall shew forth thy praise|And my mouth shall shew forth thy praise|O Lord,\s+make haste to help us|And make thy chosen people joyful|And bless thine inheritance|Because there is none other that fighteth for us|And take not thy Holy Spirit from us|And mercifully hear us when we call upon thee|Amen\.?$)/i.test(clean);
 }
 
 /**
@@ -517,11 +564,11 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
       .replace(/(\|[^\n]+\|)\n([^|\n#])/g, '$1\n\n$2');
     const rawParagraphs = normalized.split(/\n\s*\n/);
 
-    // Helper to detect if a paragraph has an italicized Bible citation (e.g. *Psalm li. 3.*, *Jer. x. 24. Psalm vi. 1.*, *St. Matth. v.*, *Acts xx. 35.*)
+    // Helper to detect if a paragraph has an italicized Bible citation (e.g. *Psalm li. 3.*, *Jer. x. 24. Psalm vi. 1.*, *St. Matth. v.*, *Acts xx. 35.*, *1 Cor. xv. 57.*)
     const isScriptureVerse = (p: string) => {
       const t = p.trim();
       if (t.startsWith('#') || t.startsWith('*')) return false;
-      return /\*\s*(?:[123]\s+)?[A-Za-z.]+[\s\S]*?[0-9ivxlc]+[^*]*\*\s*$/i.test(t);
+      return /\*\s*(?:(?:1|2|3|First|Second|Third|I|II|III)\s+)?(?:St\.?|Saint\s+)?[A-Za-z.]+[\s\S]*?[0-9ivxlc]+[^*]*\*\s*$/i.test(t);
     };
 
     // Helper to detect rubric or header introducing optional scriptures (Opening Sentences, Offertory Sentences, etc.)
@@ -768,6 +815,25 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
         );
       }
 
+      // Lesson Introduction Announcement (e.g. "Note, That before every Lesson...")
+      // In historical Prayer Book typography, instructions ("before every lesson...") are red italic rubrics,
+      // while spoken liturgical formulas ("Here beginneth...", "Here endeth...") are black roman (non-italic).
+      const lessonAnnounce = parseLessonAnnouncement(trimmed);
+      if (lessonAnnounce) {
+        return (
+          <p
+            key={pIdx}
+            className="my-4 leading-relaxed clear-both text-stone-900 dark:text-[#EDE7DD]"
+            style={{ fontSize: `${Math.round(fontSize * 0.94)}px` }}
+          >
+            <span className="text-[#991B1B] dark:text-[#E86558] italic">{lessonAnnounce.rubric1}</span>{' '}
+            <span className="text-stone-900 dark:text-[#EDE7DD] font-normal not-italic">{lessonAnnounce.spoken1}</span>{' '}
+            <span className="text-[#991B1B] dark:text-[#E86558] italic">{lessonAnnounce.rubric2}</span>{' '}
+            <span className="text-stone-900 dark:text-[#EDE7DD] font-normal not-italic">{lessonAnnounce.spoken2}</span>
+          </p>
+        );
+      }
+
       // Standalone Rubric Paragraph (*...*)
       // Differentiated with vermilion red color and italic font
       const isDialogueLead = /^\*[A-Za-z\s/&.]+\*\s+\S/.test(trimmed);
@@ -854,7 +920,7 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
         // Check if the entire multi-line block is a series of rubrics
         const allLinesRubrics = isServiceDoc && lines.every(l => {
           const lt = l.trim();
-          return lt.startsWith('*') && lt.endsWith('*') && isRubricItalic(lt.slice(1, -1), isServiceDoc, false);
+          return lt.startsWith('*') && lt.endsWith('*') && isRubricItalic(lt.slice(1, -1), isServiceDoc, false) && !parseLessonAnnouncement(lt);
         });
 
         if (allLinesRubrics) {
@@ -908,7 +974,7 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
       }
 
       // Single continuous paragraph: check if it is a congregational response (e.g. in ER 1947 or standalone line)
-      if (isCongregationalResponse(trimmed)) {
+      if (isCongregationalResponse(trimmed) && !isScriptureVerse(trimmed)) {
         return (
           <div
             key={pIdx}
@@ -1006,14 +1072,12 @@ export function isRubricItalic(
   isServiceDoc: boolean = true,
   isInsideRubricBlock: boolean = false
 ): boolean {
-  if (isInsideRubricBlock) return true;
-
-  const trimmed = text.replace(/^[¶\u00b6]\s*/, '').trim();
+  const trimmed = text.replace(/^[¶\u00b6(\s\[]+|[)\s\]]+$/g, '').trim();
   if (!trimmed) return false;
 
-  // Speaker labels are liturgical rubrics (e.g. *Priest.*, *Minister.*, *Question.*)
-  if (/^(?:The\s+)?(?:Minister|Priest|Bishop|Dean|Reader|Officiant|Deacon|Question|Answer|People|The People|Congregation)[.:]?$/i.test(trimmed)) {
-    return true;
+  // Spoken lesson announcements ("Here beginneth...", "Here endeth...") are spoken text, NEVER rubrics
+  if (/^Here\s+(?:beginneth|endeth)\b/i.test(trimmed)) {
+    return false;
   }
 
   // Standalone Amen or spoken prayers/responses are NOT rubrics
@@ -1021,11 +1085,23 @@ export function isRubricItalic(
     return false;
   }
 
-  // Scripture citations (e.g. *Hab. ii. 20.*, *Psalm cxxii. 1.*, *St. Matthew iii. 2.*, *1 Cor. xv. 57.*)
-  // In liturgical service books (such as 1928 and 1662 BCP), opening sentence citations and marginal references
-  // are rubrics directing the biblical source and are printed in vermilion red.
-  if (/^(?:(?:1|2|3|First|Second|Third)\s+)?(?:St\.?|Gen\.?|Exod\.?|Lev\.?|Num\.?|Deut\.?|Josh\.?|Judg\.?|Ruth|Sam\.?|Kings|Chron\.?|Ezra|Neh\.?|Esth\.?|Job|Ps\.?|Psal\.?|Psalm|Prov\.?|Eccles\.?|Song|Isa\.?|Isaiah|Jer\.?|Lam\.?|Ezek\.?|Ezekiel|Dan\.?|Hos\.?|Joel|Amos|Obad\.?|Jonah|Mic\.?|Nah\.?|Hab\.?|Zeph\.?|Hag\.?|Zech\.?|Mal\.?|Matt\.?|Matthew|Matth\.?|Mark|Luke|John|Acts|Rom\.?|Cor\.?|Gal\.?|Eph\.?|Phil\.?|Col\.?|Thess\.?|Tim\.?|Tit\.?|Philem\.?|Heb\.?|Jas\.?|James|Pet\.?|Jude|Rev\.?)(?:\s+[0-9ivxlc]+|(?:\s+[a-z]+)*\s+[0-9ivxlc]+|\.|\s|$)/i.test(trimmed)) {
+  if (isInsideRubricBlock) return true;
+
+  // Speaker labels are liturgical rubrics (e.g. *Priest.*, *Minister.*, *Question.*)
+  if (/^(?:The\s+)?(?:Minister|Priest|Bishop|Dean|Reader|Officiant|Deacon|Question|Answer|People|The People|Congregation)[.:]?$/i.test(trimmed)) {
+    return true;
+  }
+
+  // Scripture citations (e.g. *Hab. ii. 20.*, *Psalm cxxii. 1.*, *St. Matthew iii. 2.*, *1 Cor. xv. 57.*, *St. Mark xvi. 6. St. Luke xxiv. 34.*)
+  // In liturgical service books (such as 1928 and 1662 BCP), opening sentence citations, offertory citations,
+  // comfortable words citations, and marginal references are rubrics directing the biblical source and are printed in vermilion red.
+  if (/^(?:(?:1|2|3|First|Second|Third|I|II|III)\s+)?(?:St\.?|Saint\s+)?(?:Gen\.?|Genesis|Exod\.?|Exodus|Lev\.?|Leviticus|Num\.?|Numbers|Deut\.?|Deuteronomy|Josh\.?|Joshua|Judg\.?|Judges|Ruth|Sam\.?|Samuel|Kings|Kgs\.?|Chron\.?|Chronicles|Ezra|Neh\.?|Nehemiah|Esth\.?|Esther|Job|Ps\.?|Psal\.?|Psalm|Psalms|Prov\.?|Proverbs|Eccles\.?|Ecclesiastes|Song(?:\s+of\s+Solomon)?|Cant\.?|Isa\.?|Isaiah|Jer\.?|Jeremiah|Lam\.?|Lamentations|Ezek\.?|Ezekiel|Dan\.?|Daniel|Hos\.?|Hosea|Joel|Amos|Obad\.?|Obadiah|Jonah|Mic\.?|Micah|Nah\.?|Nahum|Hab\.?|Habakkuk|Zeph\.?|Zephaniah|Hag\.?|Haggai|Zech\.?|Zechariah|Mal\.?|Malachi|Matt\.?|Matthew|Matth\.?|Mark|Luke|John|Acts|Rom\.?|Romans|Cor\.?|Corinthians|Gal\.?|Galatians|Eph\.?|Ephes\.?|Ephesians|Phil\.?|Philippians|Col\.?|Colossians|Thess\.?|Thessalonians|Tim\.?|Timothy|Tit\.?|Titus|Philem\.?|Philemon|Heb\.?|Hebrews|Jas\.?|James|Pet\.?|Peter|Jude|Rev\.?|Revelation|Wisd\.?|Wisdom|Ecclus\.?|Ecclesiasticus|Bar\.?|Baruch|Tob\.?|Tobit)(?:\s+[0-9ivxlc]+|(?:\s+[a-z]+)*\s+[0-9ivxlc]+|\.|\s|$)/i.test(trimmed)) {
     return isServiceDoc;
+  }
+
+  // Standalone Amen or spoken prayers/responses are NOT rubrics
+  if (/^Amen\.?$/i.test(trimmed) || isSpokenLiturgicalText(trimmed) || isCongregationalResponse(trimmed)) {
+    return false;
   }
 
   // Book titles, Acts, and statutory citations are NOT rubrics
@@ -1084,6 +1160,19 @@ function renderLine(
     return (
       <div className="pl-6 sm:pl-8 text-stone-900 dark:text-[#EDE7DD] italic font-normal leading-relaxed">
         Amen.
+      </div>
+    );
+  }
+
+  // Check for Lesson Announcement in line
+  const lessonAnnounce = parseLessonAnnouncement(trimmed);
+  if (lessonAnnounce) {
+    return (
+      <div className="leading-relaxed text-stone-900 dark:text-[#EDE7DD]">
+        <span className="text-[#991B1B] dark:text-[#E86558] italic">{lessonAnnounce.rubric1}</span>{' '}
+        <span className="text-stone-900 dark:text-[#EDE7DD] font-normal not-italic">{lessonAnnounce.spoken1}</span>{' '}
+        <span className="text-[#991B1B] dark:text-[#E86558] italic">{lessonAnnounce.rubric2}</span>{' '}
+        <span className="text-stone-900 dark:text-[#EDE7DD] font-normal not-italic">{lessonAnnounce.spoken2}</span>
       </div>
     );
   }
@@ -1270,7 +1359,7 @@ function renderInlineMarkdown(
       // Check if this italic part is an authentic liturgical rubric
       const isRubric = isRubricItalic(trimmedItalic, isServiceDoc, isInsideRubric);
 
-      if (isAmen || isSpoken || (isResponse && !isSpeakerTag)) {
+      if (isAmen || isSpoken || (isResponse && !isSpeakerTag && !isRubric)) {
         // Spoken liturgical text, Amens, and congregational responses are strictly standard ink, NEVER red rubrics
         parts.push(
           <span key={key++} className={isResponse ? "text-stone-900 dark:text-[#EDE7DD] italic font-normal" : "text-stone-900 dark:text-[#EDE7DD] font-normal"}>

@@ -147,7 +147,7 @@ As it was in the beginning, is now, and ever shall be, world without end. Amen.
 *Then shall be read the First Lesson, according to the Table or Calendar.*
 
 *After which shall be said or sung the following Hymn.*
-*Note, That before every Lesson, the Minister shall say, Here beginneth the —— Chapter (or the —— Verse of the —— Chapter) of the Book of ——; and after every Lesson, Here endeth the First (or the Second) Lesson.*
+*Note, That before every Lesson, the Minister shall say,* Here beginneth the —— Chapter (or the —— Verse of the —— Chapter) of the Book of ——; *and after every Lesson,* Here endeth the First (or the Second) Lesson.
 
 ### Te Deum laudamus
 
