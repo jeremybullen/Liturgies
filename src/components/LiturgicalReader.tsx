@@ -21,6 +21,19 @@ const ROMAN_MAP: Record<string, number> = {
   I: 1, V: 5, X: 10, L: 50, C: 100, D: 500, M: 1000
 };
 
+export const MANUAL_ACT_TITLES: Record<string, string> = {
+  '(a)': 'Here the Priest is to take the Paten into his hands:',
+  'a': 'Here the Priest is to take the Paten into his hands:',
+  '(b)': 'And here to break the Bread:',
+  'b': 'And here to break the Bread:',
+  '(c)': 'And here to lay his hand upon all the Bread.',
+  'c': 'And here to lay his hand upon all the Bread.',
+  '(d)': 'Here he is to take the Cup into his hand:',
+  'd': 'Here he is to take the Cup into his hand:',
+  '(e)': 'And here to lay his hand upon every vessel (be it Chalice or Flagon) in which there is any Wine to be consecrated.',
+  'e': 'And here to lay his hand upon every vessel (be it Chalice or Flagon) in which there is any Wine to be consecrated.'
+};
+
 function parseRomanNumeral(roman: string): number {
   let val = 0;
   const upper = roman.toUpperCase();
@@ -445,9 +458,10 @@ function analyzeLiturgicalBlock(text: string, fontSize: number): DropCapAnalysis
 }
 
 function isMarkdownTable(lines: string[]): boolean {
-  if (lines.length < 2) return false;
-  const headerLine = lines[0].trim();
-  const sepLine = lines[1].trim();
+  const nonEmpty = lines.map(l => l.trim()).filter(l => l.length > 0);
+  if (nonEmpty.length < 2) return false;
+  const headerLine = nonEmpty[0];
+  const sepLine = nonEmpty[1];
   if (!headerLine.includes('|') || !sepLine.includes('|')) return false;
   return /^\|?(\s*:?-{2,}:?\s*\|)+\s*:?-{2,}:?\s*\|?\s*$/.test(sepLine);
 }
@@ -457,6 +471,14 @@ function parseMarkdownTable(lines: string[]): {
   alignments: ('left' | 'center' | 'right')[];
   rows: string[][];
 } {
+  const tableLines = lines
+    .map(l => l.trim())
+    .filter(l => l.length > 0 && l.includes('|'));
+
+  if (tableLines.length < 2) {
+    return { headers: [], alignments: [], rows: [] };
+  }
+
   const parseRow = (line: string): string[] => {
     let trimmed = line.trim();
     if (trimmed.startsWith('|')) trimmed = trimmed.slice(1);
@@ -464,9 +486,9 @@ function parseMarkdownTable(lines: string[]): {
     return trimmed.split('|').map(c => c.trim());
   };
 
-  const headers = parseRow(lines[0]);
-  const sepCells = parseRow(lines[1]);
-  const alignments: ('left' | 'center' | 'right')[] = sepCells.map(cell => {
+  const rawHeaders = parseRow(tableLines[0]);
+  const sepCells = parseRow(tableLines[1]);
+  const rawAlignments: ('left' | 'center' | 'right')[] = sepCells.map(cell => {
     const c = cell.trim();
     const startColon = c.startsWith(':');
     const endColon = c.endsWith(':');
@@ -475,12 +497,39 @@ function parseMarkdownTable(lines: string[]): {
     return 'left';
   });
 
-  const rows: string[][] = [];
-  for (let i = 2; i < lines.length; i++) {
-    const rowLine = lines[i].trim();
-    if (!rowLine || !rowLine.includes('|')) continue;
-    rows.push(parseRow(rowLine));
+  const rawRows: string[][] = [];
+  for (let i = 2; i < tableLines.length; i++) {
+    rawRows.push(parseRow(tableLines[i]));
   }
+
+  // Calculate the maximum number of columns across headers, alignments, and all rows
+  const maxCols = Math.max(
+    rawHeaders.length,
+    rawAlignments.length,
+    ...rawRows.map(r => r.length),
+    1
+  );
+
+  // Pad headers to maxCols
+  const headers = [...rawHeaders];
+  while (headers.length < maxCols) {
+    headers.push('');
+  }
+
+  // Pad alignments to maxCols
+  const alignments = [...rawAlignments];
+  while (alignments.length < maxCols) {
+    alignments.push('left');
+  }
+
+  // Pad every row to maxCols
+  const rows = rawRows.map(row => {
+    const padded = [...row];
+    while (padded.length < maxCols) {
+      padded.push('');
+    }
+    return padded;
+  });
 
   return { headers, alignments, rows };
 }
@@ -488,22 +537,38 @@ function parseMarkdownTable(lines: string[]): {
 function renderTable(lines: string[], pIdx: number, fontSize: number, isServiceDoc: boolean = true): React.ReactNode {
   const { headers, alignments, rows } = parseMarkdownTable(lines);
 
+  if (headers.length === 0 && rows.length === 0) return null;
+
   return (
-    <div key={pIdx} className="my-6 overflow-x-auto rounded border border-[#D5CCBA] dark:border-[#38352F] bg-[#FAF8F5] dark:bg-[#1C1B18] shadow-xs clear-both">
-      <table className="w-full border-collapse font-serif text-stone-900 dark:text-[#EDE7DD]" style={{ fontSize: `${Math.max(14, Math.round(fontSize * 0.88))}px` }}>
+    <div
+      key={pIdx}
+      className="my-6 overflow-x-auto rounded-lg border border-[#D5CCBA] dark:border-[#38352F] bg-[#FAF8F5] dark:bg-[#1C1B18] shadow-xs clear-both overscroll-x-contain"
+    >
+      <table
+        className="w-full border-collapse font-serif text-stone-900 dark:text-[#EDE7DD] tabular-nums"
+        style={{ fontSize: `${Math.max(13, Math.round(fontSize * 0.88))}px` }}
+      >
         {headers.length > 0 && (
-          <thead className="bg-[#EFE8DA] dark:bg-[#262420] border-b-2 border-[#8A211D]/30 dark:border-[#E86558]/40">
+          <thead className="bg-[#EFE8DA] dark:bg-[#262420] border-b-2 border-[#8A211D]/40 dark:border-[#E86558]/45">
             <tr>
               {headers.map((h, hIdx) => {
                 const align = alignments[hIdx] || 'left';
                 const alignClass = align === 'center' ? 'text-center' : align === 'right' ? 'text-right' : 'text-left';
+                const trimmedH = h.trim();
+                const isShort = trimmedH.length <= 12;
                 return (
                   <th
                     key={hIdx}
-                    className={`px-3.5 py-2.5 font-semibold text-[#8A211D] dark:text-[#E86558] ${alignClass} border-r last:border-r-0 border-[#D5CCBA]/60 dark:border-[#38352F]/60 whitespace-nowrap`}
+                    className={`px-3 sm:px-4 py-2.5 font-semibold text-[#8A211D] dark:text-[#E86558] ${alignClass} align-bottom border-r last:border-r-0 border-[#D5CCBA]/70 dark:border-[#38352F]/70 ${
+                      isShort ? 'whitespace-nowrap' : 'whitespace-normal min-w-[5.5rem] sm:min-w-[7rem] leading-snug'
+                    }`}
                     style={{ fontVariant: 'small-caps', letterSpacing: '0.04em' }}
                   >
-                    {renderInlineMarkdown(h, false, false, isServiceDoc)}
+                    {trimmedH ? (
+                      renderInlineMarkdown(trimmedH, false, false, isServiceDoc)
+                    ) : (
+                      <span className="inline-block select-none invisible">&nbsp;</span>
+                    )}
                   </th>
                 );
               })}
@@ -514,17 +579,22 @@ function renderTable(lines: string[], pIdx: number, fontSize: number, isServiceD
           {rows.map((row, rIdx) => (
             <tr
               key={rIdx}
-              className="even:bg-[#F5EFE4]/40 dark:even:bg-[#201F1C]/40 hover:bg-[#EFE8DC]/60 dark:hover:bg-[#282622]/60 transition-colors"
+              className="even:bg-[#F5EFE4]/35 dark:even:bg-[#201F1C]/40 hover:bg-[#EFE8DC]/60 dark:hover:bg-[#282622]/60 transition-colors"
             >
               {row.map((cell, cIdx) => {
                 const align = alignments[cIdx] || 'left';
                 const alignClass = align === 'center' ? 'text-center' : align === 'right' ? 'text-right' : 'text-left';
+                const trimmedCell = cell.trim();
                 return (
                   <td
                     key={cIdx}
-                    className={`px-3.5 py-2 align-top ${alignClass} border-r last:border-r-0 border-[#EAE3D5]/60 dark:border-[#2E2B25]/60 leading-relaxed`}
+                    className={`px-3 sm:px-4 py-2 align-top ${alignClass} border-r last:border-r-0 border-[#EAE3D5]/60 dark:border-[#2E2B25]/60 leading-relaxed`}
                   >
-                    {renderInlineMarkdown(cell, false, false, isServiceDoc)}
+                    {trimmedCell ? (
+                      renderInlineMarkdown(trimmedCell, false, false, isServiceDoc)
+                    ) : (
+                      <span className="inline-block select-none invisible">&nbsp;</span>
+                    )}
                   </td>
                 );
               })}
@@ -560,8 +630,8 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
     // Normalize content: ensure all Markdown headers (#, ##, ###) and tables are cleanly isolated by double newlines
     const normalized = content
       .replace(/^(#{1,6}\s+[^\n]+)\n+(?!\n)/gm, '$1\n\n')
-      .replace(/([^\n|])\n(\|[^\n]+\|\n\|[\s:|-]+\|)/g, '$1\n\n$2')
-      .replace(/(\|[^\n]+\|)\n([^|\n#])/g, '$1\n\n$2');
+      .replace(/([^\n])\n(\s*\|[^\n]+\|\s*\n\s*\|[\s:|-]+\|)/g, '$1\n\n$2')
+      .replace(/(\|[^\n]+\|)\s*\n([^\n|#])/g, '$1\n\n$2');
     const rawParagraphs = normalized.split(/\n\s*\n/);
 
     // Helper to detect if a paragraph has an italicized Bible citation (e.g. *Psalm li. 3.*, *Jer. x. 24. Psalm vi. 1.*, *St. Matth. v.*, *Acts xx. 35.*, *1 Cor. xv. 57.*)
@@ -917,6 +987,49 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
           return renderTable(lines, pIdx, fontSize, isServiceDoc);
         }
 
+        // Check if this multi-line block is the Consecration Manual Acts
+        const isManualActsBlock = lines.length >= 3 && lines.every(l => {
+          const lt = l.trim().replace(/^\*+|\*+$/g, '');
+          return /^\(?[a-e]\)?[.:]?\s+/i.test(lt);
+        });
+
+        if (isManualActsBlock) {
+          return (
+            <div
+              key={pIdx}
+              className="my-5 p-4 rounded-r-lg border-l-3 border-[#8A211D] dark:border-[#E86558] bg-[#F7F2E8]/80 dark:bg-[#1E1C19]/80 border-y border-r border-[#D5CCBA]/60 dark:border-[#38352F]/60 shadow-2xs clear-both"
+            >
+              <div
+                className="text-xs font-bold text-[#8A211D] dark:text-[#E86558] uppercase tracking-wider mb-2.5"
+                style={{ fontVariant: 'small-caps', letterSpacing: '0.06em' }}
+              >
+                Manual Acts at the Consecration
+              </div>
+              <div className="space-y-2 text-[0.93em] text-[#991B1B] dark:text-[#E86558] italic leading-relaxed">
+                {lines.map((l, idx) => {
+                  const cleanLine = l.trim().replace(/^\*+|\*+$/g, '');
+                  const match = cleanLine.match(/^(\(?[a-e]\)?[.:]?)\s*([\s\S]+)$/i);
+                  if (match) {
+                    const letter = match[1].replace(/^[^\w]+|[^\w]+$/g, '').toLowerCase();
+                    const formattedLetter = `(${letter})`;
+                    return (
+                      <div key={idx} className="flex items-start gap-2.5">
+                        <span className="font-semibold text-[#8A211D] dark:text-[#E86558] shrink-0 select-none font-serif not-italic">
+                          {formattedLetter}
+                        </span>
+                        <span>{match[2]}</span>
+                      </div>
+                    );
+                  }
+                  return (
+                    <div key={idx}>{cleanLine}</div>
+                  );
+                })}
+              </div>
+            </div>
+          );
+        }
+
         // Check if the entire multi-line block is a series of rubrics
         const allLinesRubrics = isServiceDoc && lines.every(l => {
           const lt = l.trim();
@@ -1052,9 +1165,18 @@ export const LiturgicalReader: React.FC<LiturgicalReaderProps> = ({
     });
   }, [content, fontSize, category, isService]);
 
+  const isTableDoc = useMemo(() => {
+    return (
+      category === 'Prefaces & Tables' ||
+      category === 'Historical Documents & Tables' ||
+      (category && /table|calendar/i.test(category)) ||
+      /\|[\s:|-]+\|/.test(content)
+    );
+  }, [category, content]);
+
   return (
     <article
-      className="liturgical-text max-w-3xl mx-auto px-4 sm:px-6 py-6"
+      className={`liturgical-text ${isTableDoc ? 'max-w-5xl' : 'max-w-3xl'} mx-auto px-4 sm:px-6 py-6 transition-[max-width] duration-200`}
       style={{ fontSize: `${fontSize}px` }}
     >
       {elements}
@@ -1086,6 +1208,16 @@ export function isRubricItalic(
   }
 
   if (isInsideRubricBlock) return true;
+
+  // Rubrical reference markers for manual acts e.g. (a), (b), (c), (d), (e) or a, b, c, d, e
+  if (/^\(?[a-e]\)?[.:]?$/i.test(text.trim())) {
+    return true;
+  }
+
+  // Manual acts rubric instructions
+  if (/\b(?:Here\s+(?:the\s+Priest\s+is\s+to\s+take|he\s+is\s+to\s+take)|And\s+here\s+to\s+(?:break|lay))\b/i.test(trimmed)) {
+    return true;
+  }
 
   // Speaker labels are liturgical rubrics (e.g. *Priest.*, *Minister.*, *Question.*)
   if (/^(?:The\s+)?(?:Minister|Priest|Bishop|Dean|Reader|Officiant|Deacon|Question|Answer|People|The People|Congregation)[.:]?$/i.test(trimmed)) {
@@ -1370,8 +1502,17 @@ function renderInlineMarkdown(
         // Speaker labels and true rubrics render in vermilion rubric color.
         // Red & italics make pilcrows redundant; strip any leading pilcrows.
         const cleanRubricText = rawItalicText.replace(/^[¶\u00b6]\s*/, '');
+        const manualActTitle = MANUAL_ACT_TITLES[cleanRubricText.trim().toLowerCase()];
         parts.push(
-          <span key={key++} className="text-[#991B1B] dark:text-[#E86558] italic">
+          <span
+            key={key++}
+            className={`text-[#991B1B] dark:text-[#E86558] italic ${
+              manualActTitle
+                ? 'font-semibold cursor-help underline decoration-dotted decoration-[#991B1B]/50 dark:decoration-[#E86558]/50 px-0.5'
+                : ''
+            }`}
+            title={manualActTitle}
+          >
             {cleanRubricText}
           </span>
         );

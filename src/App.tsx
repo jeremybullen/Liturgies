@@ -83,6 +83,12 @@ export function App() {
     ? currentService.isService
     : (currentService.category !== 'Prefaces & Tables' && currentService.slug !== 'preface' && !currentService.slug.includes('preface'));
 
+  const isTableDoc =
+    currentService.category === 'Prefaces & Tables' ||
+    currentService.category === 'Historical Documents & Tables' ||
+    (currentService.category && /table|calendar/i.test(currentService.category)) ||
+    Boolean(currentService.content && /\|[\s:|-]+\|/.test(currentService.content));
+
   // Scroll detection: hide header when scrolling down, reveal when scrolling up or at top
   useEffect(() => {
     let ticking = false;
@@ -524,7 +530,7 @@ export function App() {
         </main>
       ) : (
         <main className="py-4 sm:py-8 pb-20">
-          <div className="max-w-3xl mx-auto">
+          <div className={`${isTableDoc ? 'max-w-5xl' : 'max-w-3xl'} mx-auto transition-[max-width] duration-200`}>
             <LiturgicalReader
               content={currentService.content}
               fontSize={fontSize}
